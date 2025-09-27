@@ -34,6 +34,7 @@ namespace Easypos.Masters
         private List<ItemsViewModel> _EVM;
         Usingnumber _NO;
         List<SalesReportItem> SO;
+        List<Itemremaining> IR;
         bool RFlag;
         int runningBalance;
         public frmproductitemlist()
@@ -540,6 +541,48 @@ namespace Easypos.Masters
             //LOS.txtStocksOnHand.Text = txtRemining.Text;
             LOS.textBox2.Text = textBox2.Text;
             LOS.ShowDialog();
+        }
+
+        private void Rep2_Click(object sender, EventArgs e)
+        {
+            if (DGV.Rows.Count > 0)
+            {
+                IR = new List<Itemremaining>();
+                for (int i = 0; i < DGV.Rows.Count; i++)
+                {
+                    It.ID = int.Parse(DGV.Rows[i].Cells[0].Value.ToString());
+                    var itemname = DGV.Rows[i].Cells[1].Value.ToString();
+                    Getdata(It.ID);
+                    Getrepall();
+                    var Rem = runningBalance.ToString();
+                    IR.Add(new Itemremaining
+                    {
+                        ID = It.ID,
+                        Itemname = itemname,
+                        Remining = double.Parse(Rem),
+                    });
+                }
+                var List = IR.ToList();
+                Frmreporting FR = new Frmreporting();
+                Dataset Ds = new Dataset();
+                Itemstokreport SR = new Itemstokreport();
+                foreach (var item in List)
+                {
+                    var dt = Ds.Tables["Stokdata"];
+                    var row = dt.NewRow();
+                    row["Proid"] = item.ID;
+                    row["Description"] = item.Itemname;
+                    row["Balance"] = item.Remining;
+                    dt.Rows.Add(row);
+                }
+                SR.SetDataSource(Ds);
+                SR.SetParameterValue("Taxnum", DC.Taxnumber);
+                SR.SetParameterValue("Proname", DC.CRN);
+                SR.SetParameterValue("English_Shop_name", DC.ENName);
+                SR.SetParameterValue("CompanyName", DC.Name);
+                FR.CRV.ReportSource = SR;
+                FR.Show();
+            }
         }
     }
 }

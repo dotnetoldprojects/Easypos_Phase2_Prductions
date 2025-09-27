@@ -311,6 +311,42 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="Rep2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="Rep2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="Rep2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Verdana, 11.25pt</value>
+  </data>
+  <data name="Rep2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Rep2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 70</value>
+  </data>
+  <data name="Rep2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 44</value>
+  </data>
+  <data name="Rep2.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="Rep2.Text" xml:space="preserve">
+    <value>المتبقي</value>
+  </data>
+  <data name="&gt;&gt;Rep2.Name" xml:space="preserve">
+    <value>Rep2</value>
+  </data>
+  <data name="&gt;&gt;Rep2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Rep2.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;Rep2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="Btnrep.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
@@ -327,7 +363,7 @@
     <value>12, 70</value>
   </data>
   <data name="Btnrep.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 44</value>
+    <value>75, 44</value>
   </data>
   <data name="Btnrep.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -345,7 +381,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;Btnrep.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="txtRemining.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -372,7 +408,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;txtRemining.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -402,7 +438,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="button1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -438,7 +474,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="Btnaddedit.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -471,7 +507,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;Btnaddedit.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="BtnNew.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -504,7 +540,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;BtnNew.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="textBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>428, 53</value>
@@ -528,7 +564,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -555,7 +591,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -582,7 +618,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="Btnunit.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -626,7 +662,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;Btnunit.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="textBox1.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -650,7 +686,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;textBox1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="txtUnitPrice.Location" type="System.Drawing.Point, System.Drawing">
     <value>631, 53</value>
@@ -674,7 +710,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;txtUnitPrice.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="Label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -701,7 +737,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;Label7.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="txtItemname.Location" type="System.Drawing.Point, System.Drawing">
     <value>271, 20</value>
@@ -722,7 +758,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;txtItemname.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="Label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -749,7 +785,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;Label5.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="groupBox2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>

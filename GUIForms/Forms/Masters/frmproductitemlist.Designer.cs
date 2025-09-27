@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmproductitemlist));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.picClose = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -62,6 +62,7 @@
             this.UnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpeningBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Unitid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rep2 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -102,6 +103,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Rep2);
             this.groupBox2.Controls.Add(this.Btnrep);
             this.groupBox2.Controls.Add(this.txtRemining);
             this.groupBox2.Controls.Add(this.label4);
@@ -287,8 +289,8 @@
             // ID
             // 
             this.ID.DataPropertyName = "ID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ID.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.ID, "ID");
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -334,6 +336,17 @@
             resources.ApplyResources(this.Unitid, "Unitid");
             this.Unitid.Name = "Unitid";
             this.Unitid.ReadOnly = true;
+            // 
+            // Rep2
+            // 
+            this.Rep2.BackColor = System.Drawing.Color.PowderBlue;
+            resources.ApplyResources(this.Rep2, "Rep2");
+            this.Rep2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Rep2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.Rep2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.Rep2.Name = "Rep2";
+            this.Rep2.UseVisualStyleBackColor = false;
+            this.Rep2.Click += new System.EventHandler(this.Rep2_Click);
             // 
             // frmproductitemlist
             // 
@@ -391,5 +404,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitName;
         private System.Windows.Forms.DataGridViewTextBoxColumn OpeningBalance;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unitid;
+        private System.Windows.Forms.Button Rep2;
     }
 }
