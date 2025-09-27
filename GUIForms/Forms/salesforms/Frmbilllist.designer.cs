@@ -65,6 +65,8 @@ namespace Easypos.Salesforms
             this.DTF = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.CMPay = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.Searchbydate = new System.Windows.Forms.CheckBox();
             this.CMBStatus = new System.Windows.Forms.ComboBox();
@@ -93,8 +95,6 @@ namespace Easypos.Salesforms
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Btnreg = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label14 = new System.Windows.Forms.Label();
-            this.CMPay = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -231,16 +231,14 @@ namespace Easypos.Salesforms
             // groupBox3
             // 
             resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Controls.Add(this.txtNote);
-            this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.TTF);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.Btnsearch);
-            this.groupBox3.Controls.Add(this.txtPhone);
             this.groupBox3.Controls.Add(this.TTT);
-            this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.Searchbydate);
             this.groupBox3.Controls.Add(this.DTT);
+            this.groupBox3.Controls.Add(this.Searchbytime);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.DTF);
             this.groupBox3.Controls.Add(this.label2);
@@ -314,18 +312,36 @@ namespace Easypos.Salesforms
             // GroupBox1
             // 
             resources.ApplyResources(this.GroupBox1, "GroupBox1");
+            this.GroupBox1.Controls.Add(this.txtNote);
             this.GroupBox1.Controls.Add(this.label14);
+            this.GroupBox1.Controls.Add(this.label12);
             this.GroupBox1.Controls.Add(this.CMPay);
             this.GroupBox1.Controls.Add(this.label13);
-            this.GroupBox1.Controls.Add(this.Searchbydate);
             this.GroupBox1.Controls.Add(this.CMBStatus);
-            this.GroupBox1.Controls.Add(this.Searchbytime);
+            this.GroupBox1.Controls.Add(this.txtPhone);
             this.GroupBox1.Controls.Add(this.IN);
+            this.GroupBox1.Controls.Add(this.label10);
             this.GroupBox1.Controls.Add(this.clientID);
             this.GroupBox1.Controls.Add(this.label4);
             this.GroupBox1.Controls.Add(this.label1);
             this.GroupBox1.Name = "GroupBox1";
             this.GroupBox1.TabStop = false;
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // CMPay
+            // 
+            resources.ApplyResources(this.CMPay, "CMPay");
+            this.CMPay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CMPay.FormattingEnabled = true;
+            this.CMPay.Items.AddRange(new object[] {
+            resources.GetString("CMPay.Items"),
+            resources.GetString("CMPay.Items1"),
+            resources.GetString("CMPay.Items2")});
+            this.CMPay.Name = "CMPay";
             // 
             // label13
             // 
@@ -340,13 +356,13 @@ namespace Easypos.Salesforms
             // 
             // CMBStatus
             // 
+            resources.ApplyResources(this.CMBStatus, "CMBStatus");
             this.CMBStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CMBStatus.FormattingEnabled = true;
             this.CMBStatus.Items.AddRange(new object[] {
             resources.GetString("CMBStatus.Items"),
             resources.GetString("CMBStatus.Items1"),
             resources.GetString("CMBStatus.Items2")});
-            resources.ApplyResources(this.CMBStatus, "CMBStatus");
             this.CMBStatus.Name = "CMBStatus";
             // 
             // Searchbytime
@@ -558,22 +574,6 @@ namespace Easypos.Salesforms
             this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Delete.Text = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
-            // 
-            // CMPay
-            // 
-            this.CMPay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CMPay.FormattingEnabled = true;
-            this.CMPay.Items.AddRange(new object[] {
-            resources.GetString("CMPay.Items"),
-            resources.GetString("CMPay.Items1"),
-            resources.GetString("CMPay.Items2")});
-            resources.ApplyResources(this.CMPay, "CMPay");
-            this.CMPay.Name = "CMPay";
             // 
             // Frmbilllist
             // 

@@ -680,25 +680,33 @@ namespace Easypos.Salesforms.Cashier
             }
             else if (dgwInvoice.Columns[e.ColumnIndex].Name == "Btnreg")
             {
-                if (Datatye == "مسوده")
+                if (DC.ISUsePhase2)
                 {
-                    MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسوده", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (Datareg == "سجلت")
-                {
-                    MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (Datedata != MDate)
-                {
-                    MessageBox.Show("لا يمكن تسجيل فاتوره بتاريخ مسبق", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    if (Datatye == "مسوده")
+                    {
+                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسوده", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (Datareg == "سجلت")
+                    {
+                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (Datedata != MDate)
+                    {
+                        MessageBox.Show("لا يمكن تسجيل فاتوره بتاريخ مسبق", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        ZF.invid = int.Parse(Dataid);
+                        ZF.DC = DC;
+                        await ZF.Loading();
+                        Getdatalist();
+                    }
                 }
                 else
                 {
-                    ZF.invid = int.Parse(Dataid);
-                    ZF.DC = DC;
-                    await ZF.Loading();
-                    Getdatalist();
+                    MessageBox.Show("لا يمكن تسجيل الفاتوره لان النظام غير مفعل عليه المرحله الثانيه برجاء التواصل مع الدعم الفني", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
         }

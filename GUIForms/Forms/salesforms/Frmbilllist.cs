@@ -223,39 +223,47 @@ namespace Easypos.Salesforms
             }
             else if (DGV.Columns[e.ColumnIndex].Name == "Btnreg")
             {
-                if (Datatye == "مسوده")
+                if (DC.ISUsePhase2)
                 {
-                    MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسوده", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (Datareg == "سجلت")
-                {
-                    MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (Datedata != MDate)
-                {
-                    MessageBox.Show("لا يمكن تسجيل فاتوره بتاريخ مسبق", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    Cursor.Current = Cursors.WaitCursor;
-                    // Get the last invoice number
-                    ZF.invid = int.Parse(Dataid);
-                    ZF.DC = DC;
-                    await ZF.Loading();
-                    if (Filter)
+                    if (Datatye == "مسوده")
                     {
-                        GAS = new Getallsales();
-                        Res = GAS.GetSaleslist();
-                        Getsalesbyfilters();
-                        DataTotals();
+                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسوده", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (Datareg == "سجلت")
+                    {
+                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if (Datedata != MDate)
+                    {
+                        MessageBox.Show("لا يمكن تسجيل فاتوره بتاريخ مسبق", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
                     else
                     {
-                        Loading();
+                        Cursor.Current = Cursors.WaitCursor;
+                        // Get the last invoice number
+                        ZF.invid = int.Parse(Dataid);
+                        ZF.DC = DC;
+                        await ZF.Loading();
+                        if (Filter)
+                        {
+                            GAS = new Getallsales();
+                            Res = GAS.GetSaleslist();
+                            Getsalesbyfilters();
+                            DataTotals();
+                        }
+                        else
+                        {
+                            Loading();
+                        }
+                        Cursor.Current = Cursors.Default;
                     }
-                    Cursor.Current = Cursors.Default;
+                }
+                else
+                {
+                    MessageBox.Show("لا يمكن تسجيل الفاتوره لان النظام غير مفعل عليه المرحله الثانيه برجاء التواصل مع الدعم الفني", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
         }
