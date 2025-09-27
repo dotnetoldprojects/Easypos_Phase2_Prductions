@@ -302,8 +302,8 @@ namespace Easypos.Salesforms
             // شرط الوقت
             if (Searchbytime.Checked)
             {
-                if (TimeSpan.TryParse(TTF.Text, out var fromTime) &&
-                    TimeSpan.TryParse(TTT.Text, out var toTime))
+                if (TimeSpan.TryParse(TTF.Value.ToString("HH:mm:ss"), out var fromTime) &&
+                    TimeSpan.TryParse(TTT.Value.ToString("HH:mm:ss"), out var toTime))
                 {
                     query = query.AsEnumerable()
                                  .Where(x =>
