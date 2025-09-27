@@ -27,6 +27,7 @@ namespace Easypos.Payment
         frmPurchases Pur;
         frmPOS Pos;
         Usingnumber _NO;
+        Zatcafutuers ZF;
         public Frmpayments()
         {
             InitializeComponent();
@@ -39,6 +40,7 @@ namespace Easypos.Payment
             Pos = (Application.OpenForms["frmPOS"] as frmPOS);
             Pur = (Application.OpenForms["frmPurchases"] as frmPurchases);
             _NO = new Usingnumber();
+            ZF = new Zatcafutuers();
         }
         private void LoadAllCombos()
         {
@@ -81,7 +83,7 @@ namespace Easypos.Payment
                 clients.SelectedValue = int.Parse(Purcid);
             }
         }
-        private void Btnsave_Click(object sender, EventArgs e)
+        private async void Btnsave_Click(object sender, EventArgs e)
         {
             try
             {
@@ -132,6 +134,36 @@ namespace Easypos.Payment
                                     _IUW.Complete();
                                 }
                                 //Sb.Generatexml();
+                                if ((bool)DC.Isusesigne)
+                                {
+                                    Cursor.Current = Cursors.WaitCursor;
+                                    var Bank = Gp.Bank;
+                                    var Cash = Gp.Cash;
+                                    ZF.invid = Sb.Invid;
+                                    ZF.DC = DC;
+                                    if (DC.Sysnametype == "0")
+                                    {
+                                        if (Bank == 0 && Cash > 0)
+                                        {
+                                            await ZF.Loading();
+                                        }
+                                    }
+                                    if (DC.Sysnametype == "1")
+                                    {
+                                        if (Bank > 0 && Cash == 0)
+                                        {
+                                            await ZF.Loading();
+                                        }
+                                    }
+                                    if (DC.Sysnametype == "2")
+                                    {
+                                        if (Bank > 0 && Cash > 0)
+                                        {
+                                            await ZF.Loading();
+                                        }
+                                    }
+                                    Cursor.Current = Cursors.Default;
+                                }
                             }
                             MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
                         }
@@ -171,6 +203,36 @@ namespace Easypos.Payment
                                     _IUW.Complete();
                                 }
                                 //Pos.Generatexml();
+                                if ((bool)DC.Isusesigne)
+                                {
+                                    Cursor.Current = Cursors.WaitCursor;
+                                    var Bank = Gp.Bank;
+                                    var Cash = Gp.Cash;
+                                    ZF.invid = Pos.Invid;
+                                    ZF.DC = DC;
+                                    if (DC.Signtype == 0)
+                                    {
+                                        if (Bank == 0 && Cash > 0)
+                                        {
+                                            await ZF.Loading();
+                                        }
+                                    }
+                                    if (DC.Signtype == 1)
+                                    {
+                                        if (Bank > 0 && Cash == 0)
+                                        {
+                                            await ZF.Loading();
+                                        }
+                                    }
+                                    if (DC.Signtype == 2)
+                                    {
+                                        if (Bank > 0 && Cash > 0)
+                                        {
+                                            await ZF.Loading();
+                                        }
+                                    }
+                                    Cursor.Current = Cursors.Default;
+                                }
                             }
                             MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
                             //Pos.Clearfieldes();

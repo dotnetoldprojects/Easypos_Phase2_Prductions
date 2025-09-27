@@ -223,7 +223,7 @@ namespace GUI.Helpers
                     invoicenumber = invno,
                 });
                 _IUW.Complete();
-                MessageBox.Show(zatcaResponse.reportingStatus);
+                //MessageBox.Show(zatcaResponse.reportingStatus);
             }
             else
             {

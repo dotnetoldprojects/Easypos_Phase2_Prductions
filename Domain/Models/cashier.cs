@@ -38,6 +38,12 @@ public partial class cashier
 
     public string OTP { get; set; }
 
+    public Nullable<int> Mode { get; set; }
+
+    public Nullable<bool> Isusesigne { get; set; }
+
+    public Nullable<int> Signtype { get; set; }
+
 }
 
 }

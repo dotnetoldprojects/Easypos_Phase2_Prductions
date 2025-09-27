@@ -27,6 +27,9 @@
           <Property Name="PublicKey" Type="nvarchar(max)" />
           <Property Name="Secret" Type="nvarchar(max)" />
           <Property Name="OTP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mode" Type="int" />
+          <Property Name="Isusesigne" Type="bit" />
+          <Property Name="Signtype" Type="int" />
         </EntityType>
         <EntityType Name="category">
           <Key>
@@ -72,6 +75,8 @@
           <Property Name="PricesWithVAT" Type="smallint" />
           <Property Name="VatPercent1" Type="float" Nullable="false" />
           <Property Name="PricesWithVAT1" Type="smallint" />
+          <Property Name="Isusesigne" Type="bit" />
+          <Property Name="Signtype" Type="int" />
         </EntityType>
         <EntityType Name="exceptionpro">
           <Key>
@@ -731,6 +736,9 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <Property Name="PublicKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Secret" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="OTP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mode" Type="Int32" />
+          <Property Name="Isusesigne" Type="Boolean" />
+          <Property Name="Signtype" Type="Int32" />
         </EntityType>
         <EntityType Name="category">
           <Key>
@@ -776,6 +784,8 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <Property Name="PricesWithVAT" Type="Int16" />
           <Property Name="VatPercent1" Type="Double" Nullable="false" />
           <Property Name="PricesWithVAT1" Type="Int16" />
+          <Property Name="Isusesigne" Type="Boolean" />
+          <Property Name="Signtype" Type="Int32" />
         </EntityType>
         <EntityType Name="expencestype">
           <Key>
@@ -1437,6 +1447,9 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySetMapping Name="cashiers">
             <EntityTypeMapping TypeName="EasyposModel.cashier">
               <MappingFragment StoreEntitySet="cashier">
+                <ScalarProperty Name="Signtype" ColumnName="Signtype" />
+                <ScalarProperty Name="Isusesigne" ColumnName="Isusesigne" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
                 <ScalarProperty Name="OTP" ColumnName="OTP" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SystemName" ColumnName="SystemName" />
@@ -1463,6 +1476,8 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySetMapping Name="companies">
             <EntityTypeMapping TypeName="EasyposModel.company">
               <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="Signtype" ColumnName="Signtype" />
+                <ScalarProperty Name="Isusesigne" ColumnName="Isusesigne" />
                 <ScalarProperty Name="PricesWithVAT1" ColumnName="PricesWithVAT1" />
                 <ScalarProperty Name="VatPercent1" ColumnName="VatPercent1" />
                 <ScalarProperty Name="PricesWithVAT" ColumnName="PricesWithVAT" />

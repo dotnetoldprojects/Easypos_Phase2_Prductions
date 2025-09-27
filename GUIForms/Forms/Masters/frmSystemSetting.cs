@@ -114,6 +114,7 @@ namespace Easypos.Masters
             Zatcataxcheack();
             Getalldevices();
             DDM.SelectedIndex = 2;
+            CSType.SelectedIndex = 1;
         }
         private void picClose_Click(object sender, EventArgs e)
         {
@@ -340,9 +341,15 @@ namespace Easypos.Masters
             Dev.PublicKey = txt_publickey.Text;
             Dev.Secret = txt_secret.Text;
             Dev.OTP = textBox4.Text;
+            Dev.Mode = DDM.SelectedIndex;
+            Dev.Isusesigne = DSC.Checked;
+            Dev.Signtype = CSType.SelectedIndex;
             try
             {
                 _IUW.cashiers.Insert(Dev);
+                DC.Isusesigne = DSC.Checked;
+                DC.Signtype = CSType.SelectedIndex;
+                _IUW.companies.Update(DC);
                 _IUW.Complete();
             }
             catch (Exception ex)
@@ -448,6 +455,9 @@ namespace Easypos.Masters
                 txt_privatekey.Text = Cashierdgv.CurrentRow.Cells[6].Value.ToString();
                 txt_csr.Text = Cashierdgv.CurrentRow.Cells[5].Value.ToString();
                 textBox4.Text = Cashierdgv.CurrentRow.Cells[9].Value.ToString();
+                DDM.SelectedIndex = int.Parse(Cashierdgv.CurrentRow.Cells[10].Value.ToString());
+                DSC.Checked = (bool)Cashierdgv.CurrentRow.Cells[11].Value;
+                CSType.SelectedIndex = int.Parse(Cashierdgv.CurrentRow.Cells[12].Value.ToString());
             }
         }
         private void txtTaxnumber_KeyPress(object sender, KeyPressEventArgs e)
@@ -463,6 +473,33 @@ namespace Easypos.Masters
             txt_publickey.Clear();
             txt_csr.Clear();
             txt_privatekey.Clear();
+        }
+
+        private void DSC_Click(object sender, EventArgs e)
+        {
+            if (DSC.Checked)
+            {
+                label18.Visible = true;
+                CSType.Visible = true;
+            }
+            else {                 
+                label18.Visible = false;
+                CSType.Visible = false;
+            }
+        }
+
+        private void DSC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (DSC.Checked)
+            {
+                label18.Visible = true;
+                CSType.Visible = true;
+            }
+            else
+            {
+                label18.Visible = false;
+                CSType.Visible = false;
+            }
         }
     }
 }
