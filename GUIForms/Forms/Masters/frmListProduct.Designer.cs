@@ -45,10 +45,6 @@
             this.CBItems = new System.Windows.Forms.ComboBox();
             this.GB = new System.Windows.Forms.GroupBox();
             this.DGVProitems = new System.Windows.Forms.DataGridView();
-            this.itemid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Btnaddedit = new System.Windows.Forms.Button();
             this.Btndel = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -91,6 +87,10 @@
             this.Showpos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Allowinv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReorderLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -211,7 +211,7 @@
             this.DGVProitems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVProitems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVProitems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.itemid,
+            this.ID,
             this.itemname,
             this.Quantity,
             this.Delete});
@@ -234,31 +234,6 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGVProitems.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGVProitems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVProitems_CellContentClick);
-            // 
-            // itemid
-            // 
-            this.itemid.DataPropertyName = "ID";
-            resources.ApplyResources(this.itemid, "itemid");
-            this.itemid.Name = "itemid";
-            // 
-            // itemname
-            // 
-            this.itemname.DataPropertyName = "Itemname";
-            resources.ApplyResources(this.itemname, "itemname");
-            this.itemname.Name = "itemname";
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            resources.ApplyResources(this.Quantity, "Quantity");
-            this.Quantity.Name = "Quantity";
-            // 
-            // Delete
-            // 
-            resources.ApplyResources(this.Delete, "Delete");
-            this.Delete.Name = "Delete";
-            this.Delete.Text = "Delete";
-            this.Delete.UseColumnTextForButtonValue = true;
             // 
             // Btnaddedit
             // 
@@ -567,6 +542,31 @@
             this.ReorderLevel.Name = "ReorderLevel";
             this.ReorderLevel.ReadOnly = true;
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            resources.ApplyResources(this.ID, "ID");
+            this.ID.Name = "ID";
+            // 
+            // itemname
+            // 
+            this.itemname.DataPropertyName = "Itemname";
+            resources.ApplyResources(this.itemname, "itemname");
+            this.itemname.Name = "itemname";
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            resources.ApplyResources(this.Quantity, "Quantity");
+            this.Quantity.Name = "Quantity";
+            // 
+            // Delete
+            // 
+            resources.ApplyResources(this.Delete, "Delete");
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "Delete";
+            this.Delete.UseColumnTextForButtonValue = true;
+            // 
             // frmListProduct
             // 
             resources.ApplyResources(this, "$this");
@@ -646,7 +646,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Showpos;
         private System.Windows.Forms.DataGridViewTextBoxColumn Allowinv;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReorderLevel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemname;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;

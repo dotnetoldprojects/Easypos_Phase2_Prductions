@@ -204,6 +204,7 @@
   <ItemGroup>
     <Compile Include="Dtos\Getcentralaizes.cs" />
     <Compile Include="Dtos\Itemremaining.cs" />
+    <Compile Include="Dtos\ItemRow.cs" />
     <Compile Include="Dtos\LanguageHelper.cs" />
     <Compile Include="Dtos\PayDto.cs" />
     <Compile Include="Dtos\ProductLine.cs" />

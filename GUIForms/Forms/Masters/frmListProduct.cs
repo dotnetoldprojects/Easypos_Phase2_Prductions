@@ -7,6 +7,7 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -30,6 +31,7 @@ namespace Easypos.Masters
         IUnitofwork _IUW;
         Usingnumber _NO;
         private List<ProductViewModel> _EVM;
+        BindingList<ItemRow> IR;
         public frmListProduct()
         {
             Pi = new productitem();
@@ -48,6 +50,9 @@ namespace Easypos.Masters
             CBItems.DataSource = GC.GetItemsdatalist();
             CBItems.DisplayMember = "Itemname";   // اللي المستخدم هيشوفه
             CBItems.ValueMember = "ID";           // القيمة اللي هتكون مخزنة
+            IR = new BindingList<ItemRow>();
+            DGVProitems.AutoGenerateColumns = true;
+            DGVProitems.DataSource = IR;
         }
         private void GetProductData()
         {
@@ -235,27 +240,32 @@ namespace Easypos.Masters
                 ShowInPOS.Checked = bool.Parse(DGV.CurrentRow.Cells[10].Value.ToString());
                 allowInventory.Checked = bool.Parse(DGV.CurrentRow.Cells[11].Value.ToString());
                 txtReorderLevel.Text = DGV.CurrentRow.Cells[12].Value.ToString();
+                //var result = GC.GetProductItems(lblProductNo.Text);
+                LoadProductItems(lblProductNo.Text);
+            }
+        }
+        private void LoadProductItems(string productId)
+        {
+            // انهي أي تعديل شغال
+            if (DGVProitems.IsCurrentCellInEditMode)
+                DGVProitems.EndEdit();
 
+            // امسح القديم
+            IR.Clear();
 
-                // 1. أوقف إضافة الصفوف
-                DGVProitems.AllowUserToAddRows = false;
+            // هات الداتا (AnonymousType = object)
+            var result = GC.GetProductItems(productId);
 
-                // 2. انهي أي تحرير نشط
-                if (DGVProitems.IsCurrentCellInEditMode)
+            // اعمل Map لـ ItemRow
+            foreach (var obj in result)
+            {
+                dynamic item = obj; // حل سريع للتعامل مع AnonymousType
+                IR.Add(new ItemRow
                 {
-                    DGVProitems.EndEdit();
-                }
-
-                // 3. امسح المصدر
-                //DGVProitems.DataSource = null;
-                DGVProitems.Rows.Clear();
-
-                // 4. أعد تحميل البيانات
-                var result = GC.GetProductItems(lblProductNo.Text);
-                // بدل ما تفصل المصدر، حدثه مباشرة
-                var bindingSource = new BindingSource();
-                bindingSource.DataSource = result;
-                DGVProitems.DataSource = bindingSource;
+                    ID = item.ID ?? 0,
+                    Itemname = item.Itemname,
+                    Quantity = int.Parse(item.Quantity) ?? 1
+                });
             }
         }
         private void btnNew_Click(object sender, EventArgs e)
@@ -284,29 +294,22 @@ namespace Easypos.Masters
         }
         private void Btnadd_Click(object sender, EventArgs e)
         {
-            // 1. هات الـ ID اللي مختاره المستخدم
             string selectedId = CBItems.SelectedValue?.ToString();
-            bool itemExists = false;
-
-            // 2. لف على الصفوف علشان تشوف هل موجود قبل كده
-            foreach (DataGridViewRow row in DGVProitems.Rows)
+            var row = IR.FirstOrDefault(x => x.ID == int.Parse(selectedId));
+            if (row != null)
             {
-                if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == selectedId)
+                row.Quantity += 1;
+                DGVProitems.Refresh(); // للتحديث
+            }
+            else
+            {
+                IR.Add(new ItemRow
                 {
-                    // الصنف موجود بالفعل → زوّد الكمية (عمود الكمية في العمود رقم 2 = index 2)
-                    int currentQty = Convert.ToInt32(row.Cells[2].Value);
-                    row.Cells[2].Value = currentQty + 1;
-                    itemExists = true;
-                    break;
-                }
+                    ID = int.Parse(selectedId),
+                    Itemname = CBItems.Text,
+                    Quantity = 1
+                });
             }
-
-            // 3. لو مش موجود، أضف صف جديد
-            if (!itemExists)
-            {
-                DGVProitems.Rows.Add(selectedId, CBItems.Text, 1);
-            }
-
         }
         private void DGVProitems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
