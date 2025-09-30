@@ -143,14 +143,14 @@ namespace Easypos.Payment
                                     ZF.DC = DC;
                                     if (DC.Sysnametype == "0")
                                     {
-                                        if (Bank == 0 && Cash > 0)
+                                        if (Cash > 0)
                                         {
                                             await ZF.Loading();
                                         }
                                     }
                                     if (DC.Sysnametype == "1")
                                     {
-                                        if (Bank > 0 && Cash == 0)
+                                        if (Cash == 0)
                                         {
                                             await ZF.Loading();
                                         }
@@ -212,14 +212,14 @@ namespace Easypos.Payment
                                     ZF.DC = DC;
                                     if (DC.Signtype == 0)
                                     {
-                                        if (Bank == 0 && Cash > 0)
+                                        if (Cash > 0)
                                         {
                                             await ZF.Loading();
                                         }
                                     }
                                     if (DC.Signtype == 1)
                                     {
-                                        if (Bank > 0 && Cash == 0)
+                                        if (Bank > 0)
                                         {
                                             await ZF.Loading();
                                         }

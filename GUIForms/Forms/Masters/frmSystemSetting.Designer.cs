@@ -77,6 +77,9 @@
             this.Btncomsave = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.zatacadata = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.CSType = new System.Windows.Forms.ComboBox();
+            this.DSC = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.DDM = new System.Windows.Forms.ComboBox();
@@ -125,9 +128,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.CMDLang = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.DSC = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.CSType = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -488,6 +488,30 @@
             this.zatacadata.Name = "zatacadata";
             this.zatacadata.TabStop = false;
             // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // CSType
+            // 
+            this.CSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CSType.FormattingEnabled = true;
+            this.CSType.Items.AddRange(new object[] {
+            resources.GetString("CSType.Items"),
+            resources.GetString("CSType.Items1"),
+            resources.GetString("CSType.Items2")});
+            resources.ApplyResources(this.CSType, "CSType");
+            this.CSType.Name = "CSType";
+            // 
+            // DSC
+            // 
+            resources.ApplyResources(this.DSC, "DSC");
+            this.DSC.Name = "DSC";
+            this.DSC.UseVisualStyleBackColor = true;
+            this.DSC.CheckedChanged += new System.EventHandler(this.DSC_CheckedChanged);
+            this.DSC.Click += new System.EventHandler(this.DSC_Click);
+            // 
             // button1
             // 
             resources.ApplyResources(this.button1, "button1");
@@ -592,7 +616,6 @@
             // 
             resources.ApplyResources(this.txt_industry, "txt_industry");
             this.txt_industry.Name = "txt_industry";
-            this.txt_industry.ReadOnly = true;
             // 
             // button2
             // 
@@ -806,30 +829,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // DSC
-            // 
-            resources.ApplyResources(this.DSC, "DSC");
-            this.DSC.Name = "DSC";
-            this.DSC.UseVisualStyleBackColor = true;
-            this.DSC.CheckedChanged += new System.EventHandler(this.DSC_CheckedChanged);
-            this.DSC.Click += new System.EventHandler(this.DSC_Click);
-            // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            // 
-            // CSType
-            // 
-            this.CSType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CSType.FormattingEnabled = true;
-            this.CSType.Items.AddRange(new object[] {
-            resources.GetString("CSType.Items"),
-            resources.GetString("CSType.Items1"),
-            resources.GetString("CSType.Items2")});
-            resources.ApplyResources(this.CSType, "CSType");
-            this.CSType.Name = "CSType";
             // 
             // frmSystemSetting
             // 
