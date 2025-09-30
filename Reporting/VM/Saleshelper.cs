@@ -181,7 +181,7 @@ namespace Reporting.VM
                 .Where(ubl => ubl.Status == "سجلت")
                 .GroupJoin(
                     _IUOW.sales.GetAll(),
-                    ubl => ubl.Saleid,
+                    ubl => ubl.invoicenumber,
                     sale => sale.Invoiceno,
                     (ubl, saleGroup) => new { ubl, saleGroup }
                 )
