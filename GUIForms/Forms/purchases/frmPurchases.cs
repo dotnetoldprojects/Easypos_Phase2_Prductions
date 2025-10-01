@@ -94,6 +94,8 @@ namespace Easypos.Purchases
         {
             _DGVPH.AddProductToDGV();
             Clearfildes();
+            _DGVPH.Isvat = ISVAT.Checked;
+            _DGVPH.UpdateDGVSummary2();
         }
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -370,6 +372,8 @@ namespace Easypos.Purchases
             {
                 _DGVPH.AddProductToDGV();
                 Clearfildes();
+                _DGVPH.Isvat = ISVAT.Checked;
+                _DGVPH.UpdateDGVSummary2();
             }
         }
 
