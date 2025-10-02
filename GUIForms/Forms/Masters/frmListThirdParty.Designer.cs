@@ -95,6 +95,8 @@ namespace Easypos.Masters
             this.Taxnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Billnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pagenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Countrybox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.comdata.SuspendLayout();
@@ -115,6 +117,8 @@ namespace Easypos.Masters
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.Countrybox);
             this.groupBox3.Controls.Add(this.cbzatca);
             this.groupBox3.Controls.Add(this.comdata);
             this.groupBox3.Controls.Add(this.Btnsave);
@@ -584,6 +588,18 @@ namespace Easypos.Masters
             this.Pagenumber.Name = "Pagenumber";
             this.Pagenumber.ReadOnly = true;
             // 
+            // Countrybox
+            // 
+            this.Countrybox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Countrybox.FormattingEnabled = true;
+            resources.ApplyResources(this.Countrybox, "Countrybox");
+            this.Countrybox.Name = "Countrybox";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
             // frmListThirdParty
             // 
             resources.ApplyResources(this, "$this");
@@ -678,5 +694,7 @@ namespace Easypos.Masters
         internal System.Windows.Forms.Label label16;
         internal System.Windows.Forms.TextBox txtRN;
         private System.Windows.Forms.CheckBox cbzatca;
+        internal System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox Countrybox;
     }
 }

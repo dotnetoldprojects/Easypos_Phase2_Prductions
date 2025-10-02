@@ -1,7 +1,9 @@
-﻿using Domain.Models;
+﻿using CountryCodes;
+using Domain.Models;
 using GUIForms.Dtos;
 using GUIForms.helpers;
 using Microsoft.VisualBasic;
+using PhoneNumbers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +11,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -23,10 +26,49 @@ namespace Easypos.Masters
         thirdparty TP;
         IUnitofwork _IUW;
         Usingnumber _NO;
+        List<CountryInfo> CI;
         public frmListThirdParty()
         {
             InitializeComponent();
             Loading();
+        }
+        private void Getingcountrycode()
+        {
+            var dialType = typeof(CountryCallingCodes);
+            var isoType = typeof(TwoLetterISORegionCode);
+
+            var dialFields = dialType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            var isoFields = isoType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+            int i = 0;
+            CI = new List<CountryInfo>();
+            foreach (var dialField in dialFields)
+            {
+                if (dialField.IsLiteral && !dialField.IsInitOnly && dialField.FieldType == typeof(string))
+                {
+                    string countryName = dialField.Name;
+                    string dialCode = dialField.GetRawConstantValue()?.ToString();
+
+                    // دور على نفس الدولة في كلاس ISO
+                    var isoField = isoFields.FirstOrDefault(f => f.Name == countryName);
+                    string isoCode = isoField?.GetRawConstantValue()?.ToString() ?? "??";
+                    CI.Add(new CountryInfo
+                    {
+                        Id = i,
+                        Name = countryName,
+                        IsoCode = isoCode,
+                        DialCode = dialCode
+                    });
+                    i++;
+                }
+            }
+            Countrybox.DataSource = CI;
+            Countrybox.DisplayMember = "Name";
+            Countrybox.ValueMember = "Id";
+            var selectedCountry = CI.FirstOrDefault(c => c.IsoCode == "SA");
+            if (selectedCountry != null)
+            {
+                Countrybox.SelectedItem = selectedCountry;
+            }
         }
         private void Loading()
         {
@@ -36,6 +78,7 @@ namespace Easypos.Masters
             DC = (company)LanguageHelper.ApplyLanguage(this);
             _IUW = new Unitofwork(new EasyposEntities());
             DGV.DataSource = GC.Getthirdpartydatalist();
+            Getingcountrycode();
         }
         private void Clearfieldes(){
             txtNumber.Text = string.Empty;
@@ -93,15 +136,30 @@ namespace Easypos.Masters
                 txtNumber.Text = DGV.CurrentRow.Cells[0].Value.ToString();
                 TP.ID = int.Parse(txtNumber.Text);
                 txtName.Text = DGV.CurrentRow.Cells[1].Value.ToString();
-                txtMobile.Text = DGV.CurrentRow.Cells[3].Value.ToString();
-                txt_seller_citysubdiv.Text = DGV.CurrentRow.Cells[4].Value.ToString();
-                txt_seller_cityname.Text = DGV.CurrentRow.Cells[5].Value.ToString();
+                string fullNumber = DGV.CurrentRow.Cells[3].Value.ToString().Trim();
+                var matchedCountry = CI.FirstOrDefault(c => fullNumber.StartsWith(c.DialCode));
+                string localNumber = fullNumber;
+                if (matchedCountry != null)
+                {
+                    localNumber = fullNumber.Substring(matchedCountry.DialCode.Length);
+                    Countrybox.SelectedItem = matchedCountry;
+                    txtMobile.Text = localNumber;
+                }
+                //txtMobile.Text = DGV.CurrentRow.Cells[3].Value.ToString();
+                txt_seller_citysubdiv.Text = DGV.CurrentRow.Cells[4].Value != null
+                                       ? DGV.CurrentRow.Cells[4].Value.ToString()
+                                       : "";
+                txt_seller_cityname.Text = DGV.CurrentRow.Cells[5].Value != null
+                                       ? DGV.CurrentRow.Cells[5].Value.ToString()
+                                       : "";
                 txtComments.Text = DGV.CurrentRow.Cells[6].Value.ToString();
                 txtOpeningBalance.Text = DGV.CurrentRow.Cells[9].Value != null
                                        ? DGV.CurrentRow.Cells[9].Value.ToString()
                                        : "";
                 textBox4.Text = DGV.CurrentRow.Cells[10].Value.ToString();
-                textBox3.Text = DGV.CurrentRow.Cells[11].Value.ToString();
+                textBox3.Text = DGV.CurrentRow.Cells[11].Value != null
+                                       ? DGV.CurrentRow.Cells[11].Value.ToString()
+                                       : "";
                 // Type Member
                 var TM = DGV.CurrentRow.Cells[7].Value.ToString();
                 if (TM == "2")
@@ -184,7 +242,23 @@ namespace Easypos.Masters
                         }
                     }
                     TP.Name = txtName.Text;
-                    TP.MobileNumber = txtMobile.Text;
+                    var Codes = (CountryInfo)Countrybox.SelectedItem;
+                    if (Codes != null)
+                    {
+                        var phoneNumberUtil = PhoneNumberUtil.GetInstance();
+                        //var Naional = phoneNumberUtil.GetRegionCodeForCountryCode(20);
+                        var phoneNumber = phoneNumberUtil.Parse(Codes.DialCode + txtMobile.Text, Codes.IsoCode);
+                        var isValid = phoneNumberUtil.IsValidNumber(phoneNumber);
+                        if (!isValid)
+                        {
+                            MessageBox.Show("The mobile number is not valid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        else
+                        {
+                            TP.MobileNumber = Codes.DialCode + txtMobile.Text;
+                        }
+                    }
                     TP.Taxnumber = textBox4.Text;
                     TP.Comments = txtComments.Text;
                     if (radioClient.Checked)
