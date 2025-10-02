@@ -145,6 +145,10 @@ namespace Easypos.Masters
                     Countrybox.SelectedItem = matchedCountry;
                     txtMobile.Text = localNumber;
                 }
+                else
+                {
+                    txtMobile.Text = fullNumber; // Display the full number as is
+                }
                 //txtMobile.Text = DGV.CurrentRow.Cells[3].Value.ToString();
                 txt_seller_citysubdiv.Text = DGV.CurrentRow.Cells[4].Value != null
                                        ? DGV.CurrentRow.Cells[4].Value.ToString()

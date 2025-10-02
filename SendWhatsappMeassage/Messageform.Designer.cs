@@ -33,9 +33,14 @@
             this.picClose = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.Btndel = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -87,11 +92,56 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Meaasge";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.Btndel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 390);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(396, 100);
+            this.panel1.TabIndex = 35;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 65);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(396, 100);
+            this.panel3.TabIndex = 36;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 165);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(396, 225);
+            this.panel4.TabIndex = 37;
+            // 
+            // Btndel
+            // 
+            this.Btndel.BackColor = System.Drawing.Color.PowderBlue;
+            this.Btndel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Btndel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btndel.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.Btndel.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.Btndel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btndel.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.Btndel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Btndel.Location = new System.Drawing.Point(309, 9);
+            this.Btndel.Name = "Btndel";
+            this.Btndel.Size = new System.Drawing.Size(75, 82);
+            this.Btndel.TabIndex = 8;
+            this.Btndel.Text = "Delete";
+            this.Btndel.UseVisualStyleBackColor = false;
+            // 
             // Messageform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 490);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Messageform";
@@ -101,6 +151,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -111,6 +162,10 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox picClose;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button Btndel;
     }
 }
 
