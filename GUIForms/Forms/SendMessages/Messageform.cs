@@ -104,13 +104,9 @@ namespace GUIForms.Forms.SendMessages
         private async void Btnsend_Click(object sender, EventArgs e)
         {
             string cleanedNumber = phone.Text.Replace("+", "") + "@c.us";
-            var IdUrl = "/80e868a9de5e4eacba13535ec26db6678b0e2a695bd54e7b85";
-            var WS = "https://7103.media.greenapi.com/waInstance7103934473/";
-            var FU = "sendFileByUpload";
-            var ST = "sendMessage";
             if (txtMsg.Visible)
             {
-                var url = WS + ST + IdUrl;
+                var url = "https://7103.api.greenapi.com/waInstance7103934473/sendMessage/80e868a9de5e4eacba13535ec26db6678b0e2a695bd54e7b85";
                 var payload = new
                 {
                     chatId = cleanedNumber,
@@ -123,9 +119,10 @@ namespace GUIForms.Forms.SendMessages
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
                 var response = await client.PostAsync(url, content);
+                var responseText = await response.Content.ReadAsStringAsync();
+
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var responseText = await response.Content.ReadAsStringAsync();
                     var responseData = JsonConvert.DeserializeObject<Authorize>(responseText);
                     if (!string.IsNullOrEmpty(responseData.idMessage))
                     {
@@ -140,7 +137,7 @@ namespace GUIForms.Forms.SendMessages
             }
             else
             {
-                var url = WS + FU + IdUrl;
+                var url = "https://7103.media.greenapi.com/waInstance7103934473/sendFileByUpload/80e868a9de5e4eacba13535ec26db6678b0e2a695bd54e7b85";
                 var client = new HttpClient();
 
                 MFDC.Add(new StringContent(cleanedNumber), "chatId");

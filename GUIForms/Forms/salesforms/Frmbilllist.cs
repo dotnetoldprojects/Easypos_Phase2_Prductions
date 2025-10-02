@@ -6,6 +6,7 @@ using GUIForms.Forms.salesforms.Normal;
 using GUIForms.helpers;
 using GUIForms.models;
 using Helpers.Dtos;
+using InternetConnection;
 using javax.xml.transform;
 using System;
 using System.Collections.Generic;
@@ -241,23 +242,33 @@ namespace Easypos.Salesforms
                     }
                     else
                     {
-                        Cursor.Current = Cursors.WaitCursor;
-                        // Get the last invoice number
-                        ZF.invid = int.Parse(Dataid);
-                        ZF.DC = DC;
-                        await ZF.Loading();
-                        if (Filter)
+                        Connector checker = new Connector();
+                        bool isConnected = checker.CheckIfInternetConnected();
+                        if (isConnected)
                         {
-                            GAS = new Getallsales();
-                            Res = GAS.GetSaleslist();
-                            Getsalesbyfilters();
-                            DataTotals();
+                            Cursor.Current = Cursors.WaitCursor;
+                            // Get the last invoice number
+                            ZF.invid = int.Parse(Dataid);
+                            ZF.DC = DC;
+                            await ZF.Loading();
+                            if (Filter)
+                            {
+                                GAS = new Getallsales();
+                                Res = GAS.GetSaleslist();
+                                Getsalesbyfilters();
+                                DataTotals();
+                            }
+                            else
+                            {
+                                Loading();
+                            }
+                            Cursor.Current = Cursors.Default;
                         }
                         else
                         {
-                            Loading();
+                            MessageBox.Show("لا يوجد اتصال بالانترنت", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-                        Cursor.Current = Cursors.Default;
                     }
                 }
                 else
