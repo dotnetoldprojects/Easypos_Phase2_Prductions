@@ -5,6 +5,7 @@ using GUIForms.Dtos;
 using GUIForms.helpers;
 using MetroFramework.Forms;
 using Reporting.others;
+using Reporting.purchases;
 using Reporting.sales.Salesreportes;
 using Reporting.VM;
 using System;
@@ -258,6 +259,33 @@ namespace Reporting.Sales
                     //    item.Totaltax,
                     //    item.Totaltot
                     //});
+                }
+            }
+            else if (ChkPurchases.Checked)
+            {
+                Objrpt = new PurchasesReport();
+                List<Saleslist> SL = new List<Saleslist>();
+                if (Chkdate.Checked)
+                {
+                    SL = ASR.Getpurchaselist(DF, DT);
+                }
+                else
+                {
+                    SL = ASR.Getpurchaselist(null, null);
+                }
+                foreach (var item in SL)
+                {
+                    Dsx.SalesPurchases.Rows.Add(new object[] {
+                        item.Invoiceno,
+                        item.Name,
+                        item.TDate,
+                        item.NonVatTotal,
+                        item.Discount,
+                        item.VatAmount,
+                        "--",
+                        item.TotalAmount,
+                        Logo,
+                    });
                 }
             }
             else if (ChkExpenses.Checked)

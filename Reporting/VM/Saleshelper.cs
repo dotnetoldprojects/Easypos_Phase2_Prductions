@@ -256,5 +256,47 @@ namespace Reporting.VM
 
             return filtered.ToList();
         }
+
+        public List<Saleslist> Getpurchaselist(string dF, string dT)
+        {
+            var result = _IUOW.purchases.GetAll().ToList()
+                              .Join(_IUOW.thirdparties.GetAll().ToList(),
+          purchase => purchase.ThirdPartyID,
+          thirdparty => thirdparty.ID,
+          (purchase, thirdparty) => new
+          {
+              purchase.Invoiceno,
+              purchase.TDate,
+              purchase.TTime,
+              purchase.NonVatTotal,
+              purchase.Discount,
+              purchase.VatAmount,
+              purchase.TotalAmount,
+              purchase.Billtype,
+              purchase.Supplierbill,
+              thirdparty.Name
+          }).ToList();
+            // فلترة بالتاريخ
+            if (IsValidDateRange(dF, dT, out var startDate, out var endDate))
+            {
+                result = result
+                    .Where(s => DateTime.TryParse(s.TDate, out var date)
+                                && date >= startDate && date <= endDate)
+                    .ToList();
+            }
+            return result.Select(item => new Saleslist
+          {
+              Invoiceno = item.Invoiceno,
+              TDate = item.TDate,
+              TTime = item.TTime,
+              NonVatTotal = item.NonVatTotal,
+              Discount = item.Discount,
+              VatAmount = item.VatAmount,
+              TotalAmount = double.Parse(item.TotalAmount.ToString()),
+              Billtype = item.Billtype,
+              Supplierbill = item.Supplierbill,
+              Name = item.Name
+          }).ToList();
+        }
     }
 }

@@ -34,6 +34,7 @@
             this.GroupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Chksalestaxdetaileszatca = new System.Windows.Forms.RadioButton();
             this.Chksalesreturned = new System.Windows.Forms.RadioButton();
             this.Chksales = new System.Windows.Forms.RadioButton();
             this.Users = new System.Windows.Forms.ComboBox();
@@ -55,7 +56,6 @@
             this.DTF = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Chksalestaxdetaileszatca = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.GroupBox3.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -115,6 +115,12 @@
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // Chksalestaxdetaileszatca
+            // 
+            resources.ApplyResources(this.Chksalestaxdetaileszatca, "Chksalestaxdetaileszatca");
+            this.Chksalestaxdetaileszatca.Name = "Chksalestaxdetaileszatca";
+            this.Chksalestaxdetaileszatca.UseVisualStyleBackColor = true;
             // 
             // Chksalesreturned
             // 
@@ -262,12 +268,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // Chksalestaxdetaileszatca
-            // 
-            resources.ApplyResources(this.Chksalestaxdetaileszatca, "Chksalestaxdetaileszatca");
-            this.Chksalestaxdetaileszatca.Name = "Chksalestaxdetaileszatca";
-            this.Chksalestaxdetaileszatca.UseVisualStyleBackColor = true;
             // 
             // Salesfiltrations
             // 

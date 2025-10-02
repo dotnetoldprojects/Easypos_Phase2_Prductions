@@ -449,6 +449,8 @@
           <Property Name="Jab8" Type="bit" />
           <Property Name="Jab9" Type="bit" />
           <Property Name="Jab10" Type="bit" />
+          <Property Name="txtnumber" Type="int" />
+          <Property Name="txt" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="tailorneck">
           <Key>
@@ -463,6 +465,9 @@
           <Property Name="Chinese" Type="bit" />
           <Property Name="Openflap" Type="bit" />
           <Property Name="Frenchflip" Type="bit" />
+          <Property Name="txtnumber" Type="int" />
+          <Property Name="texta" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="textb" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="thirdparty">
           <Key>
@@ -1271,6 +1276,8 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <Property Name="Jab9" Type="Boolean" />
           <Property Name="Jab10" Type="Boolean" />
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorjabzor" FromRole="tailorjabzor" ToRole="alltailoring" />
+          <Property Name="txtnumber" Type="Int32" />
+          <Property Name="txt" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="tailorneck">
           <Key>
@@ -1286,6 +1293,9 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <Property Name="Openflap" Type="Boolean" />
           <Property Name="Frenchflip" Type="Boolean" />
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorneck" FromRole="tailorneck" ToRole="alltailoring" />
+          <Property Name="txtnumber" Type="Int32" />
+          <Property Name="texta" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="textb" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_alltailoring_tailorbocket">
           <End Type="EasyposModel.tailorbocket" Role="tailorbocket" Multiplicity="1" />
@@ -1927,6 +1937,8 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySetMapping Name="tailorjabzors">
             <EntityTypeMapping TypeName="EasyposModel.tailorjabzor">
               <MappingFragment StoreEntitySet="tailorjabzor">
+                <ScalarProperty Name="txt" ColumnName="txt" />
+                <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
                 <ScalarProperty Name="Jab10" ColumnName="Jab10" />
                 <ScalarProperty Name="Jab9" ColumnName="Jab9" />
                 <ScalarProperty Name="Jab8" ColumnName="Jab8" />
@@ -1944,6 +1956,9 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySetMapping Name="tailornecks">
             <EntityTypeMapping TypeName="EasyposModel.tailorneck">
               <MappingFragment StoreEntitySet="tailorneck">
+                <ScalarProperty Name="textb" ColumnName="textb" />
+                <ScalarProperty Name="texta" ColumnName="texta" />
+                <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
                 <ScalarProperty Name="Frenchflip" ColumnName="Frenchflip" />
                 <ScalarProperty Name="Openflap" ColumnName="Openflap" />
                 <ScalarProperty Name="Chinese" ColumnName="Chinese" />

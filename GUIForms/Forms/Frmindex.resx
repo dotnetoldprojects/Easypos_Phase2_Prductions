@@ -1736,6 +1736,9 @@
         f77zQAiAYeA4ohgJZe2+F0vQL1f7eNLijBgoHse14NQXg4shBq0uqFYAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="Btntail.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;Btntail.Name" xml:space="preserve">
     <value>Btntail</value>
   </data>

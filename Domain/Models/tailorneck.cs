@@ -45,6 +45,12 @@ public partial class tailorneck
 
     public Nullable<bool> Frenchflip { get; set; }
 
+    public Nullable<int> txtnumber { get; set; }
+
+    public Nullable<decimal> texta { get; set; }
+
+    public Nullable<decimal> textb { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

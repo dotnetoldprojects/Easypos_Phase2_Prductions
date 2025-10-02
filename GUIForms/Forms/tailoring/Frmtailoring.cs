@@ -306,6 +306,9 @@ namespace Easypos.Tailoring
             TN.Chinese = checkBox25.Checked;
             TN.Openflap = checkBox18.Checked;
             TN.Frenchflip = checkBox17.Checked;
+            TN.txtnumber = int.Parse(textBox14.Text);
+            TN.texta = decimal.Parse(textBox13.Text);
+            TN.textb = decimal.Parse(textBox12.Text);
             _IUW.tailornecks.Update(TN);
         }
         void tailorjabzorsave()
@@ -321,6 +324,8 @@ namespace Easypos.Tailoring
             TJ.Jab8 = checkBox7.Checked;
             TJ.Jab9 = checkBox6.Checked;
             TJ.Jab10 = checkBox5.Checked;
+            TJ.txtnumber = int.Parse(textBox31.Text);
+            TJ.txt = decimal.Parse(textBox30.Text);
             _IUW.tailorjabzors.Update(TJ);
         }
         void tailorboketsave()
@@ -423,6 +428,12 @@ namespace Easypos.Tailoring
             checkBox25.Checked = (bool)TN.Chinese;
             checkBox18.Checked = (bool)TN.Openflap;
             checkBox17.Checked = (bool)TN.Frenchflip;
+            textBox14.Text = TN.txtnumber.ToString();
+            textBox11.Text = TN.txtnumber.ToString();
+            textBox13.Text = TN.texta.ToString();
+            textBox10.Text = TN.texta.ToString();
+            textBox12.Text = TN.textb.ToString();
+            textBox9.Text = TN.textb.ToString();
         }
         void Getjabzordata(tailorjabzor TJ)
         {
@@ -436,6 +447,8 @@ namespace Easypos.Tailoring
             checkBox7.Checked = (bool)TJ.Jab8;
             checkBox6.Checked = (bool)TJ.Jab9;
             checkBox5.Checked = (bool)TJ.Jab10; 
+            textBox31.Text = TJ.txtnumber.ToString();
+            textBox30.Text = TJ.txt.ToString();
         }
         void Getbocketdata(tailorbocket TB)
         {
@@ -533,6 +546,9 @@ namespace Easypos.Tailoring
                         Chinese = entity.tailorneck.Chinese,
                         Openflap = entity.tailorneck.Openflap,
                         Frenchflip = entity.tailorneck.Frenchflip,
+                        txtnumber = entity.tailorneck.txtnumber,
+                        texta = entity.tailorneck.texta,
+                        textb = entity.tailorneck.textb
                     };
                 }
 
@@ -551,6 +567,8 @@ namespace Easypos.Tailoring
                         Jab8 = entity.tailorjabzor.Jab8,
                         Jab9 = entity.tailorjabzor.Jab9,
                         Jab10 = entity.tailorjabzor.Jab10,
+                        txtnumber = entity.tailorjabzor.txtnumber,
+                        txt = entity.tailorjabzor.txt
                     };
                 }
 
@@ -962,6 +980,36 @@ namespace Easypos.Tailoring
             {
                 textBox21.Text = (decimal.Parse(textBox17.Text) - decimal.Parse(textBox16.Text)).ToString();
             }
+        }
+
+        private void textBox14_TextChanged(object sender, EventArgs e)
+        {
+            textBox11.Text = textBox14.Text;
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+            textBox14.Text = textBox11.Text;
+        }
+
+        private void textBox13_TextChanged(object sender, EventArgs e)
+        {
+            textBox10.Text = textBox13.Text;
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            textBox13.Text = textBox10.Text;
+        }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+            textBox9.Text = textBox12.Text;
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+            textBox12.Text = textBox9.Text;
         }
     }
 }
