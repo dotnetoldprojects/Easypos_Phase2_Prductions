@@ -2207,6 +2207,25 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=79, Height=20}.
+        /// </summary>
+        public static System.Drawing.Size ارسالرسائلToolStripMenuItem_Size {
+            get {
+                object obj = ResourceManager.GetObject("ارسالرسائلToolStripMenuItem.Size", resourceCulture);
+                return ((System.Drawing.Size)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ارسال رسائل.
+        /// </summary>
+        public static string ارسالرسائلToolStripMenuItem_Text {
+            get {
+                return ResourceManager.GetString("ارسالرسائلToolStripMenuItem.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap الاصنافToolStripMenuItem_Image {

@@ -12,9 +12,12 @@ namespace SendWhatsappMeassage
 {
     public partial class Messageform : Form
     {
+        //Getcentralaizes GC;
         public Messageform()
         {
             InitializeComponent();
+            //GC = new Getcentralaizes();
+            //Commondatasales.FillCombo(clientID, GC.Getcustomerdatalist(), "Name", "ID");
         }
 
         private void picClose_Click(object sender, EventArgs e)

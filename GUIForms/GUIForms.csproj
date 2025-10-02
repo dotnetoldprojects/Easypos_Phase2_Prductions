@@ -81,6 +81,9 @@
     <Reference Include="IKVM.Runtime">
       <HintPath>..\..\New folder\Easypos\GUIForms\bin\Debug\IKVM.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="InternetConnection, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\InternetConnectionChecker2.1.2.0\lib\InternetConnection.dll</HintPath>
+    </Reference>
     <Reference Include="itext.barcodes, Version=9.2.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext.9.2.0\lib\net461\itext.barcodes.dll</HintPath>
     </Reference>
@@ -357,6 +360,19 @@
     <Compile Include="Forms\Returned\Returnedlist.Designer.cs">
       <DependentUpon>Returnedlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SendMessages\Authorize.cs" />
+    <Compile Include="Forms\SendMessages\Messageform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SendMessages\Messageform.Designer.cs">
+      <DependentUpon>Messageform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SendMessages\Qrform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SendMessages\Qrform.Designer.cs">
+      <DependentUpon>Qrform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\tailoring\Frmtailoring.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -597,6 +613,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Returned\Returnedlist.resx">
       <DependentUpon>Returnedlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SendMessages\Messageform.resx">
+      <DependentUpon>Messageform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SendMessages\Qrform.resx">
+      <DependentUpon>Qrform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\tailoring\Frmtailoring.en.resx">
       <DependentUpon>Frmtailoring.cs</DependentUpon>

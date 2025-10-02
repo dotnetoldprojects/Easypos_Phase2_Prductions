@@ -783,6 +783,12 @@
   <data name="toolStripMenuItem2.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="ارسالرسائلToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 20</value>
+  </data>
+  <data name="ارسالرسائلToolStripMenuItem.Text" xml:space="preserve">
+    <value>ارسال رسائل</value>
+  </data>
   <data name="MS.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -4790,6 +4796,12 @@
     <value>toolStripMenuItem10</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItem10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ارسالرسائلToolStripMenuItem.Name" xml:space="preserve">
+    <value>ارسالرسائلToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ارسالرسائلToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

@@ -88,6 +88,7 @@ namespace Easypos
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.Btntail = new MetroFramework.Controls.MetroTile();
             this.Btnreportsales = new MetroFramework.Controls.MetroTile();
+            this.ارسالرسائلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btnmin)).BeginInit();
@@ -179,7 +180,8 @@ namespace Easypos
             this.المشترباتToolStripMenuItem,
             this.Resturantmenu,
             this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem2,
+            this.ارسالرسائلToolStripMenuItem});
             resources.ApplyResources(this.MS, "MS");
             this.MS.Name = "MS";
             // 
@@ -695,6 +697,12 @@ namespace Easypos
             this.Btnreportsales.UseTileImage = true;
             this.Btnreportsales.Click += new System.EventHandler(this.Btnreportsales_Click);
             // 
+            // ارسالرسائلToolStripMenuItem
+            // 
+            this.ارسالرسائلToolStripMenuItem.Name = "ارسالرسائلToolStripMenuItem";
+            resources.ApplyResources(this.ارسالرسائلToolStripMenuItem, "ارسالرسائلToolStripMenuItem");
+            this.ارسالرسائلToolStripMenuItem.Click += new System.EventHandler(this.ارسالرسائلToolStripMenuItem_Click);
+            // 
             // Frmindex
             // 
             resources.ApplyResources(this, "$this");
@@ -785,5 +793,6 @@ namespace Easypos
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem10;
         private MetroFramework.Controls.MetroTile metroTile1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
+        private System.Windows.Forms.ToolStripMenuItem ارسالرسائلToolStripMenuItem;
     }
 }

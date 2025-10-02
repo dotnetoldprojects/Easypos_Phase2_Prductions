@@ -1,4 +1,4 @@
-﻿namespace SendWhatsappMeassage
+﻿namespace GUIForms.Forms.SendMessages
 {
     partial class Messageform
     {
@@ -34,16 +34,17 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Btndel = new System.Windows.Forms.Button();
+            this.txtfile = new System.Windows.Forms.RichTextBox();
+            this.Btnup = new System.Windows.Forms.Button();
+            this.Btnsend = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.phone = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.clientID = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtMsg = new System.Windows.Forms.RichTextBox();
+            this.OFD = new System.Windows.Forms.OpenFileDialog();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -103,62 +104,66 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.richTextBox2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.Btndel);
+            this.panel1.Controls.Add(this.txtfile);
+            this.panel1.Controls.Add(this.Btnup);
+            this.panel1.Controls.Add(this.Btnsend);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 390);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(396, 100);
             this.panel1.TabIndex = 35;
             // 
-            // richTextBox2
+            // txtfile
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(8, 8);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(181, 83);
-            this.richTextBox2.TabIndex = 10;
-            this.richTextBox2.Text = "";
-            this.richTextBox2.Visible = false;
+            this.txtfile.Location = new System.Drawing.Point(8, 8);
+            this.txtfile.Name = "txtfile";
+            this.txtfile.Size = new System.Drawing.Size(181, 83);
+            this.txtfile.TabIndex = 10;
+            this.txtfile.Text = "";
+            this.txtfile.Visible = false;
             // 
-            // button1
+            // Btnup
             // 
-            this.button1.BackColor = System.Drawing.Color.PowderBlue;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Verdana", 11.25F);
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(195, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 82);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Fileuploade";
-            this.button1.UseVisualStyleBackColor = false;
+            this.Btnup.BackColor = System.Drawing.Color.PowderBlue;
+            this.Btnup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Btnup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btnup.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.Btnup.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.Btnup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btnup.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.Btnup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Btnup.Location = new System.Drawing.Point(195, 9);
+            this.Btnup.Name = "Btnup";
+            this.Btnup.Size = new System.Drawing.Size(100, 82);
+            this.Btnup.TabIndex = 9;
+            this.Btnup.Text = "Fileuploade";
+            this.Btnup.UseVisualStyleBackColor = false;
+            this.Btnup.Visible = false;
+            this.Btnup.Click += new System.EventHandler(this.Btnup_Click);
             // 
-            // Btndel
+            // Btnsend
             // 
-            this.Btndel.BackColor = System.Drawing.Color.PowderBlue;
-            this.Btndel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btndel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btndel.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.Btndel.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
-            this.Btndel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btndel.Font = new System.Drawing.Font("Verdana", 11.25F);
-            this.Btndel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Btndel.Location = new System.Drawing.Point(301, 9);
-            this.Btndel.Name = "Btndel";
-            this.Btndel.Size = new System.Drawing.Size(83, 82);
-            this.Btndel.TabIndex = 8;
-            this.Btndel.Text = "Send";
-            this.Btndel.UseVisualStyleBackColor = false;
+            this.Btnsend.BackColor = System.Drawing.Color.PowderBlue;
+            this.Btnsend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Btnsend.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btnsend.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.Btnsend.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.Btnsend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btnsend.Font = new System.Drawing.Font("Verdana", 11.25F);
+            this.Btnsend.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Btnsend.Location = new System.Drawing.Point(301, 9);
+            this.Btnsend.Name = "Btnsend";
+            this.Btnsend.Size = new System.Drawing.Size(83, 82);
+            this.Btnsend.TabIndex = 8;
+            this.Btnsend.Text = "Send";
+            this.Btnsend.UseVisualStyleBackColor = false;
+            this.Btnsend.Visible = false;
+            this.Btnsend.Click += new System.EventHandler(this.Btnsend_Click);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.textBox15);
+            this.panel3.Controls.Add(this.phone);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.clientID);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -180,14 +185,16 @@
             this.label15.TabIndex = 80;
             this.label15.Text = "رقم جوال العميل:";
             // 
-            // textBox15
+            // phone
             // 
-            this.textBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox15.Location = new System.Drawing.Point(12, 42);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(266, 20);
-            this.textBox15.TabIndex = 79;
-            this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.phone.Enabled = false;
+            this.phone.Location = new System.Drawing.Point(12, 42);
+            this.phone.Name = "phone";
+            this.phone.ReadOnly = true;
+            this.phone.Size = new System.Drawing.Size(266, 20);
+            this.phone.TabIndex = 79;
+            this.phone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
             // 
@@ -214,24 +221,30 @@
             this.clientID.Size = new System.Drawing.Size(266, 21);
             this.clientID.TabIndex = 66;
             this.clientID.ValueMember = "ID";
+            this.clientID.SelectionChangeCommitted += new System.EventHandler(this.clientID_SelectionChangeCommitted);
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.richTextBox1);
+            this.panel4.Controls.Add(this.txtMsg);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 144);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(396, 246);
             this.panel4.TabIndex = 37;
             // 
-            // richTextBox1
+            // txtMsg
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(396, 246);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.txtMsg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMsg.Location = new System.Drawing.Point(0, 0);
+            this.txtMsg.Name = "txtMsg";
+            this.txtMsg.Size = new System.Drawing.Size(396, 246);
+            this.txtMsg.TabIndex = 0;
+            this.txtMsg.Text = "";
+            this.txtMsg.TextChanged += new System.EventHandler(this.txtMsg_TextChanged);
+            // 
+            // OFD
+            // 
+            this.OFD.FileName = "openFileDialog1";
             // 
             // Messageform
             // 
@@ -267,14 +280,15 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button Btndel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btnsend;
+        private System.Windows.Forms.RichTextBox txtMsg;
+        private System.Windows.Forms.RichTextBox txtfile;
+        private System.Windows.Forms.Button Btnup;
         private System.Windows.Forms.Label label10;
         public System.Windows.Forms.ComboBox clientID;
         private System.Windows.Forms.Label label15;
-        public System.Windows.Forms.TextBox textBox15;
+        public System.Windows.Forms.TextBox phone;
+        private System.Windows.Forms.OpenFileDialog OFD;
     }
 }
 
