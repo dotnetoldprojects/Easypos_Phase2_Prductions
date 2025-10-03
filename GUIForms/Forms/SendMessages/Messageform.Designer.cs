@@ -45,7 +45,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtMsg = new System.Windows.Forms.RichTextBox();
             this.OFD = new System.Windows.Forms.OpenFileDialog();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.Btnlist = new FontAwesome.Sharp.IconButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -140,7 +140,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.iconButton1);
+            this.panel3.Controls.Add(this.Btnlist);
             this.panel3.Controls.Add(this.Btnup);
             this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.phone);
@@ -241,19 +241,19 @@
             // 
             this.OFD.FileName = "openFileDialog1";
             // 
-            // iconButton1
+            // Btnlist
             // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.List;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 32;
-            this.iconButton1.Location = new System.Drawing.Point(12, 11);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(45, 51);
-            this.iconButton1.TabIndex = 117;
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.Btnlist.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.Btnlist.IconColor = System.Drawing.Color.Black;
+            this.Btnlist.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btnlist.IconSize = 32;
+            this.Btnlist.Location = new System.Drawing.Point(12, 11);
+            this.Btnlist.Name = "Btnlist";
+            this.Btnlist.Size = new System.Drawing.Size(45, 51);
+            this.Btnlist.TabIndex = 117;
+            this.Btnlist.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Btnlist.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Btnlist.UseVisualStyleBackColor = true;
             // 
             // Messageform
             // 
@@ -298,7 +298,7 @@
         private System.Windows.Forms.OpenFileDialog OFD;
         private FontAwesome.Sharp.IconButton Btnup;
         private FontAwesome.Sharp.IconButton Btnsend;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton Btnlist;
     }
 }
 

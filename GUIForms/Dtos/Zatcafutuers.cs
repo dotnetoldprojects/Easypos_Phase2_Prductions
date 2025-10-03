@@ -61,14 +61,15 @@ namespace GUIForms.Dtos
 
             const string unitCode = "PCE";
             const decimal taxPercent = 15m;
-
+            int IL = 1;
             foreach (var item in SD)
             {
                 var UP = double.Parse(item.ItemPrice.ToString()) / 1.15;
                 var GUP = Math.Round(UP, 2).ToString();
                 productLines.Add(new ProductLine
                 {
-                    Id = item.TDetailNo.ToString(),
+                    //Id = item.TDetailNo.ToString(),
+                    Id = IL.ToString(),
                     Name = item.TDDesc,
                     Quantity = int.Parse(item.Quantity.ToString()),
                     UnitCode = unitCode,
@@ -76,6 +77,7 @@ namespace GUIForms.Dtos
                     Discount = decimal.Parse(item.Discount.ToString()),
                     TaxPercent = taxPercent
                 });
+                IL++;
             }
 
             string InputPath = @"Data/Invoice.xml";
