@@ -641,7 +641,7 @@ namespace Easypos.Salesforms.Cashier
             var Dataid = dgwInvoice.CurrentRow.Cells[3].Value.ToString();
             var Datatye = dgwInvoice.CurrentRow.Cells[5].Value.ToString();
             var Datareg = dgwInvoice.CurrentRow.Cells[6].Value.ToString();
-            var Datedata = DGV.CurrentRow.Cells[1].Value.ToString();
+            var Datedata = dgwInvoice.CurrentRow.Cells[4].Value.ToString();
             var MDate = DateTime.Now.ToString("dd-MM-yyyy");
             if (dgwInvoice.Columns[e.ColumnIndex].Name == "Show")
             {

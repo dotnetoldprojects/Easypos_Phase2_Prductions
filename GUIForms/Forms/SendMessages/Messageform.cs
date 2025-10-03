@@ -93,12 +93,10 @@ namespace GUIForms.Forms.SendMessages
             if (!string.IsNullOrEmpty(txtMsg.Text.Trim()))
             {
                 Btnsend.Visible = true;
-                Btnup.Visible = true;
             }
             else
             {
                 Btnsend.Visible = false;
-                Btnup.Visible = false;
             }
         }
         private async void Btnsend_Click(object sender, EventArgs e)
@@ -180,6 +178,11 @@ namespace GUIForms.Forms.SendMessages
                 fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 MFDC.Add(fileContent, "file", OFD.SafeFileName);
                 txtfile.Visible = true;
+                Btnsend.Visible = true;
+            }
+            else
+            {
+                txtMsg.Visible = true;
                 Btnsend.Visible = true;
             }
         }

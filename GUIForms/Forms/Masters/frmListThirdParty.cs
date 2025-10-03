@@ -246,21 +246,24 @@ namespace Easypos.Masters
                         }
                     }
                     TP.Name = txtName.Text;
-                    var Codes = (CountryInfo)Countrybox.SelectedItem;
-                    if (Codes != null)
+                    if (!string.IsNullOrEmpty(TP.MobileNumber))
                     {
-                        var phoneNumberUtil = PhoneNumberUtil.GetInstance();
-                        //var Naional = phoneNumberUtil.GetRegionCodeForCountryCode(20);
-                        var phoneNumber = phoneNumberUtil.Parse(Codes.DialCode + txtMobile.Text, Codes.IsoCode);
-                        var isValid = phoneNumberUtil.IsValidNumber(phoneNumber);
-                        if (!isValid)
+                        var Codes = (CountryInfo)Countrybox.SelectedItem;
+                        if (Codes != null)
                         {
-                            MessageBox.Show("The mobile number is not valid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-                        else
-                        {
-                            TP.MobileNumber = Codes.DialCode + txtMobile.Text;
+                            var phoneNumberUtil = PhoneNumberUtil.GetInstance();
+                            //var Naional = phoneNumberUtil.GetRegionCodeForCountryCode(20);
+                            var phoneNumber = phoneNumberUtil.Parse(Codes.DialCode + txtMobile.Text, Codes.IsoCode);
+                            var isValid = phoneNumberUtil.IsValidNumber(phoneNumber);
+                            if (!isValid)
+                            {
+                                MessageBox.Show("The mobile number is not valid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                            else
+                            {
+                                TP.MobileNumber = Codes.DialCode + txtMobile.Text;
+                            }
                         }
                     }
                     TP.Taxnumber = textBox4.Text;

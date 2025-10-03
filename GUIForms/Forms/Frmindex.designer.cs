@@ -68,6 +68,7 @@ namespace Easypos
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ارسالرسائلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Footer = new System.Windows.Forms.Panel();
             this.lbluser = new System.Windows.Forms.Label();
             this.Btnpro = new MetroFramework.Controls.MetroTile();
@@ -88,7 +89,6 @@ namespace Easypos
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.Btntail = new MetroFramework.Controls.MetroTile();
             this.Btnreportsales = new MetroFramework.Controls.MetroTile();
-            this.ارسالرسائلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btnmin)).BeginInit();
@@ -437,6 +437,12 @@ namespace Easypos
             resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
+            // ارسالرسائلToolStripMenuItem
+            // 
+            this.ارسالرسائلToolStripMenuItem.Name = "ارسالرسائلToolStripMenuItem";
+            resources.ApplyResources(this.ارسالرسائلToolStripMenuItem, "ارسالرسائلToolStripMenuItem");
+            this.ارسالرسائلToolStripMenuItem.Click += new System.EventHandler(this.ارسالرسائلToolStripMenuItem_Click);
+            // 
             // Footer
             // 
             this.Footer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(124)))), ((int)(((byte)(156)))));
@@ -696,12 +702,6 @@ namespace Easypos
             this.Btnreportsales.UseSelectable = true;
             this.Btnreportsales.UseTileImage = true;
             this.Btnreportsales.Click += new System.EventHandler(this.Btnreportsales_Click);
-            // 
-            // ارسالرسائلToolStripMenuItem
-            // 
-            this.ارسالرسائلToolStripMenuItem.Name = "ارسالرسائلToolStripMenuItem";
-            resources.ApplyResources(this.ارسالرسائلToolStripMenuItem, "ارسالرسائلToolStripMenuItem");
-            this.ارسالرسائلToolStripMenuItem.Click += new System.EventHandler(this.ارسالرسائلToolStripMenuItem_Click);
             // 
             // Frmindex
             // 

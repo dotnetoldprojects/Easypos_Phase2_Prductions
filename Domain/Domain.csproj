@@ -211,7 +211,6 @@
     <None Include="Models\Easyposcontext.edmx.diagram">
       <DependentUpon>Easyposcontext.edmx</DependentUpon>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

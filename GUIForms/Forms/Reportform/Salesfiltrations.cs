@@ -314,7 +314,7 @@ namespace Reporting.Sales
                         item.ID,
                         item.Amount,
                         item.CDate,
-                        item.Vat,
+                        item.Vat + item.Amount,
                         Logo,
                         item.Description,
                     });

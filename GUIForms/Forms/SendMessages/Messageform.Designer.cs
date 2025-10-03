@@ -34,10 +34,10 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Btnsend = new FontAwesome.Sharp.IconButton();
             this.txtfile = new System.Windows.Forms.RichTextBox();
-            this.Btnup = new System.Windows.Forms.Button();
-            this.Btnsend = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Btnup = new FontAwesome.Sharp.IconButton();
             this.label15 = new System.Windows.Forms.Label();
             this.phone = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -45,6 +45,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtMsg = new System.Windows.Forms.RichTextBox();
             this.OFD = new System.Windows.Forms.OpenFileDialog();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -104,64 +105,43 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtfile);
-            this.panel1.Controls.Add(this.Btnup);
             this.panel1.Controls.Add(this.Btnsend);
+            this.panel1.Controls.Add(this.txtfile);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 390);
+            this.panel1.Location = new System.Drawing.Point(0, 406);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(396, 100);
+            this.panel1.Size = new System.Drawing.Size(396, 67);
             this.panel1.TabIndex = 35;
+            // 
+            // Btnsend
+            // 
+            this.Btnsend.IconChar = FontAwesome.Sharp.IconChar.PaperPlane;
+            this.Btnsend.IconColor = System.Drawing.Color.Black;
+            this.Btnsend.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btnsend.IconSize = 32;
+            this.Btnsend.Location = new System.Drawing.Point(339, 8);
+            this.Btnsend.Name = "Btnsend";
+            this.Btnsend.Size = new System.Drawing.Size(45, 51);
+            this.Btnsend.TabIndex = 116;
+            this.Btnsend.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Btnsend.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Btnsend.UseVisualStyleBackColor = true;
+            this.Btnsend.Visible = false;
+            this.Btnsend.Click += new System.EventHandler(this.Btnsend_Click);
             // 
             // txtfile
             // 
             this.txtfile.Location = new System.Drawing.Point(8, 8);
             this.txtfile.Name = "txtfile";
-            this.txtfile.Size = new System.Drawing.Size(181, 83);
+            this.txtfile.Size = new System.Drawing.Size(325, 51);
             this.txtfile.TabIndex = 10;
             this.txtfile.Text = "";
             this.txtfile.Visible = false;
             // 
-            // Btnup
-            // 
-            this.Btnup.BackColor = System.Drawing.Color.PowderBlue;
-            this.Btnup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btnup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btnup.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.Btnup.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
-            this.Btnup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btnup.Font = new System.Drawing.Font("Verdana", 11.25F);
-            this.Btnup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Btnup.Location = new System.Drawing.Point(195, 9);
-            this.Btnup.Name = "Btnup";
-            this.Btnup.Size = new System.Drawing.Size(100, 82);
-            this.Btnup.TabIndex = 9;
-            this.Btnup.Text = "Fileuploade";
-            this.Btnup.UseVisualStyleBackColor = false;
-            this.Btnup.Visible = false;
-            this.Btnup.Click += new System.EventHandler(this.Btnup_Click);
-            // 
-            // Btnsend
-            // 
-            this.Btnsend.BackColor = System.Drawing.Color.PowderBlue;
-            this.Btnsend.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btnsend.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Btnsend.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.Btnsend.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
-            this.Btnsend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btnsend.Font = new System.Drawing.Font("Verdana", 11.25F);
-            this.Btnsend.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Btnsend.Location = new System.Drawing.Point(301, 9);
-            this.Btnsend.Name = "Btnsend";
-            this.Btnsend.Size = new System.Drawing.Size(83, 82);
-            this.Btnsend.TabIndex = 8;
-            this.Btnsend.Text = "Send";
-            this.Btnsend.UseVisualStyleBackColor = false;
-            this.Btnsend.Visible = false;
-            this.Btnsend.Click += new System.EventHandler(this.Btnsend_Click);
-            // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.iconButton1);
+            this.panel3.Controls.Add(this.Btnup);
             this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.phone);
             this.panel3.Controls.Add(this.label10);
@@ -171,6 +151,21 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(396, 79);
             this.panel3.TabIndex = 36;
+            // 
+            // Btnup
+            // 
+            this.Btnup.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
+            this.Btnup.IconColor = System.Drawing.Color.Black;
+            this.Btnup.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btnup.IconSize = 32;
+            this.Btnup.Location = new System.Drawing.Point(63, 11);
+            this.Btnup.Name = "Btnup";
+            this.Btnup.Size = new System.Drawing.Size(45, 51);
+            this.Btnup.TabIndex = 115;
+            this.Btnup.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Btnup.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Btnup.UseVisualStyleBackColor = true;
+            this.Btnup.Click += new System.EventHandler(this.Btnup_Click);
             // 
             // label15
             // 
@@ -189,10 +184,10 @@
             // 
             this.phone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.phone.Enabled = false;
-            this.phone.Location = new System.Drawing.Point(12, 42);
+            this.phone.Location = new System.Drawing.Point(114, 42);
             this.phone.Name = "phone";
             this.phone.ReadOnly = true;
-            this.phone.Size = new System.Drawing.Size(266, 20);
+            this.phone.Size = new System.Drawing.Size(164, 20);
             this.phone.TabIndex = 79;
             this.phone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -215,10 +210,10 @@
             this.clientID.DisplayMember = "Name";
             this.clientID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.clientID.FormattingEnabled = true;
-            this.clientID.Location = new System.Drawing.Point(12, 15);
+            this.clientID.Location = new System.Drawing.Point(114, 15);
             this.clientID.Name = "clientID";
             this.clientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.clientID.Size = new System.Drawing.Size(266, 21);
+            this.clientID.Size = new System.Drawing.Size(164, 21);
             this.clientID.TabIndex = 66;
             this.clientID.ValueMember = "ID";
             this.clientID.SelectionChangeCommitted += new System.EventHandler(this.clientID_SelectionChangeCommitted);
@@ -229,7 +224,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 144);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(396, 246);
+            this.panel4.Size = new System.Drawing.Size(396, 262);
             this.panel4.TabIndex = 37;
             // 
             // txtMsg
@@ -237,7 +232,7 @@
             this.txtMsg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtMsg.Location = new System.Drawing.Point(0, 0);
             this.txtMsg.Name = "txtMsg";
-            this.txtMsg.Size = new System.Drawing.Size(396, 246);
+            this.txtMsg.Size = new System.Drawing.Size(396, 262);
             this.txtMsg.TabIndex = 0;
             this.txtMsg.Text = "";
             this.txtMsg.TextChanged += new System.EventHandler(this.txtMsg_TextChanged);
@@ -246,11 +241,25 @@
             // 
             this.OFD.FileName = "openFileDialog1";
             // 
+            // iconButton1
+            // 
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 32;
+            this.iconButton1.Location = new System.Drawing.Point(12, 11);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(45, 51);
+            this.iconButton1.TabIndex = 117;
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            // 
             // Messageform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 490);
+            this.ClientSize = new System.Drawing.Size(396, 473);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -280,15 +289,16 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button Btnsend;
         private System.Windows.Forms.RichTextBox txtMsg;
         private System.Windows.Forms.RichTextBox txtfile;
-        private System.Windows.Forms.Button Btnup;
         private System.Windows.Forms.Label label10;
         public System.Windows.Forms.ComboBox clientID;
         private System.Windows.Forms.Label label15;
         public System.Windows.Forms.TextBox phone;
         private System.Windows.Forms.OpenFileDialog OFD;
+        private FontAwesome.Sharp.IconButton Btnup;
+        private FontAwesome.Sharp.IconButton Btnsend;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }
 
