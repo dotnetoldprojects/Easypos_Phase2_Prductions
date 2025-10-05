@@ -251,9 +251,42 @@ namespace Resturantlayer
                 var items = _IUW.items.GetAll().ToList();
                 var unittypes = _IUW.unittypes.GetAll().ToList();
 
+                //var query = from s in sales
+                //            let saleDateTime = DateTime.TryParse($"{s.TDate:yyyy-MM-dd} {s.TTime:HH:mm:ss}", out var saleDateTimeResult) ? saleDateTimeResult : DateTime.MinValue
+                //            where saleDateTime >= fromDateTime && saleDateTime <= toDateTime && s.Billtype == "صدرت"
+                //            join sd in salesdetailes on s.Invoiceno equals sd.InvoiceNo into sdGroup
+                //            from sd in sdGroup.DefaultIfEmpty()
+                //            join pi in productitems on sd?.ProductNo.ToString() equals pi?.Proid into piGroup
+                //            from pi in piGroup.DefaultIfEmpty()
+                //            join it in items on pi?.itemid equals it?.ID.ToString() into itGroup
+                //            from it in itGroup.DefaultIfEmpty()
+                //            join u in unittypes on it?.UID equals u?.ID into uGroup
+                //            from u in uGroup.DefaultIfEmpty()
+                //            where it?.Itemname != null
+                //            group new { pi, it, u } by new
+                //            {
+                //                ID = it?.ID,
+                //                Itemname = it?.Itemname,
+                //                UName = u?.UName,
+                //                ItemQty = (decimal?)it?.Itemqty,
+                //                ItemPrice = (decimal?)it?.Itemprice
+                //            } into g
+                //            select new
+                //            {
+                //                ID = g.Key.ID,
+                //                Itemname = g.Key.Itemname,
+                //                UName = g.Key.UName,
+                //                ItemQty = g.Key.ItemQty,
+                //                ItemPrice = g.Key.ItemPrice,
+                //                Quantity = g.Sum(x => decimal.TryParse(x.pi?.Quantity, out var q) ? q : 0),
+                //                Total = g.Sum(x => (decimal.TryParse(x.pi?.Quantity, out var q) ? q : 0) * (g.Key.ItemPrice ?? 0)),
+                //                QBD = g.Sum(x => (decimal.TryParse(x.pi?.Quantity, out var q) ? q : 0) -  + (g.Key.ItemQty ?? 0))
+                //            };
+
+                //var result = query.OrderBy(x => x.ID).ToList();
                 var query = from s in sales
                             let saleDateTime = DateTime.TryParse($"{s.TDate:yyyy-MM-dd} {s.TTime:HH:mm:ss}", out var saleDateTimeResult) ? saleDateTimeResult : DateTime.MinValue
-                            where saleDateTime >= fromDateTime && saleDateTime <= toDateTime
+                            where saleDateTime >= fromDateTime && saleDateTime <= toDateTime && s.Billtype == "صدرت"
                             join sd in salesdetailes on s.Invoiceno equals sd.InvoiceNo into sdGroup
                             from sd in sdGroup.DefaultIfEmpty()
                             join pi in productitems on sd?.ProductNo.ToString() equals pi?.Proid into piGroup
@@ -263,7 +296,7 @@ namespace Resturantlayer
                             join u in unittypes on it?.UID equals u?.ID into uGroup
                             from u in uGroup.DefaultIfEmpty()
                             where it?.Itemname != null
-                            group new { pi, it, u } by new
+                            group new { pi, it, u, sd } by new
                             {
                                 ID = it?.ID,
                                 Itemname = it?.Itemname,
@@ -278,9 +311,24 @@ namespace Resturantlayer
                                 UName = g.Key.UName,
                                 ItemQty = g.Key.ItemQty,
                                 ItemPrice = g.Key.ItemPrice,
-                                Quantity = g.Sum(x => decimal.TryParse(x.pi?.Quantity, out var q) ? q : 0),
-                                Total = g.Sum(x => (decimal.TryParse(x.pi?.Quantity, out var q) ? q : 0) * (g.Key.ItemPrice ?? 0)),
-                                QBD = g.Sum(x => (decimal.TryParse(x.pi?.Quantity, out var q) ? q : 0) -  + (g.Key.ItemQty ?? 0))
+
+                                // إجمالي استهلاك الصنف الأولي بناءً على الكمية المباعة من المنتج
+                                Quantity = g.Sum(x =>
+                                    (decimal.TryParse(x.pi?.Quantity, out var compQty) ? compQty : 0)
+                                    * (decimal.TryParse(x.sd?.Quantity.ToString(), out var soldQty) ? soldQty : 0)
+                                ),
+
+                                Total = g.Sum(x =>
+                                    (decimal.TryParse(x.pi?.Quantity, out var compQty) ? compQty : 0)
+                                    * (decimal.TryParse(x.sd?.Quantity.ToString(), out var soldQty) ? soldQty : 0)
+                                    * (g.Key.ItemPrice ?? 0)
+                                ),
+
+                                QBD = g.Sum(x =>
+                                    ((decimal.TryParse(x.pi?.Quantity, out var compQty) ? compQty : 0)
+                                    * (decimal.TryParse(x.sd?.Quantity.ToString(), out var soldQty) ? soldQty : 0))
+                                    - (g.Key.ItemQty ?? 0)
+                                )
                             };
 
                 var result = query.OrderBy(x => x.ID).ToList();

@@ -280,6 +280,7 @@ namespace Easypos.Tailoring
             TH.Status = Statustype.Text;
             TH.Note = textBox23.Text;
             _IUW.tailorheaders.Update(TH);
+            _IUW.Complete();
         }
         void tailorhandsave()
         {
@@ -294,6 +295,7 @@ namespace Easypos.Tailoring
             THN.Plain_cupcake = checkBox11.Checked;
             THN.Triangle = checkBox9.Checked;
             _IUW.tailorhands.Update(THN);
+            _IUW.Complete();
         }
         void tailornecksave()
         {
@@ -310,6 +312,7 @@ namespace Easypos.Tailoring
             TN.texta = decimal.Parse(textBox13.Text);
             TN.textb = decimal.Parse(textBox12.Text);
             _IUW.tailornecks.Update(TN);
+            _IUW.Complete();
         }
         void tailorjabzorsave()
         {
@@ -327,6 +330,7 @@ namespace Easypos.Tailoring
             TJ.txtnumber = int.Parse(textBox31.Text);
             TJ.txt = decimal.Parse(textBox30.Text);
             _IUW.tailorjabzors.Update(TJ);
+            _IUW.Complete();
         }
         void tailorboketsave()
         {
@@ -343,6 +347,7 @@ namespace Easypos.Tailoring
             TBD.Bok10 = checkBox38.Checked;
             TBD.Bok11 = checkBox39.Checked;
             _IUW.tailorbockets.Update(TBD);
+            _IUW.Complete();
         }
         void tailordeatailesave()
         {
@@ -362,11 +367,13 @@ namespace Easypos.Tailoring
             TD.Notes = textBox18.Text;
             TD.Aujra = checkBox23.Checked;
             _IUW.tailordetailes.Update(TD);
+            _IUW.Complete();
         }
         void Alltailorsave() {
             AT.Tailheaderid = TilHId.ToString();
             AT.Alltable = TilDId.ToString();
             _IUW.alltailorings.Insert(AT);
+            _IUW.Complete();
         }
         private void clientID_SelectionChangeCommitted(object sender, EventArgs e)
         {
