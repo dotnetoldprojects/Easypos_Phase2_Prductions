@@ -186,5 +186,12 @@ namespace GUIForms.Forms.SendMessages
                 Btnsend.Visible = true;
             }
         }
+
+        private void Btnlist_Click(object sender, EventArgs e)
+        {
+            ListMsgform LMF = new ListMsgform();
+            this.Hide();
+            LMF.ShowDialog();
+        }
     }
 }

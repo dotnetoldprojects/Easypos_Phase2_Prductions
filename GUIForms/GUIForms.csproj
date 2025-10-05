@@ -220,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\CountryInfo.cs" />
+    <Compile Include="Dtos\Custlistdto.cs" />
     <Compile Include="Dtos\Getcentralaizes.cs" />
     <Compile Include="Dtos\Itemremaining.cs" />
     <Compile Include="Dtos\ItemRow.cs" />
@@ -361,6 +362,12 @@
       <DependentUpon>Returnedlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SendMessages\Authorize.cs" />
+    <Compile Include="Forms\SendMessages\FrmTemplet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SendMessages\FrmTemplet.Designer.cs">
+      <DependentUpon>FrmTemplet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SendMessages\ListMsgform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,6 +626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Returned\Returnedlist.resx">
       <DependentUpon>Returnedlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SendMessages\FrmTemplet.resx">
+      <DependentUpon>FrmTemplet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SendMessages\ListMsgform.resx">
       <DependentUpon>ListMsgform.cs</DependentUpon>

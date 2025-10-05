@@ -136,7 +136,9 @@ namespace Easypos.Masters
                 txtNumber.Text = DGV.CurrentRow.Cells[0].Value.ToString();
                 TP.ID = int.Parse(txtNumber.Text);
                 txtName.Text = DGV.CurrentRow.Cells[1].Value.ToString();
-                string fullNumber = DGV.CurrentRow.Cells[3].Value.ToString().Trim();
+                string fullNumber = DGV.CurrentRow.Cells[3].Value != null
+                                       ? DGV.CurrentRow.Cells[3].Value.ToString()
+                                       : "";
                 var matchedCountry = CI.FirstOrDefault(c => fullNumber.StartsWith(c.DialCode));
                 string localNumber = fullNumber;
                 if (matchedCountry != null)
@@ -246,7 +248,7 @@ namespace Easypos.Masters
                         }
                     }
                     TP.Name = txtName.Text;
-                    if (!string.IsNullOrEmpty(TP.MobileNumber))
+                    if (!string.IsNullOrEmpty(txtMobile.Text))
                     {
                         var Codes = (CountryInfo)Countrybox.SelectedItem;
                         if (Codes != null)

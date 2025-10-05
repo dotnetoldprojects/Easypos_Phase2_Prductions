@@ -1256,16 +1256,6 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Boolean similar to False.
-        /// </summary>
-        public static bool Btntail_Visible {
-            get {
-                object obj = ResourceManager.GetObject("Btntail.Visible", resourceCulture);
-                return ((bool)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Windows.Forms.AnchorStyles similar to None.
         /// </summary>
         public static System.Windows.Forms.AnchorStyles Btnunits_Anchor {

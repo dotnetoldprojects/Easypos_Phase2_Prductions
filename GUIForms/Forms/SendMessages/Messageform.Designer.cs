@@ -37,6 +37,7 @@
             this.Btnsend = new FontAwesome.Sharp.IconButton();
             this.txtfile = new System.Windows.Forms.RichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Btnlist = new FontAwesome.Sharp.IconButton();
             this.Btnup = new FontAwesome.Sharp.IconButton();
             this.label15 = new System.Windows.Forms.Label();
             this.phone = new System.Windows.Forms.TextBox();
@@ -45,7 +46,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtMsg = new System.Windows.Forms.RichTextBox();
             this.OFD = new System.Windows.Forms.OpenFileDialog();
-            this.Btnlist = new FontAwesome.Sharp.IconButton();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -152,6 +152,21 @@
             this.panel3.Size = new System.Drawing.Size(396, 79);
             this.panel3.TabIndex = 36;
             // 
+            // Btnlist
+            // 
+            this.Btnlist.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.Btnlist.IconColor = System.Drawing.Color.Black;
+            this.Btnlist.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.Btnlist.IconSize = 32;
+            this.Btnlist.Location = new System.Drawing.Point(12, 11);
+            this.Btnlist.Name = "Btnlist";
+            this.Btnlist.Size = new System.Drawing.Size(45, 51);
+            this.Btnlist.TabIndex = 117;
+            this.Btnlist.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Btnlist.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.Btnlist.UseVisualStyleBackColor = true;
+            this.Btnlist.Click += new System.EventHandler(this.Btnlist_Click);
+            // 
             // Btnup
             // 
             this.Btnup.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
@@ -240,20 +255,6 @@
             // OFD
             // 
             this.OFD.FileName = "openFileDialog1";
-            // 
-            // Btnlist
-            // 
-            this.Btnlist.IconChar = FontAwesome.Sharp.IconChar.List;
-            this.Btnlist.IconColor = System.Drawing.Color.Black;
-            this.Btnlist.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Btnlist.IconSize = 32;
-            this.Btnlist.Location = new System.Drawing.Point(12, 11);
-            this.Btnlist.Name = "Btnlist";
-            this.Btnlist.Size = new System.Drawing.Size(45, 51);
-            this.Btnlist.TabIndex = 117;
-            this.Btnlist.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Btnlist.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.Btnlist.UseVisualStyleBackColor = true;
             // 
             // Messageform
             // 

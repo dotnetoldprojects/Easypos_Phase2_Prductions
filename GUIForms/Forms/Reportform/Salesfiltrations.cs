@@ -279,11 +279,11 @@ namespace Reporting.Sales
                         item.Invoiceno,
                         item.Name,
                         item.TDate,
-                        item.NonVatTotal,
+                        item.TotalAmount,
                         item.Discount,
                         item.VatAmount,
                         "--",
-                        item.TotalAmount,
+                        item.NonVatTotal,
                         Logo,
                     });
                 }
