@@ -183,7 +183,7 @@ namespace GUIForms.Forms.SendMessages
             else
             {
                 txtMsg.Visible = true;
-                Btnsend.Visible = true;
+                Btnsend.Visible = false;
             }
         }
 

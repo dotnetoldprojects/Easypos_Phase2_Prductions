@@ -62,7 +62,7 @@ namespace Easypos.Tailoring
             InitializeComponent();
             Loading();
         }
-        private void Loading()
+        public void Loading()
         {
             GC = new Getcentralaizes();
             DC = (company)LanguageHelper.ApplyLanguage(this);

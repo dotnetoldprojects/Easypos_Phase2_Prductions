@@ -1,5 +1,6 @@
 ﻿using CountryCodes;
 using Domain.Models;
+using Easypos.Tailoring;
 using GUIForms.Dtos;
 using GUIForms.helpers;
 using Microsoft.VisualBasic;
@@ -305,6 +306,15 @@ namespace Easypos.Masters
                         logger.Log(ex, "Third Party");
                     }
                     Clearfieldes();
+                    if (Application.OpenForms["Frmtailoring"] != null)
+                    {
+                        Frmtailoring p = (Application.OpenForms["Frmtailoring"] as Frmtailoring);
+                        p.Loading();
+                        p.clientID.Text = txtName.Text;
+                        this.Close();
+                        return;
+                        //p.textBox15.Text = txtMobile.Text;
+                    }
                 }
             }
         }
