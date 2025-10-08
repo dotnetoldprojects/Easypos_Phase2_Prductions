@@ -234,6 +234,7 @@ namespace Easypos.Masters
         void Getdata(int IID)
         {
             SO = new List<SalesReportItem>();
+            var sale = _IUW.salesdetailes.GetAll().ToList();
             var items = _IUW.items.GetAll().ToList();
             var purchases = _IUW.purchases.GetAll().ToList();
             var returneds = _IUW.returneds.GetAll().ToList();
@@ -325,6 +326,7 @@ namespace Easypos.Masters
                           join it in items
                           on its.Itemid equals it.ID into joined
                           from it in joined.DefaultIfEmpty()
+                          from sa in joined.DefaultIfEmpty()
                           where its.Itemid == IID
                           select new
                           {
@@ -335,22 +337,54 @@ namespace Easypos.Masters
                               its.Quantity,
                               its.invoiceno
                           };
+    //        var result2 =
+    //from its in itemsales
+    //join it in items
+    //    on its.Itemid equals it.ID into itemsJoin
+    //from it in itemsJoin.DefaultIfEmpty()
+    //join sa in sale
+    //    on its.invoiceno equals sa.InvoiceNo into salesJoin
+    //from sa in salesJoin.DefaultIfEmpty()
+    //where its.Itemid == IID
+    //select new
+    //{
+    //    ID = it != null ? it.ID : 0,
+    //    Itemname = it != null ? it.Itemname : "",
+    //    Date = its.Date,
+    //    Itemqty = it != null ? it.Itemqty : 0,
+    //    Quantity = its.Quantity,
+    //    SaleQuantity = sa != null ? sa.Quantity : 0,
+    //    TotalQuantity = (its.Quantity) * (sa != null ? sa.Quantity : 0),
+    //    Invoiceno = its.invoiceno
+    //};
 
             foreach (var item in result2)
             {
+                //SO.Add(new SalesReportItem
+                //{
+                //    ID = item.ID,
+                //    Itemname = item.Itemname,
+                //    Date = item.Date.ToString(),
+                //    Itemqty = item.Itemqty,
+                //    Quantity = int.Parse(item.TotalQuantity.ToString()),
+                //    Remining = item.Itemqty - item.Quantity,
+                //    Invoiceno = item.Invoiceno.ToString(),
+                //    Type = "فاتورة مبيعات"
+                //});
                 SO.Add(new SalesReportItem
                 {
                     ID = item.ID,
                     Itemname = item.Itemname,
                     Date = item.Date.ToString(),
                     Itemqty = item.Itemqty,
-                    Quantity =item.Quantity,
+                    Quantity = item.Quantity,
                     Remining = item.Itemqty - item.Quantity,
                     Invoiceno = item.invoiceno.ToString(),
                     Type = "فاتورة مبيعات"
                 });
             }
             #endregion
+
             var result3 = from ret in returneds
                           where ret.Returnedtype == "مرتجع مبيعات"
 

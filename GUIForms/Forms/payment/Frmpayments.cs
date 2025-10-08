@@ -104,66 +104,66 @@ namespace Easypos.Payment
                             if (Sb.Billtype.Text == "صدرت")
                             {
                                 Savpayment();
-                                var Gp = _IUW.payments.GetAll().LastOrDefault();
-                                if (Gp.Bank > 0)
+                            }
+                            var Gp = _IUW.payments.GetAll().LastOrDefault();
+                            if (Gp.Bank > 0)
+                            {
+                                var trans = new transaction();
+                                trans.Invoiceno = Gp.InvoiceNo;
+                                trans.Paynum = Gp.paymentNo;
+                                trans.TDate = Gp.Date;
+                                trans.Type = "سند ايصال مبيعات";
+                                trans.Paytype = "بنكي";
+                                trans.ThirdPartyID = Gp.ThirdPartyID;
+                                trans.Paid = Gp.Bank;
+                                trans.Note = "";
+                                _IUW.transactions.Insert(trans);
+                                _IUW.Complete();
+                            }
+                            if (Gp.Cash > 0)
+                            {
+                                var trans = new transaction();
+                                trans.Invoiceno = Gp.InvoiceNo;
+                                trans.Paynum = Gp.paymentNo;
+                                trans.TDate = Gp.Date;
+                                trans.Type = "سند ايصال مبيعات";
+                                trans.Paytype = "نقدي";
+                                trans.ThirdPartyID = Gp.ThirdPartyID;
+                                trans.Paid = Gp.Cash;
+                                trans.Note = "";
+                                _IUW.transactions.Insert(trans);
+                                _IUW.Complete();
+                            }
+                            //Sb.Generatexml();
+                            if ((bool)DC.Isusesigne)
+                            {
+                                Cursor.Current = Cursors.WaitCursor;
+                                var Bank = Gp.Bank;
+                                var Cash = Gp.Cash;
+                                ZF.invid = Sb.Invid;
+                                ZF.DC = DC;
+                                if (DC.Sysnametype == "0")
                                 {
-                                    var trans = new transaction();
-                                    trans.Invoiceno = Gp.InvoiceNo;
-                                    trans.Paynum = Gp.paymentNo;
-                                    trans.TDate = Gp.Date;
-                                    trans.Type = "سند ايصال مبيعات";
-                                    trans.Paytype = "بنكي";
-                                    trans.ThirdPartyID = Gp.ThirdPartyID;
-                                    trans.Paid = Gp.Bank;
-                                    trans.Note = "";
-                                    _IUW.transactions.Insert(trans);
-                                    _IUW.Complete();
+                                    if (Cash > 0)
+                                    {
+                                        await ZF.Loading();
+                                    }
                                 }
-                                if (Gp.Cash > 0)
+                                if (DC.Sysnametype == "1")
                                 {
-                                    var trans = new transaction();
-                                    trans.Invoiceno = Gp.InvoiceNo;
-                                    trans.Paynum = Gp.paymentNo;
-                                    trans.TDate = Gp.Date;
-                                    trans.Type = "سند ايصال مبيعات";
-                                    trans.Paytype = "نقدي";
-                                    trans.ThirdPartyID = Gp.ThirdPartyID;
-                                    trans.Paid = Gp.Cash;
-                                    trans.Note = "";
-                                    _IUW.transactions.Insert(trans);
-                                    _IUW.Complete();
+                                    if (Cash == 0)
+                                    {
+                                        await ZF.Loading();
+                                    }
                                 }
-                                //Sb.Generatexml();
-                                if ((bool)DC.Isusesigne)
+                                if (DC.Sysnametype == "2")
                                 {
-                                    Cursor.Current = Cursors.WaitCursor;
-                                    var Bank = Gp.Bank;
-                                    var Cash = Gp.Cash;
-                                    ZF.invid = Sb.Invid;
-                                    ZF.DC = DC;
-                                    if (DC.Sysnametype == "0")
+                                    if (Bank > 0 && Cash > 0)
                                     {
-                                        if (Cash > 0)
-                                        {
-                                            await ZF.Loading();
-                                        }
+                                        await ZF.Loading();
                                     }
-                                    if (DC.Sysnametype == "1")
-                                    {
-                                        if (Cash == 0)
-                                        {
-                                            await ZF.Loading();
-                                        }
-                                    }
-                                    if (DC.Sysnametype == "2")
-                                    {
-                                        if (Bank > 0 && Cash > 0)
-                                        {
-                                            await ZF.Loading();
-                                        }
-                                    }
-                                    Cursor.Current = Cursors.Default;
                                 }
+                                Cursor.Current = Cursors.Default;
                             }
                             MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
                         }
@@ -173,66 +173,63 @@ namespace Easypos.Payment
                             if (Pos.Billtype.Text == "صدرت")
                             {
                                 Savpayment();
-                                var Gp = _IUW.payments.GetAll().LastOrDefault();
-                                if (Gp.Bank > 0)
+                            }
+                            var Gp = _IUW.payments.GetAll().LastOrDefault();
+                            if (Gp.Bank > 0)
+                            {
+                                var trans = new transaction();
+                                trans.Invoiceno = Gp.InvoiceNo;
+                                trans.Paynum = Gp.paymentNo;
+                                trans.TDate = Gp.Date;
+                                trans.Type = "سند ايصال مبيعات";
+                                trans.Paytype = "بنكي";
+                                trans.ThirdPartyID = Gp.ThirdPartyID;
+                                trans.Paid = Gp.Bank;
+                                trans.Note = "";
+                                _IUW.transactions.Insert(trans);
+                                _IUW.Complete();
+                            }
+                            if (Gp.Cash > 0)
+                            {
+                                var trans = new transaction();
+                                trans.Invoiceno = Gp.InvoiceNo;
+                                trans.Paynum = Gp.paymentNo;
+                                trans.TDate = Gp.Date;
+                                trans.Type = "سند ايصال مبيعات";
+                                trans.Paytype = "نقدي";
+                                trans.ThirdPartyID = Gp.ThirdPartyID;
+                                trans.Paid = Gp.Cash;
+                                trans.Note = "";
+                                _IUW.transactions.Insert(trans);
+                                _IUW.Complete();
+                            }
+                            //Pos.Generatexml();
+                            if ((bool)DC.Isusesigne)
+                            {
+                                Cursor.Current = Cursors.WaitCursor;
+                                var Bank = Gp.Bank;
+                                var Cash = Gp.Cash;
+                                ZF.invid = Pos.Invid;
+                                ZF.DC = DC;
+                                if (DC.Signtype == 0)
                                 {
-                                    var trans = new transaction();
-                                    trans.Invoiceno = Gp.InvoiceNo;
-                                    trans.Paynum = Gp.paymentNo;
-                                    trans.TDate = Gp.Date;
-                                    trans.Type = "سند ايصال مبيعات";
-                                    trans.Paytype = "بنكي";
-                                    trans.ThirdPartyID = Gp.ThirdPartyID;
-                                    trans.Paid = Gp.Bank;
-                                    trans.Note = "";
-                                    _IUW.transactions.Insert(trans);
-                                    _IUW.Complete();
+                                    if (Cash > 0)
+                                    {
+                                        await ZF.Loading();
+                                    }
                                 }
-                                if (Gp.Cash > 0)
+                                if (DC.Signtype == 1)
                                 {
-                                    var trans = new transaction();
-                                    trans.Invoiceno = Gp.InvoiceNo;
-                                    trans.Paynum = Gp.paymentNo;
-                                    trans.TDate = Gp.Date;
-                                    trans.Type = "سند ايصال مبيعات";
-                                    trans.Paytype = "نقدي";
-                                    trans.ThirdPartyID = Gp.ThirdPartyID;
-                                    trans.Paid = Gp.Cash;
-                                    trans.Note = "";
-                                    _IUW.transactions.Insert(trans);
-                                    _IUW.Complete();
+                                    if (Bank > 0)
+                                    {
+                                        await ZF.Loading();
+                                    }
                                 }
-                                //Pos.Generatexml();
-                                if ((bool)DC.Isusesigne)
+                                if (DC.Signtype == 2)
                                 {
-                                    Cursor.Current = Cursors.WaitCursor;
-                                    var Bank = Gp.Bank;
-                                    var Cash = Gp.Cash;
-                                    ZF.invid = Pos.Invid;
-                                    ZF.DC = DC;
-                                    if (DC.Signtype == 0)
-                                    {
-                                        if (Cash > 0)
-                                        {
-                                            await ZF.Loading();
-                                        }
-                                    }
-                                    if (DC.Signtype == 1)
-                                    {
-                                        if (Bank > 0)
-                                        {
-                                            await ZF.Loading();
-                                        }
-                                    }
-                                    if (DC.Signtype == 2)
-                                    {
-                                        if (Bank > 0 && Cash > 0)
-                                        {
-                                            await ZF.Loading();
-                                        }
-                                    }
-                                    Cursor.Current = Cursors.Default;
+                                    await ZF.Loading();
                                 }
+                                Cursor.Current = Cursors.Default;
                             }
                             MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
                             //Pos.Clearfieldes();

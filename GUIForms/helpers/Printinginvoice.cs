@@ -88,7 +88,7 @@ namespace GUIForms.helpers
                               from pay in paymentJoin.DefaultIfEmpty()
 
                               join ubl in _IUW.UBLS.GetAll()
-                                  on s.Invoiceno equals ubl.Saleid into ublJoin
+                                  on s.Invoiceno equals ubl.invoicenumber into ublJoin
                               from ubl in ublJoin.DefaultIfEmpty()
 
                               where s.Invoiceno == Invid
@@ -122,8 +122,8 @@ namespace GUIForms.helpers
                               }).ToList();
                 foreach (var item in result)
                 {
-                    Paied = item.Paid.ToString();
-                    Dept = item.Remaining.ToString();
+                    Paied = item.Billtype == "مسوده" ? "0" : item.Paid.ToString();
+                    Dept = item.Billtype == "مسوده" ? item.TotalAmount : item.Remaining.ToString();
                     Filename = item.Path;
                     date = item.TDate;
                     var qrText = item.QRCode;
@@ -157,7 +157,7 @@ namespace GUIForms.helpers
                     ConvertNumbersToArabicAlphabet a = new ConvertNumbersToArabicAlphabet(GTot.ToString());
                     Wordofnumber = a.GetNumberAr();
                     Ds.Bill.Rows.Add(new object[] {
-                        item.Invoiceno,
+                        item.Billtype == "مسوده" ? "مسوده" : item.Invoiceno.ToString(),
                         item.NonVatTotal,
                         item.Quantity,
                         0,

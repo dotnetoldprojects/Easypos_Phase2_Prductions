@@ -2216,6 +2216,16 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to False.
+        /// </summary>
+        public static bool ارسالرسائلToolStripMenuItem_Visible {
+            get {
+                object obj = ResourceManager.GetObject("ارسالرسائلToolStripMenuItem.Visible", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap الاصنافToolStripMenuItem_Image {
