@@ -35,20 +35,20 @@
         <EntityTypeShape EntityType="EasyposModel.tailordetaile" Width="1.5" PointX="11" PointY="33.5" />
         <EntityTypeShape EntityType="EasyposModel.tailorhand" Width="1.5" PointX="11" PointY="25.5" />
         <EntityTypeShape EntityType="EasyposModel.tailorheader" Width="1.5" PointX="11" PointY="16.375" />
-        <EntityTypeShape EntityType="EasyposModel.tailorjabzor" Width="1.5" PointX="11" PointY="29.375" />
-        <EntityTypeShape EntityType="EasyposModel.tailorneck" Width="1.5" PointX="11" PointY="38.375" />
         <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorbocket" />
         <AssociationConnector Association="EasyposModel.FK_alltailoring_tailordetaile" />
         <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorhand" />
         <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorheader" />
-        <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorjabzor" />
-        <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorneck" />
         <AssociationConnector Association="EasyposModel.FK_tailorheader_thirdparty" />
         <EntityTypeShape EntityType="EasyposModel.stok_transaction" Width="1.5" PointX="7.375" PointY="7.75" />
         <EntityTypeShape EntityType="EasyposModel.returned" Width="1.5" PointX="5.375" PointY="13.75" />
         <EntityTypeShape EntityType="EasyposModel.returnedetaile" Width="1.5" PointX="15.375" PointY="11.75" />
         <EntityTypeShape EntityType="EasyposModel.UBL" Width="1.5" PointX="3.375" PointY="17.75" />
         <EntityTypeShape EntityType="EasyposModel.invtransaction" Width="1.5" PointX="15.375" PointY="15.75" />
+        <EntityTypeShape EntityType="EasyposModel.tailorjabzor" Width="1.5" PointX="11" PointY="38.375" />
+        <EntityTypeShape EntityType="EasyposModel.tailorneck" Width="1.5" PointX="17.375" PointY="1" />
+        <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorjabzor" />
+        <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorneck" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

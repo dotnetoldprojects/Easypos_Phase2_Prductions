@@ -521,6 +521,7 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Path" Type="nvarchar" MaxLength="250" />
           <Property Name="invoicenumber" Type="int" Nullable="false" />
+          <Property Name="PIH" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="unittypes">
           <Key>
@@ -545,7 +546,7 @@
           <Property Name="Methode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="expensesview">
           <Key>
             <PropertyRef Name="ID" />
@@ -1113,8 +1114,6 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySet Name="tailordetailes" EntityType="EasyposModel.tailordetaile" />
           <EntitySet Name="tailorhands" EntityType="EasyposModel.tailorhand" />
           <EntitySet Name="tailorheaders" EntityType="EasyposModel.tailorheader" />
-          <EntitySet Name="tailorjabzors" EntityType="EasyposModel.tailorjabzor" />
-          <EntitySet Name="tailornecks" EntityType="EasyposModel.tailorneck" />
           <AssociationSet Name="FK_alltailoring_tailorbocket" Association="EasyposModel.FK_alltailoring_tailorbocket">
             <End Role="tailorbocket" EntitySet="tailorbockets" />
             <End Role="alltailoring" EntitySet="alltailorings" />
@@ -1131,14 +1130,6 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
             <End Role="tailorheader" EntitySet="tailorheaders" />
             <End Role="alltailoring" EntitySet="alltailorings" />
           </AssociationSet>
-          <AssociationSet Name="FK_alltailoring_tailorjabzor" Association="EasyposModel.FK_alltailoring_tailorjabzor">
-            <End Role="tailorjabzor" EntitySet="tailorjabzors" />
-            <End Role="alltailoring" EntitySet="alltailorings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_alltailoring_tailorneck" Association="EasyposModel.FK_alltailoring_tailorneck">
-            <End Role="tailorneck" EntitySet="tailornecks" />
-            <End Role="alltailoring" EntitySet="alltailorings" />
-          </AssociationSet>
           <AssociationSet Name="FK_tailorheader_thirdparty" Association="EasyposModel.FK_tailorheader_thirdparty">
             <End Role="thirdparty" EntitySet="thirdparties" />
             <End Role="tailorheader" EntitySet="tailorheaders" />
@@ -1148,6 +1139,16 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySet Name="returnedetailes" EntityType="EasyposModel.returnedetaile" />
           <EntitySet Name="UBLs" EntityType="EasyposModel.UBL" />
           <EntitySet Name="invtransactions" EntityType="EasyposModel.invtransaction" />
+          <EntitySet Name="tailorjabzors" EntityType="EasyposModel.tailorjabzor" />
+          <EntitySet Name="tailornecks" EntityType="EasyposModel.tailorneck" />
+          <AssociationSet Name="FK_alltailoring_tailorjabzor" Association="EasyposModel.FK_alltailoring_tailorjabzor">
+            <End Role="tailorjabzor" EntitySet="tailorjabzors" />
+            <End Role="alltailoring" EntitySet="alltailorings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alltailoring_tailorneck" Association="EasyposModel.FK_alltailoring_tailorneck">
+            <End Role="tailorneck" EntitySet="tailornecks" />
+            <End Role="alltailoring" EntitySet="alltailorings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="voucher">
           <Key>
@@ -1260,43 +1261,6 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorheader" FromRole="tailorheader" ToRole="alltailoring" />
           <NavigationProperty Name="thirdparty" Relationship="EasyposModel.FK_tailorheader_thirdparty" FromRole="tailorheader" ToRole="thirdparty" />
         </EntityType>
-        <EntityType Name="tailorjabzor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Jab1" Type="Boolean" />
-          <Property Name="Jab2" Type="Boolean" />
-          <Property Name="Jab3" Type="Boolean" />
-          <Property Name="Jab4" Type="Boolean" />
-          <Property Name="Jab5" Type="Boolean" />
-          <Property Name="Jab6" Type="Boolean" />
-          <Property Name="Jab7" Type="Boolean" />
-          <Property Name="Jab8" Type="Boolean" />
-          <Property Name="Jab9" Type="Boolean" />
-          <Property Name="Jab10" Type="Boolean" />
-          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorjabzor" FromRole="tailorjabzor" ToRole="alltailoring" />
-          <Property Name="txtnumber" Type="Int32" />
-          <Property Name="txt" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="tailorneck">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Plain" Type="Boolean" />
-          <Property Name="Plainfrench" Type="Boolean" />
-          <Property Name="Regulartipper" Type="Boolean" />
-          <Property Name="Closedflap" Type="Boolean" />
-          <Property Name="Plainhidden" Type="Boolean" />
-          <Property Name="Chinese" Type="Boolean" />
-          <Property Name="Openflap" Type="Boolean" />
-          <Property Name="Frenchflip" Type="Boolean" />
-          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorneck" FromRole="tailorneck" ToRole="alltailoring" />
-          <Property Name="txtnumber" Type="Int32" />
-          <Property Name="texta" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="textb" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
         <Association Name="FK_alltailoring_tailorbocket">
           <End Type="EasyposModel.tailorbocket" Role="tailorbocket" Multiplicity="1" />
           <End Type="EasyposModel.alltailoring" Role="alltailoring" Multiplicity="*" />
@@ -1342,30 +1306,6 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
             </Principal>
             <Dependent Role="alltailoring">
               <PropertyRef Name="Tailheaderid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_alltailoring_tailorjabzor">
-          <End Type="EasyposModel.tailorjabzor" Role="tailorjabzor" Multiplicity="1" />
-          <End Type="EasyposModel.alltailoring" Role="alltailoring" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tailorjabzor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="alltailoring">
-              <PropertyRef Name="Alltable" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_alltailoring_tailorneck">
-          <End Type="EasyposModel.tailorneck" Role="tailorneck" Multiplicity="1" />
-          <End Type="EasyposModel.alltailoring" Role="alltailoring" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tailorneck">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="alltailoring">
-              <PropertyRef Name="Alltable" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1432,6 +1372,7 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="invoicenumber" Type="Int32" Nullable="false" />
+          <Property Name="PIH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="invtransaction">
           <Key>
@@ -1448,6 +1389,67 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <Property Name="Itemid" Type="Int32" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tailorjabzor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Jab1" Type="Boolean" />
+          <Property Name="Jab2" Type="Boolean" />
+          <Property Name="Jab3" Type="Boolean" />
+          <Property Name="Jab4" Type="Boolean" />
+          <Property Name="Jab5" Type="Boolean" />
+          <Property Name="Jab6" Type="Boolean" />
+          <Property Name="Jab7" Type="Boolean" />
+          <Property Name="Jab8" Type="Boolean" />
+          <Property Name="Jab9" Type="Boolean" />
+          <Property Name="Jab10" Type="Boolean" />
+          <Property Name="txtnumber" Type="Int32" />
+          <Property Name="txt" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorjabzor" FromRole="tailorjabzor" ToRole="alltailoring" />
+        </EntityType>
+        <EntityType Name="tailorneck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Plain" Type="Boolean" />
+          <Property Name="Plainfrench" Type="Boolean" />
+          <Property Name="Regulartipper" Type="Boolean" />
+          <Property Name="Closedflap" Type="Boolean" />
+          <Property Name="Plainhidden" Type="Boolean" />
+          <Property Name="Chinese" Type="Boolean" />
+          <Property Name="Openflap" Type="Boolean" />
+          <Property Name="Frenchflip" Type="Boolean" />
+          <Property Name="txtnumber" Type="Int32" />
+          <Property Name="texta" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="textb" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorneck" FromRole="tailorneck" ToRole="alltailoring" />
+        </EntityType>
+        <Association Name="FK_alltailoring_tailorjabzor">
+          <End Type="EasyposModel.tailorjabzor" Role="tailorjabzor" Multiplicity="1" />
+          <End Type="EasyposModel.alltailoring" Role="alltailoring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tailorjabzor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alltailoring">
+              <PropertyRef Name="Alltable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alltailoring_tailorneck">
+          <End Type="EasyposModel.tailorneck" Role="tailorneck" Multiplicity="1" />
+          <End Type="EasyposModel.alltailoring" Role="alltailoring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tailorneck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alltailoring">
+              <PropertyRef Name="Alltable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1934,43 +1936,6 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tailorjabzors">
-            <EntityTypeMapping TypeName="EasyposModel.tailorjabzor">
-              <MappingFragment StoreEntitySet="tailorjabzor">
-                <ScalarProperty Name="txt" ColumnName="txt" />
-                <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
-                <ScalarProperty Name="Jab10" ColumnName="Jab10" />
-                <ScalarProperty Name="Jab9" ColumnName="Jab9" />
-                <ScalarProperty Name="Jab8" ColumnName="Jab8" />
-                <ScalarProperty Name="Jab7" ColumnName="Jab7" />
-                <ScalarProperty Name="Jab6" ColumnName="Jab6" />
-                <ScalarProperty Name="Jab5" ColumnName="Jab5" />
-                <ScalarProperty Name="Jab4" ColumnName="Jab4" />
-                <ScalarProperty Name="Jab3" ColumnName="Jab3" />
-                <ScalarProperty Name="Jab2" ColumnName="Jab2" />
-                <ScalarProperty Name="Jab1" ColumnName="Jab1" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tailornecks">
-            <EntityTypeMapping TypeName="EasyposModel.tailorneck">
-              <MappingFragment StoreEntitySet="tailorneck">
-                <ScalarProperty Name="textb" ColumnName="textb" />
-                <ScalarProperty Name="texta" ColumnName="texta" />
-                <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
-                <ScalarProperty Name="Frenchflip" ColumnName="Frenchflip" />
-                <ScalarProperty Name="Openflap" ColumnName="Openflap" />
-                <ScalarProperty Name="Chinese" ColumnName="Chinese" />
-                <ScalarProperty Name="Plainhidden" ColumnName="Plainhidden" />
-                <ScalarProperty Name="Closedflap" ColumnName="Closedflap" />
-                <ScalarProperty Name="Regulartipper" ColumnName="Regulartipper" />
-                <ScalarProperty Name="Plainfrench" ColumnName="Plainfrench" />
-                <ScalarProperty Name="Plain" ColumnName="Plain" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="stok_transaction">
             <EntityTypeMapping TypeName="EasyposModel.stok_transaction">
               <MappingFragment StoreEntitySet="stok_transaction">
@@ -2015,6 +1980,7 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
           <EntitySetMapping Name="UBLs">
             <EntityTypeMapping TypeName="EasyposModel.UBL">
               <MappingFragment StoreEntitySet="UBL">
+                <ScalarProperty Name="PIH" ColumnName="PIH" />
                 <ScalarProperty Name="invoicenumber" ColumnName="invoicenumber" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -2039,6 +2005,43 @@ warning 6002: The table/view 'Easypos25.resturant.expensesview' does not have a 
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tailorjabzors">
+            <EntityTypeMapping TypeName="EasyposModel.tailorjabzor">
+              <MappingFragment StoreEntitySet="tailorjabzor">
+                <ScalarProperty Name="txt" ColumnName="txt" />
+                <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
+                <ScalarProperty Name="Jab10" ColumnName="Jab10" />
+                <ScalarProperty Name="Jab9" ColumnName="Jab9" />
+                <ScalarProperty Name="Jab8" ColumnName="Jab8" />
+                <ScalarProperty Name="Jab7" ColumnName="Jab7" />
+                <ScalarProperty Name="Jab6" ColumnName="Jab6" />
+                <ScalarProperty Name="Jab5" ColumnName="Jab5" />
+                <ScalarProperty Name="Jab4" ColumnName="Jab4" />
+                <ScalarProperty Name="Jab3" ColumnName="Jab3" />
+                <ScalarProperty Name="Jab2" ColumnName="Jab2" />
+                <ScalarProperty Name="Jab1" ColumnName="Jab1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tailornecks">
+            <EntityTypeMapping TypeName="EasyposModel.tailorneck">
+              <MappingFragment StoreEntitySet="tailorneck">
+                <ScalarProperty Name="textb" ColumnName="textb" />
+                <ScalarProperty Name="texta" ColumnName="texta" />
+                <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
+                <ScalarProperty Name="Frenchflip" ColumnName="Frenchflip" />
+                <ScalarProperty Name="Openflap" ColumnName="Openflap" />
+                <ScalarProperty Name="Chinese" ColumnName="Chinese" />
+                <ScalarProperty Name="Plainhidden" ColumnName="Plainhidden" />
+                <ScalarProperty Name="Closedflap" ColumnName="Closedflap" />
+                <ScalarProperty Name="Regulartipper" ColumnName="Regulartipper" />
+                <ScalarProperty Name="Plainfrench" ColumnName="Plainfrench" />
+                <ScalarProperty Name="Plain" ColumnName="Plain" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

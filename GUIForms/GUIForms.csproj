@@ -230,6 +230,7 @@
     <Compile Include="Dtos\SalesReportItem.cs" />
     <Compile Include="Dtos\Usingnumber.cs" />
     <Compile Include="Dtos\Zatcafutuers.cs" />
+    <Compile Include="Dtos\Zatcacreditnote.cs" />
     <Compile Include="Forms\Frmindex.cs">
       <SubType>Form</SubType>
     </Compile>

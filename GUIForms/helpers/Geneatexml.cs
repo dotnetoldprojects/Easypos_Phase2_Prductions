@@ -22,7 +22,10 @@ namespace Helpers.Dtos
         Company _Com;
         company DC;
         thirdparty Cust;
+        public string Prevuuid { get; set; }
+        public string PrevInvtitle { get; set; }
         public string Invtitle { get; set; }
+        public string Status { get; set; }
         public int Custid { get; set; }
         CsrGenerationDto _CSRDTO;
         IUnitofwork _IUW;
@@ -32,7 +35,7 @@ namespace Helpers.Dtos
             DC = _IUW.companies.GetAll().FirstOrDefault();
         }
 
-        public void Createxmldata(List<ProductLine> Pro, company com,bool RBM, decimal RBMDisc)
+        public void Createxmldata(List<ProductLine> Pro, company com, bool RBM, decimal RBMDisc)
         {
             Cust = new thirdparty();
             Cust = _IUW.thirdparties.GetAll().FirstOrDefault(x => x.ID == Custid);
@@ -104,7 +107,8 @@ namespace Helpers.Dtos
                 Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false) // 🔥 UTF-8 بدون BOM
             };
 
-            using (var fs = new FileStream("Data/Invoice.xml", FileMode.Create, FileAccess.Write))
+            string xmlOutput = Status == "" ? "Data/Invoice.xml" : $"Data/{Status}/Invoice.xml";
+            using (var fs = new FileStream(xmlOutput, FileMode.Create, FileAccess.Write))
             using (var writer = XmlWriter.Create(fs, settings))
             {
                 writer.WriteStartDocument();
@@ -130,7 +134,7 @@ namespace Helpers.Dtos
                 writer.WriteElementString("cbc", "ProfileID", null, "reporting:1.0");
                 writer.WriteElementString("cbc", "ID", null, Invtitle);
                 writer.WriteElementString("cbc", "UUID", null, Guid.NewGuid().ToString());
-                
+
                 writer.WriteElementString("cbc", "IssueDate", null, DateTime.Now.ToString("yyyy-MM-dd"));
                 writer.WriteElementString("cbc", "IssueTime", null, DateTime.Now.ToString("HH:mm:ss"));
 
@@ -141,14 +145,72 @@ namespace Helpers.Dtos
                 //writer.WriteElementString("cbc", "IssueTime", null, customDate.ToString("HH:mm:ss"));
 
                 // Invoice Type Code
+                //writer.WriteStartElement("cbc", "InvoiceTypeCode", null);
+                //if (Status == "Creditnote")
+                //{
+                //    writer.WriteAttributeString("name", "0200000");
+                //    writer.WriteString("381");
+                //    writer.WriteElementString("cbc", "Note", null, "ارتجاع فاتورة مبيعات");
+                //    writer.WriteEndElement();
+                //}
+                //else if (Status == "Debitnote")
+                //{
+                //    writer.WriteAttributeString("name", "0200000");
+                //    writer.WriteString("383");
+                //    writer.WriteElementString("cbc", "Note", null, "ارتجاع فاتورة مشتريات");
+                //    writer.WriteEndElement();
+                //}
+                //else
+                //{
+                //    writer.WriteAttributeString("name", "0100000");
+                //    writer.WriteString("388");
+                //}
+                //writer.WriteEndElement();
+                // InvoiceTypeCode
                 writer.WriteStartElement("cbc", "InvoiceTypeCode", null);
-                writer.WriteAttributeString("name", "0100000");
-                writer.WriteString("388");
-                writer.WriteEndElement();
+
+                if (Status == "Creditnote")
+                {
+                    writer.WriteAttributeString("name", "0100000");
+                    writer.WriteString("381");
+                }
+                else if (Status == "Debitnote")
+                {
+                    writer.WriteAttributeString("name", "0100000");
+                    writer.WriteString("383");
+                }
+                else
+                {
+                    writer.WriteAttributeString("name", "0100000");
+                    writer.WriteString("388");
+                }
+
+                writer.WriteEndElement(); // ← يقفل InvoiceTypeCode تمامًا
+
+                // Note بعد كده
+                if (Status == "Creditnote")
+                {
+                    writer.WriteElementString("cbc", "Note", null, "سبب الإشعار: ارتجاع فاتورة مبيعات");
+                }
+                else if (Status == "Debitnote")
+                {
+                    writer.WriteElementString("cbc", "Note", null, "سبب الإشعار: ارتجاع فاتورة مشتريات");
+                }
 
                 writer.WriteElementString("cbc", "DocumentCurrencyCode", null, "SAR");
                 writer.WriteElementString("cbc", "TaxCurrencyCode", null, "SAR");
+                if (Status == "Creditnote")
+                {
+                    writer.WriteStartElement("cac", "BillingReference", null);
 
+                    writer.WriteStartElement("cac", "InvoiceDocumentReference", null);
+                    writer.WriteElementString("cbc", "ID", null, PrevInvtitle);
+                    writer.WriteElementString("cbc", "UUID", null, Prevuuid);
+                    writer.WriteEndElement(); // InvoiceDocumentReference
+
+                    writer.WriteEndElement(); // BillingReference
+
+                }
                 // ICV
                 writer.WriteStartElement("cac", "AdditionalDocumentReference", null);
 
@@ -249,8 +311,23 @@ namespace Helpers.Dtos
                 writer.WriteEndElement();
 
                 //PaymentMeans
-                writer.WriteStartElement("cac", "PaymentMeans", null);
-                writer.WriteElementString("cbc", "PaymentMeansCode", null, "97");
+                if (Status == "Creditnote")
+                {
+                    writer.WriteStartElement("cac", "PaymentMeans", null);
+                    writer.WriteElementString("cbc", "PaymentMeansCode", null, "97");
+                    writer.WriteElementString("cbc", "InstructionNote", null, "ارتجاع فاتورة مبيعات");
+                }
+                else if (Status == "Debitnote")
+                {
+                    writer.WriteStartElement("cac", "PaymentMeans", null);
+                    writer.WriteElementString("cbc", "PaymentMeansCode", null, "97");
+                    writer.WriteElementString("cbc", "InstructionNote", null, "ارتجاع فاتورة مشتريات");
+                }
+                else
+                {
+                    writer.WriteStartElement("cac", "PaymentMeans", null);
+                    writer.WriteElementString("cbc", "PaymentMeansCode", null, "97");
+                }
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("cac", "AllowanceCharge", null);

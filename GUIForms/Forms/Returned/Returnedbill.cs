@@ -2,6 +2,7 @@
 using Easypos.Payment;
 using GUIForms.Dtos;
 using GUIForms.helpers;
+using net.sf.saxon.functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace GUIForms.Forms.Returned
         Getcentralaizes GC;
         IUnitofwork _IUW;
         Usingnumber _NO;
+        Zatcacreditnote ZRF;
         public int TP { get; set; }
         public string Type { get; set; }
         public Returnedbill()
@@ -36,6 +38,7 @@ namespace GUIForms.Forms.Returned
             _IUW = new Unitofwork(new EasyposEntities());
             txtBarcode.Focus();
             Billtype.SelectedIndex = 0;
+            ZRF = new Zatcacreditnote();
         }
         private void Btnclose_Click(object sender, EventArgs e)
         {
@@ -97,7 +100,7 @@ namespace GUIForms.Forms.Returned
                 }
             }
         }
-        private void Savereturned()
+        private async void Savereturned()
         {
             var ret = new returned
             {
@@ -142,6 +145,64 @@ namespace GUIForms.Forms.Returned
             }
             // استدعاء الدالة العامة
             Returnedhelper.SaveReturneWithDetails(ret, details, _IUW,Type);
+
+            var Gp = _IUW.payments.GetAll().Where(x => x.InvoiceNo == int.Parse(txtBarcode.Text)).FirstOrDefault();
+            if (Gp.Bank > 0)
+            {
+                var trans = new transaction();
+                trans.Invoiceno = Gp.InvoiceNo;
+                trans.Paynum = Gp.paymentNo;
+                trans.TDate = Gp.Date;
+                trans.Type = "سند ايصال مرتجعات";
+                trans.Paytype = "بنكي";
+                trans.ThirdPartyID = Gp.ThirdPartyID;
+                trans.Paid = Gp.Bank;
+                trans.Note = "";
+                _IUW.transactions.Insert(trans);
+                _IUW.Complete();
+            }
+            if (Gp.Cash > 0)
+            {
+                var trans = new transaction();
+                trans.Invoiceno = Gp.InvoiceNo;
+                trans.Paynum = Gp.paymentNo;
+                trans.TDate = Gp.Date;
+                trans.Type = "سند ايصال مرتجعات";
+                trans.Paytype = "نقدي";
+                trans.ThirdPartyID = Gp.ThirdPartyID;
+                trans.Paid = Gp.Cash;
+                trans.Note = "";
+                _IUW.transactions.Insert(trans);
+                _IUW.Complete();
+            }
+            if ((bool)DC.Isusesigne)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                var Bank = Gp.Bank;
+                var Cash = Gp.Cash;
+                ZRF.TB = Gp.ThirdPartyID ?? 0;
+                ZRF.invid = Gp.InvoiceNo ?? 0;
+                ZRF.DC = DC;
+                if (DC.Signtype == 0)
+                {
+                    if (Cash > 0)
+                    {
+                        await ZRF.Loading();
+                    }
+                }
+                if (DC.Signtype == 1)
+                {
+                    if (Bank > 0)
+                    {
+                        await ZRF.Loading();
+                    }
+                }
+                if (DC.Signtype == 2)
+                {
+                    await ZRF.Loading();
+                }
+                Cursor.Current = Cursors.Default;
+            }
         }
         private void txtBarcode_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -299,11 +360,17 @@ namespace GUIForms.Forms.Returned
         }
         private void Savpayment()
         {
-            var obj = _IUW.payments.GetAll().Where(x => x.InvoiceNo == int.Parse(txtBarcode.Text)).FirstOrDefault();
-            _IUW.payments.Delete(obj);
-            var sal = _IUW.sales.GetAll().Where(x => x.Invoiceno == int.Parse(txtBarcode.Text)).FirstOrDefault();
-            sal.Billtype = "مسودة";
-            _IUW.Complete();
+
+            //var obj = _IUW.payments.GetAll().Where(x => x.InvoiceNo == int.Parse(txtBarcode.Text)).FirstOrDefault();
+            //_IUW.payments.Delete(obj);
+            //var sal = _IUW.sales.GetAll().Where(x => x.Invoiceno == int.Parse(txtBarcode.Text)).FirstOrDefault();
+            //sal.Billtype = "مسودة";
+            //var Ubl = _IUW.UBLS.GetAll().Where(x => x.invoicenumber == int.Parse(txtBarcode.Text)).FirstOrDefault();
+            //if (Ubl != null)
+            //{
+            //    _IUW.UBLS.Delbyid(Ubl.Id);
+            //}
+            //_IUW.Complete();
         }
 
         private void Btnbilllist_Click(object sender, EventArgs e)

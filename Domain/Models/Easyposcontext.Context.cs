@@ -95,10 +95,6 @@ public partial class EasyposEntities : DbContext
 
     public virtual DbSet<tailorheader> tailorheaders { get; set; }
 
-    public virtual DbSet<tailorjabzor> tailorjabzors { get; set; }
-
-    public virtual DbSet<tailorneck> tailornecks { get; set; }
-
     public virtual DbSet<stok_transaction> stok_transaction { get; set; }
 
     public virtual DbSet<returned> returneds { get; set; }
@@ -108,6 +104,10 @@ public partial class EasyposEntities : DbContext
     public virtual DbSet<UBL> UBLs { get; set; }
 
     public virtual DbSet<invtransaction> invtransactions { get; set; }
+
+    public virtual DbSet<tailorjabzor> tailorjabzors { get; set; }
+
+    public virtual DbSet<tailorneck> tailornecks { get; set; }
 
 
     public virtual int Getpaymentin()

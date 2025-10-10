@@ -245,7 +245,6 @@ namespace Easypos.Payment
                         {
                             Savpayout();
                         }
-                        Pur.Clearall();
                         MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
                     }
                 }

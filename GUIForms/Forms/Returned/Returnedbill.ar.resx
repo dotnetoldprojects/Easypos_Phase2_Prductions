@@ -641,7 +641,7 @@
     <value>Yes</value>
   </data>
   <data name="DGV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 346</value>
+    <value>1044, 362</value>
   </data>
   <data name="DGV.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -662,7 +662,7 @@
     <value>NoControl</value>
   </data>
   <data name="Btnsave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>936, 19</value>
+    <value>936, 16</value>
   </data>
   <data name="Btnsave.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 97</value>
@@ -682,6 +682,9 @@
   <data name="Btnclose.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="Btnclose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 16</value>
+  </data>
   <data name="Btnclose.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 97</value>
   </data>
@@ -700,6 +703,9 @@
   <data name="Btnbilllist.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="Btnbilllist.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 16</value>
+  </data>
   <data name="Btnbilllist.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 97</value>
   </data>
@@ -709,8 +715,11 @@
   <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 626</value>
+  </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1044, 141</value>
+    <value>1044, 125</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>

@@ -1,30 +1,30 @@
-﻿using Aspose.Pdf;
-using Domain.Dtos;
+﻿using Domain.Dtos;
 using Domain.Models;
 using GUI.Helpers;
-using GUIForms.helpers;
 using Helpers.Dtos;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using UOW;
 
 namespace GUIForms.Dtos
 {
-    public class Zatcafutuers
+    public class Zatcacreditnote
     {
         IUnitofwork _IUW;
         public int invid { get; set; }
         public int nextNumber { get; set; }
+        public int TB { get; set; }
         public string Zatcainv { get; set; }
+        public string Prevuuid { get; set; }
+        public string Previnv { get; set; }
         public company DC { get; set; }
         Getcentralaizes GC;
 
-        public Zatcafutuers()
+        public Zatcacreditnote()
         {
             // Constructor فارغ، التحميل بيتم يدويًا
         }
@@ -37,13 +37,15 @@ namespace GUIForms.Dtos
 
         private async Task Getzatcaid()
         {
-            var lastInvoice = _IUW.UBLS.GetAll().OrderByDescending(i => i.Saleid).FirstOrDefault();
-            nextNumber = (int)(lastInvoice != null ? (lastInvoice.Saleid + 1) : 1);
-            Zatcainv = $"inv-{nextNumber:D5}";
-            await Getsalesdata();
+            var lastInvoice = _IUW.UBLS.GetAll().Where(x => x.invoicenumber == invid).FirstOrDefault();
+            nextNumber = (int)(lastInvoice.Saleid);
+            Zatcainv = $"R-{nextNumber:D4}";
+            Previnv = $"inv-{nextNumber:D5}";
+            Prevuuid = lastInvoice.Uuid;
+            await Getreturnedata();
         }
 
-        private async Task Getsalesdata()
+        private async Task Getreturnedata()
         {
             var Salesinnvoice = _IUW.sales.Get(invid);
             var SDinvoice = _IUW.salesdetailes.GetAll().Where(x => x.InvoiceNo == invid).ToList();
@@ -55,8 +57,8 @@ namespace GUIForms.Dtos
             List<ProductLine> productLines = new List<ProductLine>();
             Geneatexml GXL = new Geneatexml
             {
-                Custid = (int)sal.ThirdPartyID,
-                Invtitle = Zatcainv
+                Custid = TB,
+                Invtitle = Zatcainv,
             };
 
             const string unitCode = "PCE";
@@ -80,10 +82,12 @@ namespace GUIForms.Dtos
                 IL++;
             }
 
-            string InputPath = @"Data/Invoice.xml";
+            string InputPath = @"Data/Creditnote/Invoice.xml";
             var RBD = Convert.ToDecimal(sal.Discount);
             bool RB2 = RBD > 0;
-
+            GXL.Prevuuid = Prevuuid;
+            GXL.PrevInvtitle = Previnv;
+            GXL.Status = "Creditnote";
             GXL.Createxmldata(productLines, DC, RB2, RBD);
 
             var xmlContent = File.ReadAllText(InputPath);
@@ -95,10 +99,10 @@ namespace GUIForms.Dtos
                 Saleid = nextNumber,
                 invno = invid
             };
-
+            Sdtos.Status = "Creditnote";
             await Sdtos.Sign(Doc, Zatcainv);
 
-            var GUL = _IUW.UBLS.GetAll().FirstOrDefault(x => x.Saleid == Sdtos.Saleid);
+            var GUL = _IUW.UBLS.GetAll().LastOrDefault(x => x.Saleid == Sdtos.Saleid);
             if (GUL != null)
             {
                 Sdtos.Ublid = GUL.Id;

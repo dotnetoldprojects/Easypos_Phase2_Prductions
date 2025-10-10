@@ -36,6 +36,8 @@ public partial class UBL
 
     public int invoicenumber { get; set; }
 
+    public string PIH { get; set; }
+
 }
 
 }
