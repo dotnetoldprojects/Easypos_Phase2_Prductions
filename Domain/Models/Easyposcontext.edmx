@@ -83,8 +83,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Screen" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Exceptionstring" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StackTrace" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MethodName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LineNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FormName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="expencestype">
           <Key>
@@ -1109,7 +1115,6 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
           <FunctionImport Name="Getreturne" />
           <FunctionImport Name="Gettransactions" />
           <EntitySet Name="vouchers" EntityType="EasyposModel.voucher" />
-          <EntitySet Name="exceptionproes" EntityType="EasyposModel.exceptionpro" />
           <EntitySet Name="alltailorings" EntityType="EasyposModel.alltailoring" />
           <EntitySet Name="tailorbockets" EntityType="EasyposModel.tailorbocket" />
           <EntitySet Name="tailordetailes" EntityType="EasyposModel.tailordetaile" />
@@ -1150,6 +1155,7 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
             <End Role="tailorneck" EntitySet="tailornecks" />
             <End Role="alltailoring" EntitySet="alltailorings" />
           </AssociationSet>
+          <EntitySet Name="exceptionproes" EntityType="EasyposModel.exceptionpro" />
         </EntityContainer>
         <EntityType Name="voucher">
           <Key>
@@ -1165,14 +1171,6 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
           <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Methode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Billnum" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="exceptionpro">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Screen" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Exceptionstring" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="alltailoring">
           <Key>
@@ -1452,6 +1450,20 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="exceptionpro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MethodName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LineNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1847,15 +1859,6 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="exceptionproes">
-            <EntityTypeMapping TypeName="EasyposModel.exceptionpro">
-              <MappingFragment StoreEntitySet="exceptionpro">
-                <ScalarProperty Name="Exceptionstring" ColumnName="Exceptionstring" />
-                <ScalarProperty Name="Screen" ColumnName="Screen" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="alltailorings">
             <EntityTypeMapping TypeName="EasyposModel.alltailoring">
               <MappingFragment StoreEntitySet="alltailoring">
@@ -2045,6 +2048,21 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
                 <ScalarProperty Name="Regulartipper" ColumnName="Regulartipper" />
                 <ScalarProperty Name="Plainfrench" ColumnName="Plainfrench" />
                 <ScalarProperty Name="Plain" ColumnName="Plain" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="exceptionproes">
+            <EntityTypeMapping TypeName="EasyposModel.exceptionpro">
+              <MappingFragment StoreEntitySet="exceptionpro">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

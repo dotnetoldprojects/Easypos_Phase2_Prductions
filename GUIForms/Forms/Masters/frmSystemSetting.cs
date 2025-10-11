@@ -224,32 +224,16 @@ namespace Easypos.Masters
         {
             if (DC == null)
             {
-                try
-                {
-                    _IUW.companies.Insert(DC);
-                    _IUW.Complete();
-                    MessageBox.Show("Company profile created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    var logger = new ExceptionLogger(_IUW);
-                    logger.Log(ex, "System Settings");
-                }
+                _IUW.companies.Insert(DC);
+                _IUW.Complete();
+                MessageBox.Show("Company profile created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
-                {
-                    DC.CompanyID = DC.CompanyID;
-                    _IUW.companies.Update(DC);
-                    _IUW.Complete();
-                    MessageBox.Show("Company profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    var logger = new ExceptionLogger(_IUW);
-                    logger.Log(ex, "System Settings");
-                }
+                DC.CompanyID = DC.CompanyID;
+                _IUW.companies.Update(DC);
+                _IUW.Complete();
+                MessageBox.Show("Company profile updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void Zatcataxcheack()
@@ -292,16 +276,8 @@ namespace Easypos.Masters
                 DC.Sysnametype = "طباعة نظام مبيعات صغير خياطه";
             }
             DC.Printername = CBPrinters.Text;
-            try
-            {
-                _IUW.companies.Update(DC);
-                _IUW.Complete();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "System setting Other");
-            }
+            _IUW.companies.Update(DC);
+            _IUW.Complete();
             MessageBox.Show("تم تعديل بيانات الشركه بنجاح برجاء فلق البرنامج وفتحه مره اخرى للعمل بشكل صحيح","تم");
         }
         private void cbzatca_CheckedChanged(object sender, EventArgs e)
@@ -344,19 +320,11 @@ namespace Easypos.Masters
             Dev.Mode = DDM.SelectedIndex;
             Dev.Isusesigne = DSC.Checked;
             Dev.Signtype = CSType.SelectedIndex;
-            try
-            {
-                _IUW.cashiers.Insert(Dev);
-                DC.Isusesigne = DSC.Checked;
-                DC.Signtype = CSType.SelectedIndex;
-                _IUW.companies.Update(DC);
-                _IUW.Complete();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "System setting cashier");
-            }
+            _IUW.cashiers.Insert(Dev);
+            DC.Isusesigne = DSC.Checked;
+            DC.Signtype = CSType.SelectedIndex;
+            _IUW.companies.Update(DC);
+            _IUW.Complete();
             Getalldevices();
             txt_commonName.Text = CP.CommonName;
             RefreshSerialNumber();

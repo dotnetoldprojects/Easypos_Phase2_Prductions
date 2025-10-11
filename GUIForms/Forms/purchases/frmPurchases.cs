@@ -203,23 +203,15 @@ namespace Easypos.Purchases
                 }
                 else
                 {
-                    try
+                    if (Invid > 0)
                     {
-                        if (Invid > 0)
-                        {
-                            _IUW.purchasedetailes.GetAll().Where(x => x.InvoiceNo == Invid && x.ProductNo == int.Parse(DGV.CurrentRow.Cells[0].Value.ToString())).ToList().ForEach(x => _IUW.purchasedetailes.Delete(x));
-                            _IUW.Complete();
-                            Editpur();
-                        }
-                        else
-                        {
-                            Savepur();
-                        }
+                        _IUW.purchasedetailes.GetAll().Where(x => x.InvoiceNo == Invid && x.ProductNo == int.Parse(DGV.CurrentRow.Cells[0].Value.ToString())).ToList().ForEach(x => _IUW.purchasedetailes.Delete(x));
+                        _IUW.Complete();
+                        Editpur();
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        var logger = new ExceptionLogger(_IUW);
-                        logger.Log(ex, "Purchases");
+                        Savepur();
                     }
                 }
             }

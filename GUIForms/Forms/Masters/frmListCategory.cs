@@ -86,36 +86,28 @@ namespace Easypos.Masters
         }
         private void Btnaddedit_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(txtCatName.Text))
             {
-                if (!string.IsNullOrEmpty(txtCatName.Text))
+                if (cat.CategoryNo != null)
                 {
-                    if (cat.CategoryNo != null)
-                    {
-                        cat.CategoryName = txtCatName.Text;
-                        cat.Description = txtDescription.Text;
-                        cat.Color = color;
-                        _IUW.categories.Update(cat);
-                        _IUW.Complete();
-                    }
-                    else
-                    {
-                        cat.CategoryName = txtCatName.Text;
-                        cat.Description = txtDescription.Text;
-                        cat.Color = color;
-                        _IUW.categories.Insert(cat);
-                        _IUW.Complete();
-                    }
+                    cat.CategoryName = txtCatName.Text;
+                    cat.Description = txtDescription.Text;
+                    cat.Color = color;
+                    _IUW.categories.Update(cat);
+                    _IUW.Complete();
                 }
                 else
                 {
-                    MessageBox.Show(DC.Systemlang == "الانجليزية" || DC.Systemlang == "English" ? "Please enter a category name." : "الرجاء إدخال اسم الفئة.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cat.CategoryName = txtCatName.Text;
+                    cat.Description = txtDescription.Text;
+                    cat.Color = color;
+                    _IUW.categories.Insert(cat);
+                    _IUW.Complete();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Category list");
+                MessageBox.Show(DC.Systemlang == "الانجليزية" || DC.Systemlang == "English" ? "Please enter a category name." : "الرجاء إدخال اسم الفئة.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             Clearfild();
         }
@@ -131,18 +123,10 @@ namespace Easypos.Masters
         }
         private void Btndel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var id = cat.CategoryNo;
-                _IUW.categories.Delbyid(id);
-                _IUW.Complete();
-                Clearfild();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Category list delete");
-            }
+            var id = cat.CategoryNo;
+            _IUW.categories.Delbyid(id);
+            _IUW.Complete();
+            Clearfild();
         }
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {

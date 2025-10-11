@@ -20,9 +20,21 @@ public partial class exceptionpro
 
     public int Id { get; set; }
 
-    public string Screen { get; set; }
+    public string Message { get; set; }
 
-    public string Exceptionstring { get; set; }
+    public string StackTrace { get; set; }
+
+    public string ClassName { get; set; }
+
+    public string MethodName { get; set; }
+
+    public string FileName { get; set; }
+
+    public string LineNumber { get; set; }
+
+    public string FormName { get; set; }
+
+    public System.DateTime Date { get; set; }
 
 }
 

@@ -143,47 +143,31 @@ namespace Easypos.Masters
             }
             else
             {
-                try
+                It.UID = UId;
+                if (It.ID != null)
                 {
-                    It.UID = UId;
-                    if (It.ID != null)
-                    {
-                        It.Itemname = txtItemname.Text;
-                        It.Itemprice = Convert.ToDouble(txtUnitPrice.Text);
-                        //It.Itemqty = double.Parse(txtStocksOnHand.Text);
-                        It.OpeningBalance = int.Parse(textBox2.Text);
-                        _IUW.items.Update(It);
-                    }
-                    else
-                    {
-                        It.Itemname = txtItemname.Text;
-                        It.Itemprice = Convert.ToDouble(txtUnitPrice.Text);
-                        //It.Itemqty = double.Parse(txtStocksOnHand.Text);
-                        It.OpeningBalance = int.Parse(textBox2.Text);
-                        _IUW.items.Insert(It);
-                    }
-                    _IUW.Complete();
+                    It.Itemname = txtItemname.Text;
+                    It.Itemprice = Convert.ToDouble(txtUnitPrice.Text);
+                    //It.Itemqty = double.Parse(txtStocksOnHand.Text);
+                    It.OpeningBalance = int.Parse(textBox2.Text);
+                    _IUW.items.Update(It);
                 }
-                catch (Exception ex)
+                else
                 {
-                    var logger = new ExceptionLogger(_IUW);
-                    logger.Log(ex, "Product item list");
+                    It.Itemname = txtItemname.Text;
+                    It.Itemprice = Convert.ToDouble(txtUnitPrice.Text);
+                    //It.Itemqty = double.Parse(txtStocksOnHand.Text);
+                    It.OpeningBalance = int.Parse(textBox2.Text);
+                    _IUW.items.Insert(It);
                 }
+                _IUW.Complete();
             }
             Clearitems();
         }
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _IUW.items.Delbyid(It.ID);
-                _IUW.Complete();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Product item list");
-            }
+            _IUW.items.Delbyid(It.ID);
+            _IUW.Complete();
             Clearitems();
         }
         private void button1_Click(object sender, EventArgs e)

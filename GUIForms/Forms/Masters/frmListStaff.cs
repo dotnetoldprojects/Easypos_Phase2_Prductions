@@ -88,16 +88,8 @@ namespace Easypos.Masters
         }
         private void Btndel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _IUW.staffs.Delbyid(int.Parse(lblProductNo.Text));
-                _IUW.Complete();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Staff list delete");
-            }
+            _IUW.staffs.Delbyid(int.Parse(lblProductNo.Text));
+            _IUW.Complete();
         }
         private void Btnaddedit_Click(object sender, EventArgs e)
         {
@@ -173,24 +165,16 @@ namespace Easypos.Masters
             _Stf.Username = txtUsername.Text;
             _Stf.UPassword = txtPassword.Text;
             _Stf.Role = "Admin";
-            try
+            if (Btnaddedit.Text == "حفظ" || Btnaddedit.Text == "Save")
             {
-                if (Btnaddedit.Text == "حفظ" || Btnaddedit.Text == "Save")
-                {
-                    _IUW.staffs.Insert(_Stf);
-                }
-                else
-                {
-                    _Stf.StaffID = int.Parse(lblProductNo.Text);
-                    _IUW.staffs.Update(_Stf);
-                }
-                _IUW.Complete();
+                _IUW.staffs.Insert(_Stf);
             }
-            catch (Exception ex)
+            else
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Staff list");
+                _Stf.StaffID = int.Parse(lblProductNo.Text);
+                _IUW.staffs.Update(_Stf);
             }
+            _IUW.Complete();
             if (DC.Systemlang == "الانجليزية" || DC.Systemlang == "English")
             {
                 MessageBox.Show("Saved Successfully", "Employee");

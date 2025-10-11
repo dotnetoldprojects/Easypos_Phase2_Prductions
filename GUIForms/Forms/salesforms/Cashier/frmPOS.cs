@@ -522,23 +522,15 @@ namespace Easypos.Salesforms.Cashier
             }
             else
             {
-                try
+                if (Invid > 0)
                 {
-                    if (Invid > 0)
-                    {
-                        _IUW.salesdetailes.GetAll().Where(x => x.InvoiceNo == Invid && x.ProductNo == int.Parse(DGV.CurrentRow.Cells[0].Value.ToString())).ToList().ForEach(x => _IUW.salesdetailes.Delete(x));
-                        _IUW.Complete();
-                        Editsales();
-                    }
-                    else
-                    {
-                        Savesales();
-                    }
+                    _IUW.salesdetailes.GetAll().Where(x => x.InvoiceNo == Invid && x.ProductNo == int.Parse(DGV.CurrentRow.Cells[0].Value.ToString())).ToList().ForEach(x => _IUW.salesdetailes.Delete(x));
+                    _IUW.Complete();
+                    Editsales();
                 }
-                catch (Exception ex)
+                else
                 {
-                    var logger = new ExceptionLogger(_IUW);
-                    logger.Log(ex, "Pos");
+                    Savesales();
                 }
             }
         }

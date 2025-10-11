@@ -83,8 +83,6 @@ public partial class EasyposEntities : DbContext
 
     public virtual DbSet<voucher> vouchers { get; set; }
 
-    public virtual DbSet<exceptionpro> exceptionproes { get; set; }
-
     public virtual DbSet<alltailoring> alltailorings { get; set; }
 
     public virtual DbSet<tailorbocket> tailorbockets { get; set; }
@@ -108,6 +106,8 @@ public partial class EasyposEntities : DbContext
     public virtual DbSet<tailorjabzor> tailorjabzors { get; set; }
 
     public virtual DbSet<tailorneck> tailornecks { get; set; }
+
+    public virtual DbSet<exceptionpro> exceptionproes { get; set; }
 
 
     public virtual int Getpaymentin()

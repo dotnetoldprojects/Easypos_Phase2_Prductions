@@ -67,29 +67,20 @@ namespace Easypos.Masters.Subforms
         }
         private void Btnaddedit_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
-                if (!string.IsNullOrEmpty(textBox1.Text))
+                ET.Expencestypename = textBox1.Text;
+                if (ET.Id != null)
                 {
-                    ET.Expencestypename = textBox1.Text;
-                    if (ET.Id != null)
-                    {
-                        _IUW.expencestypes.Update(ET);
-                    }
-                    else
-                    {
-                        _IUW.expencestypes.Insert(ET);
-                    }
-                    _IUW.Complete();
-                    Cleardata();
+                    _IUW.expencestypes.Update(ET);
                 }
+                else
+                {
+                    _IUW.expencestypes.Insert(ET);
+                }
+                _IUW.Complete();
+                Cleardata();
             }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Expences type");
-            }
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -97,17 +88,9 @@ namespace Easypos.Masters.Subforms
         }
         private void Btndel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _IUW.expencestypes.Delbyid(ET.Id);
-                _IUW.Complete();
-                Cleardata();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Expences Type delete");
-            }
+            _IUW.expencestypes.Delbyid(ET.Id);
+            _IUW.Complete();
+            Cleardata();
         }
     }
 }

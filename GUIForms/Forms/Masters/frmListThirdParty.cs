@@ -287,24 +287,16 @@ namespace Easypos.Masters
                     {
                         TP.OpeningBalance = double.Parse(txtOpeningBalance.Text);
                     }
-                    try
+                    if (!string.IsNullOrEmpty(txtNumber.Text.Trim()))
                     {
-                        if (!string.IsNullOrEmpty(txtNumber.Text.Trim()))
-                        {
-                            TP.ID = int.Parse(txtNumber.Text);
-                            _IUW.thirdparties.Update(TP);
-                        }
-                        else
-                        {
-                            _IUW.thirdparties.Insert(TP);
-                        }
-                        _IUW.Complete();
+                        TP.ID = int.Parse(txtNumber.Text);
+                        _IUW.thirdparties.Update(TP);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        var logger = new ExceptionLogger(_IUW);
-                        logger.Log(ex, "Third Party");
+                        _IUW.thirdparties.Insert(TP);
                     }
+                    _IUW.Complete();
                     if (Application.OpenForms["Frmtailoring"] != null)
                     {
                         Frmtailoring p = (Application.OpenForms["Frmtailoring"] as Frmtailoring);
@@ -333,28 +325,20 @@ namespace Easypos.Masters
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (TP.ID != null)
             {
-                if (TP.ID != null)
+                var TH = _IUW.tailorheaders.GetAll().Where(x => x.Id == TP.ID.ToString()).FirstOrDefault();
+                if (TH != null)
                 {
-                    var TH = _IUW.tailorheaders.GetAll().Where(x => x.Id == TP.ID.ToString()).FirstOrDefault();
-                    if (TH != null)
-                    {
-                        MessageBox.Show("You cannot delete this third party because it is linked to tailoring records.", "Error");
-                        return;
-                    }
-                    else
-                    {
-                        _IUW.thirdparties.Delbyid(TP.ID);
-                        _IUW.Complete();
-                        Clearfieldes();
-                    }
+                    MessageBox.Show("You cannot delete this third party because it is linked to tailoring records.", "Error");
+                    return;
                 }
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Third Party delete");
+                else
+                {
+                    _IUW.thirdparties.Delbyid(TP.ID);
+                    _IUW.Complete();
+                    Clearfieldes();
+                }
             }
         }
         private void textBox2_TextChanged(object sender, EventArgs e)

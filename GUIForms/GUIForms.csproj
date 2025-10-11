@@ -483,7 +483,6 @@
     <Compile Include="helpers\CSR.cs" />
     <Compile Include="helpers\CSRDtos.cs" />
     <Compile Include="helpers\DGVProductHandler.cs" />
-    <Compile Include="helpers\ExceptionLogger.cs" />
     <Compile Include="helpers\Geneatexml.cs" />
     <Compile Include="helpers\Getallsales.cs" />
     <Compile Include="helpers\Printinginvoice.cs" />

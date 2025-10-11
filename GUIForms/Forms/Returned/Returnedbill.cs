@@ -89,15 +89,7 @@ namespace GUIForms.Forms.Returned
             }
             else
             {
-                try
-                {
-                    Savereturned();
-                }
-                catch (Exception ex)
-                {
-                    var logger = new ExceptionLogger(_IUW);
-                    logger.Log(ex, "Purchases");
-                }
+                Savereturned();
             }
         }
         private async void Savereturned()

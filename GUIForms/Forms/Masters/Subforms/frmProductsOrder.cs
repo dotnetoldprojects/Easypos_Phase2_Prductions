@@ -148,17 +148,9 @@ namespace Easypos.Masters.Subforms
                 }
                 else
                 {
-                    try
-                    {
-                        Pro.Order = Order;
-                        _IUW.products.Update(Pro);
-                        _IUW.Complete();
-                    }
-                    catch (Exception ex)
-                    {
-                        var logger = new ExceptionLogger(_IUW);
-                        logger.Log(ex, "Orders");
-                    }
+                    Pro.Order = Order;
+                    _IUW.products.Update(Pro);
+                    _IUW.Complete();
                 }
             }
         }

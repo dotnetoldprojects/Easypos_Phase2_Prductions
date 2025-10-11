@@ -1,16 +1,21 @@
-﻿using Easypos;
+﻿using Domain.Models;
+using Easypos;
 using GUIForms.Forms.SendMessages;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UOW;
 
 namespace GUIForms
 {
     internal static class Program
     {
+        private static IUnitofwork _IUW;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -20,14 +25,13 @@ namespace GUIForms
             // ربط الأحداث اللي تمسك كل الأخطاء
             Application.ThreadException += Application_ThreadException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin());
         }
-        
+
         // الأخطاء اللي بتحصل داخل UI Thread
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
@@ -43,30 +47,44 @@ namespace GUIForms
         // هنا تسجل الخطأ في قاعدة البيانات
         private static void HandleException(Exception ex)
         {
+            _IUW = new Unitofwork(new EasyposEntities());
             try
             {
+                // تحليل مكان الخطأ من StackTrace
+                var st = new StackTrace(ex, true);
+                var frame = st.GetFrame(st.FrameCount - 1); // آخر Frame غالبًا هو مكان الخطأ الفعلي
 
-                // مثال بسيط لتسجيل في قاعدة بيانات SQL
-                using (var conn = new System.Data.SqlClient.SqlConnection("Your_Connection_String"))
-                using (var cmd = new System.Data.SqlClient.SqlCommand(
-                    "INSERT INTO ErrorLog (Message, StackTrace, Date) VALUES (@msg, @stack, @date)", conn))
+                string fileName = frame?.GetFileName() ?? "Unknown File";
+                int lineNumber = frame?.GetFileLineNumber() ?? 0;
+                string methodName = frame?.GetMethod()?.Name ?? "Unknown Method";
+                string className = frame?.GetMethod()?.DeclaringType?.FullName ?? "Unknown Class";
+
+                // اسم الفورم الحالية (لو في واجهة مفتوحة)
+                string currentForm = Application.OpenForms.Count > 0
+                    ? Application.OpenForms[0].Name
+                    : "No Active Form";
+
+                // تسجيل في قاعدة البيانات
+                _IUW.exceptionpros.Insert(new exceptionpro
                 {
-                    cmd.Parameters.AddWithValue("@msg", ex.Message);
-                    cmd.Parameters.AddWithValue("@stack", ex.StackTrace ?? "");
-                    cmd.Parameters.AddWithValue("@date", DateTime.Now);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
-
-                // ممكن كمان تعرض رسالة للمستخدم
-                MessageBox.Show("حدث خطأ في النظام، تم تسجيله تلقائيًا.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Message = ex.Message,
+                    StackTrace = ex.StackTrace ?? "",
+                    ClassName = className,
+                    MethodName = methodName,
+                    FileName = fileName,
+                    LineNumber = lineNumber.ToString(),
+                    FormName = currentForm,
+                    Date = DateTime.Now
+                });
+                MessageBox.Show(
+                    $"حدث خطأ وتم تسجيله:\n\n{ex.Message}",
+                    "خطأ في النظام", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch
+            catch (Exception logEx)
             {
-                // لو حصل خطأ أثناء تسجيل الخطأ نفسه
-                MessageBox.Show("تعذر تسجيل الخطأ.", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show($"تعذر تسجيل الخطأ: {logEx.Message}", "Fatal Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
-    }
+        }
 }

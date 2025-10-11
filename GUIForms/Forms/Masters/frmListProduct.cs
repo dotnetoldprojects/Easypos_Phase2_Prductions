@@ -158,69 +158,53 @@ namespace Easypos.Masters
             Pro.ShowInPOS = ShowInPOS.Checked;
             Pro.AllowInventory = allowInventory.Checked;
             Pro.ReorderLevel = int.Parse(txtReorderLevel.Text);
-            try
+            if (Pro.Unitid == 0)
             {
-                if (Pro.Unitid == 0)
-                {
-                    MessageBox.Show("برجاء ادخال الوحده", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (Pro.CategoryNo == 0)
-                {
-                    MessageBox.Show("برجاء ادخال الفئه", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (!string.IsNullOrEmpty(lblProductNo.Text.Trim()))
-                {
-                    Pro.ProductNo = int.Parse(lblProductNo.Text);
-                    _IUW.products.Update(Pro);
-                }
-                else
-                {
-                    _IUW.products.Insert(Pro);
-                }
-                if (DGVProitems.Rows.Count > 0)
-                {
-                    for (int i = 0; i < DGVProitems.Rows.Count; i++)
-                    {
-                        Pi.Proid = lblProductNo.Text;
-                        var itemId = int.Parse(DGVProitems.Rows[i].Cells[0].Value.ToString());
-                        var itemqty = DGVProitems.Rows[i].Cells[1].Value.ToString();
-                        _IUW.productitems.Delbyid(itemId);
-                        Pi.itemid = itemId.ToString();
-                        Pi.Quantity = itemqty;
-                        _IUW.productitems.Insert(Pi);
-                        _IUW.Complete();
-                    }
-                }
-                var data = _IUW.stok_transactions.Get(int.Parse(lblProductNo.Text));
-                if (data == null)
-                {
-                    data.Quantity += int.Parse(txtStocksOnHand.Text);
-                    data.Proid = int.Parse(lblProductNo.Text);
-                    _IUW.stok_transactions.Update(data);
-                }
-                _IUW.Complete();
+                MessageBox.Show("برجاء ادخال الوحده", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex)
+            if (Pro.CategoryNo == 0)
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Products");
+                MessageBox.Show("برجاء ادخال الفئه", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            if (!string.IsNullOrEmpty(lblProductNo.Text.Trim()))
+            {
+                Pro.ProductNo = int.Parse(lblProductNo.Text);
+                _IUW.products.Update(Pro);
+            }
+            else
+            {
+                _IUW.products.Insert(Pro);
+            }
+            if (DGVProitems.Rows.Count > 0)
+            {
+                for (int i = 0; i < DGVProitems.Rows.Count; i++)
+                {
+                    Pi.Proid = lblProductNo.Text;
+                    var itemId = int.Parse(DGVProitems.Rows[i].Cells[0].Value.ToString());
+                    var itemqty = DGVProitems.Rows[i].Cells[1].Value.ToString();
+                    _IUW.productitems.Delbyid(itemId);
+                    Pi.itemid = itemId.ToString();
+                    Pi.Quantity = itemqty;
+                    _IUW.productitems.Insert(Pi);
+                    _IUW.Complete();
+                }
+            }
+            var data = _IUW.stok_transactions.Get(int.Parse(lblProductNo.Text));
+            if (data == null)
+            {
+                data.Quantity += int.Parse(txtStocksOnHand.Text);
+                data.Proid = int.Parse(lblProductNo.Text);
+                _IUW.stok_transactions.Update(data);
+            }
+            _IUW.Complete();
             Cleardata();
         }
         private void Btndel_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _IUW.products.Delbyid(int.Parse(lblProductNo.Text));
-                _IUW.Complete();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Products");
-            }
+            _IUW.products.Delbyid(int.Parse(lblProductNo.Text));
+            _IUW.Complete();
             Cleardata();
         }
         private void DGV_CellClick(object sender, DataGridViewCellEventArgs e)

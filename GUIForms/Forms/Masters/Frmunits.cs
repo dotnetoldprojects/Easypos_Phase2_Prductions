@@ -41,62 +41,38 @@ namespace Easypos.Masters
         }
         private void BA_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
-                if (!string.IsNullOrEmpty(textBox1.Text))
-                {
-                    UT = new unittype();
-                    UT.UName = textBox1.Text;
-                    _IUW.unittypes.Insert(UT);
-                    _IUW.Complete();
-                    Loading();
-                }
-                else
-                {
-                    MessageBox.Show("Please insert Unit name ... ", "Error");
-                }
+                UT = new unittype();
+                UT.UName = textBox1.Text;
+                _IUW.unittypes.Insert(UT);
+                _IUW.Complete();
+                Loading();
             }
-            catch (Exception ex)
+            else
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Add Unit");
+                MessageBox.Show("Please insert Unit name ... ", "Error");
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
-                if (!string.IsNullOrEmpty(textBox1.Text))
-                {
-                    UT.UName = textBox1.Text;
-                    _IUW.unittypes.Insert(UT);
-                    _IUW.Complete();
-                    Loading();
-                }
-                else
-                {
-                    MessageBox.Show("Please insert Unit name ... ", "Error");
-                }
+                UT.UName = textBox1.Text;
+                _IUW.unittypes.Insert(UT);
+                _IUW.Complete();
+                Loading();
             }
-            catch (Exception ex)
+            else
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Edit Unit");
+                MessageBox.Show("Please insert Unit name ... ", "Error");
             }
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _IUW.unittypes.Delbyid(UT.ID);
-                _IUW.Complete();
-                Loading();
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Delete Unit");
-            }
+            _IUW.unittypes.Delbyid(UT.ID);
+            _IUW.Complete();
+            Loading();
         }
         private void DGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {

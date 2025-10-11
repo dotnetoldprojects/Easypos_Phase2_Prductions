@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="718a38a036964e7a99e198d345251790" Name="Diagram1" ZoomLevel="90">
+      <Diagram DiagramId="718a38a036964e7a99e198d345251790" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="EasyposModel.cashier" Width="1.5" PointX="0.875" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EasyposModel.category" Width="1.5" PointX="2.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EasyposModel.company" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -29,7 +29,6 @@
         <EntityTypeShape EntityType="EasyposModel.unittype" Width="1.5" PointX="2.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="EasyposModel.expensesview" Width="1.5" PointX="14.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EasyposModel.voucher" Width="1.5" PointX="0.75" PointY="17.75" />
-        <EntityTypeShape EntityType="EasyposModel.exceptionpro" Width="1.5" PointX="7.375" PointY="10.75" />
         <EntityTypeShape EntityType="EasyposModel.alltailoring" Width="1.5" PointX="13.25" PointY="16.875" />
         <EntityTypeShape EntityType="EasyposModel.tailorbocket" Width="1.5" PointX="11" PointY="21.25" />
         <EntityTypeShape EntityType="EasyposModel.tailordetaile" Width="1.5" PointX="11" PointY="33.5" />
@@ -49,6 +48,7 @@
         <EntityTypeShape EntityType="EasyposModel.tailorneck" Width="1.5" PointX="17.375" PointY="1" />
         <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorjabzor" />
         <AssociationConnector Association="EasyposModel.FK_alltailoring_tailorneck" />
+        <EntityTypeShape EntityType="EasyposModel.exceptionpro" Width="1.5" PointX="7.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

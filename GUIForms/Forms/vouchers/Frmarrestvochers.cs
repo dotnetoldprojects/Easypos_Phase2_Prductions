@@ -39,7 +39,6 @@ namespace Easypos.Vouchers
         voucher Voch;
         Usingnumber _NO;
         exceptionpro EP;
-        ExceptionLogger _EL;
         public string Btnevent { get; set; }
         public Frmarrestvochers()
         {
@@ -247,18 +246,10 @@ namespace Easypos.Vouchers
                     Voch.Note = Note.Text;
                 }
             }
-            try
-            {
-                Voch.Methode = Methode;
-                _IUW.vouchers.Insert(Voch);
-                _IUW.Complete();
-                SalesHelper.Savetransactions(int.Parse(Invnum.Text == "" ? "0" : Invnum.Text), Voch.Thiredpartyid, Voch.Paid, Vochertypes.Text, _IUW, Voch.Date);
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Vochers");
-            }
+            Voch.Methode = Methode;
+            _IUW.vouchers.Insert(Voch);
+            _IUW.Complete();
+            SalesHelper.Savetransactions(int.Parse(Invnum.Text == "" ? "0" : Invnum.Text), Voch.Thiredpartyid, Voch.Paid, Vochertypes.Text, _IUW, Voch.Date);
             Clearfieldes();
             Loading();
         }

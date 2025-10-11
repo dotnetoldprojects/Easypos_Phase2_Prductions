@@ -146,21 +146,13 @@ namespace Easypos.Pricing
         }
         private void Btnsave_Click(object sender, EventArgs e)
         {
-            try
+            if (Btnsave.Text == "حفظ")
             {
-                if (Btnsave.Text == "حفظ")
-                {
-                    Saveprice();
-                }
-                else
-                {
-                    Editprice();
-                }
+                Saveprice();
             }
-            catch (Exception ex)
+            else
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Prices");
+                Editprice();
             }
             LoadAllCombos();
             Clearfildes();

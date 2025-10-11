@@ -221,42 +221,33 @@ namespace Easypos.Tailoring
             }
             else
             {
-                try
+                if (Btnsave.Text == "حفظ")
                 {
-
-                    if (Btnsave.Text == "حفظ")
-                    {
-                        TilHId = Guid.NewGuid();
-                        TilDId = Guid.NewGuid();
-                        TH = new tailorheader();
-                        tailorheadersave();
-                        THN = new tailorhand();
-                        tailorhandsave();
-                        TN = new tailorneck();
-                        tailornecksave();
-                        TJ = new tailorjabzor();
-                        tailorjabzorsave();
-                        TBD = new tailorbocket();
-                        tailorboketsave();
-                        TD = new tailordetaile();
-                        tailordeatailesave();
-                        AT = new alltailoring();
-                        Alltailorsave();
-                    }
-                    else
-                    {
-                        tailorheadersave();
-                        tailorhandsave();
-                        tailornecksave();
-                        tailorjabzorsave();
-                        tailorboketsave();
-                        tailordeatailesave();
-                    }
+                    TilHId = Guid.NewGuid();
+                    TilDId = Guid.NewGuid();
+                    TH = new tailorheader();
+                    tailorheadersave();
+                    THN = new tailorhand();
+                    tailorhandsave();
+                    TN = new tailorneck();
+                    tailornecksave();
+                    TJ = new tailorjabzor();
+                    tailorjabzorsave();
+                    TBD = new tailorbocket();
+                    tailorboketsave();
+                    TD = new tailordetaile();
+                    tailordeatailesave();
+                    AT = new alltailoring();
+                    Alltailorsave();
                 }
-                catch (Exception ex)
+                else
                 {
-                    var logger = new ExceptionLogger(_IUW);
-                    logger.Log(ex, "Tailoring");
+                    tailorheadersave();
+                    tailorhandsave();
+                    tailornecksave();
+                    tailorjabzorsave();
+                    tailorboketsave();
+                    tailordeatailesave();
                 }
                 _IUW.Complete();
                 MessageBox.Show("تم الحفظ بنجاح", "امر تفصيل");

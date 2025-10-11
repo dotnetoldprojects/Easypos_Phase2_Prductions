@@ -86,161 +86,153 @@ namespace Easypos.Payment
         }
         private async void Btnsave_Click(object sender, EventArgs e)
         {
-            try
+            if (Formname == "Sales")
             {
-                if (Formname == "Sales")
+                var Rem = Convert.ToDouble(txtRem.Text);
+                var TP = Convert.ToDouble(txtTotalPay.Text);
+                if (TP == 0 && Rem >= 0 && clients.SelectedIndex == 1)
                 {
-                    var Rem = Convert.ToDouble(txtRem.Text);
-                    var TP = Convert.ToDouble(txtTotalPay.Text);
-                    if (TP == 0 && Rem >= 0 && clients.SelectedIndex == 1)
-                    {
-                        MessageBox.Show("لا يمكن البيع بالآجل لعميل اقتراضي", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    else
-                    {
-                        if (Sb != null)
-                        {
-                            Sb.Btnsaved();
-                            if (Sb.Billtype.Text == "صدرت")
-                            {
-                                Savpayment();
-                            }
-                            var Gp = _IUW.payments.GetAll().LastOrDefault();
-                            if (Gp.Bank > 0)
-                            {
-                                var trans = new transaction();
-                                trans.Invoiceno = Gp.InvoiceNo;
-                                trans.Paynum = Gp.paymentNo;
-                                trans.TDate = Gp.Date;
-                                trans.Type = "سند ايصال مبيعات";
-                                trans.Paytype = "بنكي";
-                                trans.ThirdPartyID = Gp.ThirdPartyID;
-                                trans.Paid = Gp.Bank;
-                                trans.Note = "";
-                                _IUW.transactions.Insert(trans);
-                                _IUW.Complete();
-                            }
-                            if (Gp.Cash > 0)
-                            {
-                                var trans = new transaction();
-                                trans.Invoiceno = Gp.InvoiceNo;
-                                trans.Paynum = Gp.paymentNo;
-                                trans.TDate = Gp.Date;
-                                trans.Type = "سند ايصال مبيعات";
-                                trans.Paytype = "نقدي";
-                                trans.ThirdPartyID = Gp.ThirdPartyID;
-                                trans.Paid = Gp.Cash;
-                                trans.Note = "";
-                                _IUW.transactions.Insert(trans);
-                                _IUW.Complete();
-                            }
-                            //Sb.Generatexml();
-                            if ((bool)DC.Isusesigne)
-                            {
-                                Cursor.Current = Cursors.WaitCursor;
-                                var Bank = Gp.Bank;
-                                var Cash = Gp.Cash;
-                                ZF.invid = Pos.Invid;
-                                ZF.DC = DC;
-                                if (Cash > 0 && Bank == 0)
-                                {
-                                    ZF.Payenum = Paymentenum.Cash;
-                                }
-                                if (Bank > 0 && Cash == 0)
-                                {
-                                    ZF.Payenum = Paymentenum.Bank;
-                                }
-                                if (Bank > 0 && Cash > 0)
-                                {
-                                    ZF.Payenum = Paymentenum.Mixed;
-                                }
-                                await ZF.Loading();
-                                Cursor.Current = Cursors.Default;
-                            }
-                            MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
-                        }
-                        if (Pos != null)
-                        {
-                            Pos.Btnsaved();
-                            if (Pos.Billtype.Text == "صدرت")
-                            {
-                                Savpayment();
-                            }
-                            var Gp = _IUW.payments.GetAll().LastOrDefault();
-                            if (Gp.Bank > 0)
-                            {
-                                var trans = new transaction();
-                                trans.Invoiceno = Gp.InvoiceNo;
-                                trans.Paynum = Gp.paymentNo;
-                                trans.TDate = Gp.Date;
-                                trans.Type = "سند ايصال مبيعات";
-                                trans.Paytype = "بنكي";
-                                trans.ThirdPartyID = Gp.ThirdPartyID;
-                                trans.Paid = Gp.Bank;
-                                trans.Note = "";
-                                _IUW.transactions.Insert(trans);
-                                _IUW.Complete();
-                            }
-                            if (Gp.Cash > 0)
-                            {
-                                var trans = new transaction();
-                                trans.Invoiceno = Gp.InvoiceNo;
-                                trans.Paynum = Gp.paymentNo;
-                                trans.TDate = Gp.Date;
-                                trans.Type = "سند ايصال مبيعات";
-                                trans.Paytype = "نقدي";
-                                trans.ThirdPartyID = Gp.ThirdPartyID;
-                                trans.Paid = Gp.Cash;
-                                trans.Note = "";
-                                _IUW.transactions.Insert(trans);
-                                _IUW.Complete();
-                            }
-                            //Pos.Generatexml();
-                            if ((bool)DC.Isusesigne)
-                            {
-                                Cursor.Current = Cursors.WaitCursor;
-                                var Bank = Gp.Bank;
-                                var Cash = Gp.Cash;
-                                ZF.invid = Pos.Invid;
-                                ZF.DC = DC;
-                                if (Cash > 0 && Bank == 0)
-                                {
-                                    ZF.Payenum = Paymentenum.Cash;
-                                }
-                                if (Bank > 0 && Cash == 0)
-                                {
-                                    ZF.Payenum = Paymentenum.Bank;
-                                }
-                                if (Bank > 0 && Cash > 0)
-                                {
-                                    ZF.Payenum = Paymentenum.Mixed;
-                                }
-                                await ZF.Loading();
-                                Cursor.Current = Cursors.Default;
-                            }
-                            MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
-                            //Pos.Clearfieldes();
-                        }
-                    }
+                    MessageBox.Show("لا يمكن البيع بالآجل لعميل اقتراضي", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                if (Formname == "Purchases")
+                else
                 {
-                    if (Pur != null)
+                    if (Sb != null)
                     {
-                        Pur.Btnsaved();
-                        if (Pur.Billtype.Text == "صدرت")
+                        Sb.Btnsaved();
+                        if (Sb.Billtype.Text == "صدرت")
                         {
-                            Savpayout();
+                            Savpayment();
+                        }
+                        var Gp = _IUW.payments.GetAll().LastOrDefault();
+                        if (Gp.Bank > 0)
+                        {
+                            var trans = new transaction();
+                            trans.Invoiceno = Gp.InvoiceNo;
+                            trans.Paynum = Gp.paymentNo;
+                            trans.TDate = Gp.Date;
+                            trans.Type = "سند ايصال مبيعات";
+                            trans.Paytype = "بنكي";
+                            trans.ThirdPartyID = Gp.ThirdPartyID;
+                            trans.Paid = Gp.Bank;
+                            trans.Note = "";
+                            _IUW.transactions.Insert(trans);
+                            _IUW.Complete();
+                        }
+                        if (Gp.Cash > 0)
+                        {
+                            var trans = new transaction();
+                            trans.Invoiceno = Gp.InvoiceNo;
+                            trans.Paynum = Gp.paymentNo;
+                            trans.TDate = Gp.Date;
+                            trans.Type = "سند ايصال مبيعات";
+                            trans.Paytype = "نقدي";
+                            trans.ThirdPartyID = Gp.ThirdPartyID;
+                            trans.Paid = Gp.Cash;
+                            trans.Note = "";
+                            _IUW.transactions.Insert(trans);
+                            _IUW.Complete();
+                        }
+                        //Sb.Generatexml();
+                        if ((bool)DC.Isusesigne)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            var Bank = Gp.Bank;
+                            var Cash = Gp.Cash;
+                            ZF.invid = Pos.Invid;
+                            ZF.DC = DC;
+                            if (Cash > 0 && Bank == 0)
+                            {
+                                ZF.Payenum = Paymentenum.Cash;
+                            }
+                            if (Bank > 0 && Cash == 0)
+                            {
+                                ZF.Payenum = Paymentenum.Bank;
+                            }
+                            if (Bank > 0 && Cash > 0)
+                            {
+                                ZF.Payenum = Paymentenum.Mixed;
+                            }
+                            await ZF.Loading();
+                            Cursor.Current = Cursors.Default;
                         }
                         MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
                     }
+                    if (Pos != null)
+                    {
+                        Pos.Btnsaved();
+                        if (Pos.Billtype.Text == "صدرت")
+                        {
+                            Savpayment();
+                        }
+                        var Gp = _IUW.payments.GetAll().LastOrDefault();
+                        if (Gp.Bank > 0)
+                        {
+                            var trans = new transaction();
+                            trans.Invoiceno = Gp.InvoiceNo;
+                            trans.Paynum = Gp.paymentNo;
+                            trans.TDate = Gp.Date;
+                            trans.Type = "سند ايصال مبيعات";
+                            trans.Paytype = "بنكي";
+                            trans.ThirdPartyID = Gp.ThirdPartyID;
+                            trans.Paid = Gp.Bank;
+                            trans.Note = "";
+                            _IUW.transactions.Insert(trans);
+                            _IUW.Complete();
+                        }
+                        if (Gp.Cash > 0)
+                        {
+                            var trans = new transaction();
+                            trans.Invoiceno = Gp.InvoiceNo;
+                            trans.Paynum = Gp.paymentNo;
+                            trans.TDate = Gp.Date;
+                            trans.Type = "سند ايصال مبيعات";
+                            trans.Paytype = "نقدي";
+                            trans.ThirdPartyID = Gp.ThirdPartyID;
+                            trans.Paid = Gp.Cash;
+                            trans.Note = "";
+                            _IUW.transactions.Insert(trans);
+                            _IUW.Complete();
+                        }
+                        //Pos.Generatexml();
+                        if ((bool)DC.Isusesigne)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            var Bank = Gp.Bank;
+                            var Cash = Gp.Cash;
+                            ZF.invid = Pos.Invid;
+                            ZF.DC = DC;
+                            if (Cash > 0 && Bank == 0)
+                            {
+                                ZF.Payenum = Paymentenum.Cash;
+                            }
+                            if (Bank > 0 && Cash == 0)
+                            {
+                                ZF.Payenum = Paymentenum.Bank;
+                            }
+                            if (Bank > 0 && Cash > 0)
+                            {
+                                ZF.Payenum = Paymentenum.Mixed;
+                            }
+                            await ZF.Loading();
+                            Cursor.Current = Cursors.Default;
+                        }
+                        MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
+                        //Pos.Clearfieldes();
+                    }
                 }
             }
-            catch (Exception ex)
+            if (Formname == "Purchases")
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Payments");
+                if (Pur != null)
+                {
+                    Pur.Btnsaved();
+                    if (Pur.Billtype.Text == "صدرت")
+                    {
+                        Savpayout();
+                    }
+                    MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
+                }
             }
             Close();
         }

@@ -158,23 +158,15 @@ namespace Easypos.Masters
             exp.CDate = DTF.Value.ToString("yyyy-MM-dd");
             exp.Vat = Convert.ToDouble(txtVat.Text);
             exp.Typeid = int.Parse(comboBox1.SelectedValue.ToString());
-            try
+            if (exp != null)
             {
-                if (exp != null)
-                {
-                    _IUW.expenses.Update(exp);
-                }
-                else
-                {
-                    _IUW.expenses.Insert(exp);
-                }
-                _IUW.Complete();
+                _IUW.expenses.Update(exp);
             }
-            catch (Exception ex)
+            else
             {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Expences list");
+                _IUW.expenses.Insert(exp);
             }
+            _IUW.Complete();
             Clearfeildes();
         }
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -195,19 +187,11 @@ namespace Easypos.Masters
 
         private void Btndel_Click(object sender, EventArgs e)
         {
-            try
+            if (exp.ID != null)
             {
-                if (exp.ID != null)
-                {
-                    _IUW.expenses.Delbyid(exp.ID);
-                    _IUW.Complete();
-                    Clearfeildes();
-                }
-            }
-            catch (Exception ex)
-            {
-                var logger = new ExceptionLogger(_IUW);
-                logger.Log(ex, "Expences list delete");
+                _IUW.expenses.Delbyid(exp.ID);
+                _IUW.Complete();
+                Clearfeildes();
             }
         }
     }
