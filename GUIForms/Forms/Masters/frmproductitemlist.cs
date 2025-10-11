@@ -279,7 +279,8 @@ namespace Easypos.Masters
                          on invoiceNo equals p.Invoiceno into pGroup
                          from p in pGroup.DefaultIfEmpty()
 
-                         where pd != null && pd.ProductNo == IID && p.Returnedtype == "مرتجع مشتريات"
+                         where pd != null && pd.ProductNo == IID && p != null
+      && p.Returnedtype == "مرتجع مشتريات"
                           select new
                          {
                              Item = item.ID,
