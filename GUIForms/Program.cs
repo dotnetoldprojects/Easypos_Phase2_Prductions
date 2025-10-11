@@ -76,6 +76,7 @@ namespace GUIForms
                     FormName = currentForm,
                     Date = DateTime.Now
                 });
+                _IUW.Complete();
                 MessageBox.Show(
                     $"حدث خطأ وتم تسجيله:\n\n{ex.Message}",
                     "خطأ في النظام", MessageBoxButtons.OK, MessageBoxIcon.Error);
