@@ -99,6 +99,7 @@ namespace GUIForms.Dtos
                 Saleid = nextNumber,
                 invno = invid
             };
+            Sdtos.flage = "مرتجع مبيعات";
             Sdtos.Status = "Creditnote";
             await Sdtos.Sign(Doc, Zatcainv);
 

@@ -38,6 +38,8 @@ public partial class UBL
 
     public string PIH { get; set; }
 
+    public string Flage { get; set; }
+
 }
 
 }

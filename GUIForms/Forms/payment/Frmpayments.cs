@@ -4,6 +4,7 @@ using Easypos.Salesforms.Cashier;
 using GUIForms.Dtos;
 using GUIForms.Forms.salesforms.Normal;
 using GUIForms.helpers;
+using GUIForms.models;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -140,29 +141,21 @@ namespace Easypos.Payment
                                 Cursor.Current = Cursors.WaitCursor;
                                 var Bank = Gp.Bank;
                                 var Cash = Gp.Cash;
-                                ZF.invid = Sb.Invid;
+                                ZF.invid = Pos.Invid;
                                 ZF.DC = DC;
-                                if (DC.Sysnametype == "0")
+                                if (Cash > 0 && Bank == 0)
                                 {
-                                    if (Cash > 0)
-                                    {
-                                        await ZF.Loading();
-                                    }
+                                    ZF.Payenum = Paymentenum.Cash;
                                 }
-                                if (DC.Sysnametype == "1")
+                                if (Bank > 0 && Cash == 0)
                                 {
-                                    if (Cash == 0)
-                                    {
-                                        await ZF.Loading();
-                                    }
+                                    ZF.Payenum = Paymentenum.Bank;
                                 }
-                                if (DC.Sysnametype == "2")
+                                if (Bank > 0 && Cash > 0)
                                 {
-                                    if (Bank > 0 && Cash > 0)
-                                    {
-                                        await ZF.Loading();
-                                    }
+                                    ZF.Payenum = Paymentenum.Mixed;
                                 }
+                                await ZF.Loading();
                                 Cursor.Current = Cursors.Default;
                             }
                             MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");
@@ -211,24 +204,19 @@ namespace Easypos.Payment
                                 var Cash = Gp.Cash;
                                 ZF.invid = Pos.Invid;
                                 ZF.DC = DC;
-                                if (DC.Signtype == 0)
+                                if (Cash > 0 && Bank == 0)
                                 {
-                                    if (Cash > 0)
-                                    {
-                                        await ZF.Loading();
-                                    }
+                                    ZF.Payenum = Paymentenum.Cash;
                                 }
-                                if (DC.Signtype == 1)
+                                if (Bank > 0 && Cash == 0)
                                 {
-                                    if (Bank > 0)
-                                    {
-                                        await ZF.Loading();
-                                    }
+                                    ZF.Payenum = Paymentenum.Bank;
                                 }
-                                if (DC.Signtype == 2)
+                                if (Bank > 0 && Cash > 0)
                                 {
-                                    await ZF.Loading();
+                                    ZF.Payenum = Paymentenum.Mixed;
                                 }
+                                await ZF.Loading();
                                 Cursor.Current = Cursors.Default;
                             }
                             MessageBox.Show("تم حفظ الفاتورة بنجاح", "نجاح");

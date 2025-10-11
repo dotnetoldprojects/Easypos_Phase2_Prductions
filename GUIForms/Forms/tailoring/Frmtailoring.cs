@@ -78,7 +78,7 @@ namespace Easypos.Tailoring
             Statustype.SelectedIndex = 0;
             _NO = new Usingnumber();
         }
-        private void LoadAllCombos()
+        public void LoadAllCombos()
         {
             Commondatasales.FillCombo(clientID, GC.Getcustomerdatalist(), "Name", "ID");
         }

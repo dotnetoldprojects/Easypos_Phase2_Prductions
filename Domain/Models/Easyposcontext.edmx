@@ -522,6 +522,7 @@
           <Property Name="Path" Type="nvarchar" MaxLength="250" />
           <Property Name="invoicenumber" Type="int" Nullable="false" />
           <Property Name="PIH" Type="nvarchar(max)" />
+          <Property Name="Flage" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="unittypes">
           <Key>
@@ -1373,6 +1374,7 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
           <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="invoicenumber" Type="Int32" Nullable="false" />
           <Property Name="PIH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Flage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="invtransaction">
           <Key>
@@ -1980,6 +1982,7 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
           <EntitySetMapping Name="UBLs">
             <EntityTypeMapping TypeName="EasyposModel.UBL">
               <MappingFragment StoreEntitySet="UBL">
+                <ScalarProperty Name="Flage" ColumnName="Flage" />
                 <ScalarProperty Name="PIH" ColumnName="PIH" />
                 <ScalarProperty Name="invoicenumber" ColumnName="invoicenumber" />
                 <ScalarProperty Name="Path" ColumnName="Path" />

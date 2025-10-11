@@ -481,6 +481,7 @@ namespace GUIForms.Forms.salesforms.Normal
                 var xmlContent = File.ReadAllText(InputPath);
                 var Doc = GC.LoadInvoiceFromString(xmlContent);
                 Signdtos Sdtos = new Signdtos();
+                Sdtos.flage = "فاتورة مبيعات";
                 Sdtos.Saleid = Invid;
                 await Sdtos.Sign(Doc, $"Inv{Invid}");
             }

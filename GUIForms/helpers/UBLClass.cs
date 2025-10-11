@@ -25,7 +25,8 @@ namespace GUIForms.helpers
                 Status = Status,
                 Path = path,
                 invoicenumber = invid,
-                PIH = PIH
+                PIH = PIH,
+                Flage = "فاتورة مبيعات",
             };
             _IUW.UBLS.Insert(ubl);
             _IUW.Complete();

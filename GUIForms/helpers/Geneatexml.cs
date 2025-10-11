@@ -265,45 +265,80 @@ namespace Helpers.Dtos
                 writer.WriteEndElement(); // AccountingSupplierParty
 
                 // Customer - AccountingCustomerParty
+                if (Cust.ISUsePhase2 == true)
+                {
+                    writer.WriteStartElement("cac", "AccountingCustomerParty", null);
+                    writer.WriteStartElement("cac", "Party", null);
 
-                writer.WriteStartElement("cac", "AccountingCustomerParty", null);
-                writer.WriteStartElement("cac", "Party", null);
+                    // PartyIdentification
+                    writer.WriteStartElement("cac", "PartyIdentification", null);
+                    writer.WriteStartElement("cbc", "ID", null);
+                    writer.WriteAttributeString("schemeID", "CRN");
+                    writer.WriteString(Cust.CRN);
+                    writer.WriteEndElement(); // cbc:ID
+                    writer.WriteEndElement(); // PartyIdentification
 
-                // PartyIdentification
-                writer.WriteStartElement("cac", "PartyIdentification", null);
-                writer.WriteStartElement("cbc", "ID", null);
-                writer.WriteAttributeString("schemeID", "CRN");
-                writer.WriteString(Cust.CRN);
-                writer.WriteEndElement(); // cbc:ID
-                writer.WriteEndElement(); // PartyIdentification
+                    // PostalAddress
+                    writer.WriteStartElement("cac", "PostalAddress", null);
+                    writer.WriteElementString("cbc", "StreetName", null, Cust.StreetName);
+                    writer.WriteElementString("cbc", "BuildingNumber", null, Cust.Billnumber);
+                    writer.WriteElementString("cbc", "CitySubdivisionName", null, Cust.CitySubdivisionName);
+                    writer.WriteElementString("cbc", "CityName", null, Cust.CityName);
+                    writer.WriteElementString("cbc", "PostalZone", null, Cust.PostalZone);
+                    writer.WriteStartElement("cac", "Country", null);
+                    writer.WriteElementString("cbc", "IdentificationCode", null, "SA");
+                    writer.WriteEndElement(); // Country
+                    writer.WriteEndElement(); // PostalAddress
 
-                // PostalAddress
-                writer.WriteStartElement("cac", "PostalAddress", null);
-                writer.WriteElementString("cbc", "StreetName", null, Cust.StreetName);
-                writer.WriteElementString("cbc", "BuildingNumber", null, Cust.Billnumber);
-                writer.WriteElementString("cbc", "CitySubdivisionName", null, Cust.CitySubdivisionName);
-                writer.WriteElementString("cbc", "CityName", null, Cust.CityName);
-                writer.WriteElementString("cbc", "PostalZone", null, Cust.PostalZone);
-                writer.WriteStartElement("cac", "Country", null);
-                writer.WriteElementString("cbc", "IdentificationCode", null, "SA");
-                writer.WriteEndElement(); // Country
-                writer.WriteEndElement(); // PostalAddress
+                    // PartyTaxScheme
+                    writer.WriteStartElement("cac", "PartyTaxScheme", null);
+                    writer.WriteElementString("cbc", "CompanyID", null, Cust.Taxnumber);
+                    writer.WriteStartElement("cac", "TaxScheme", null);
+                    writer.WriteElementString("cbc", "ID", null, "VAT");
+                    writer.WriteEndElement(); // TaxScheme
+                    writer.WriteEndElement(); // PartyTaxScheme
 
-                // PartyTaxScheme
-                writer.WriteStartElement("cac", "PartyTaxScheme", null);
-                writer.WriteElementString("cbc", "CompanyID", null, Cust.Taxnumber);
-                writer.WriteStartElement("cac", "TaxScheme", null);
-                writer.WriteElementString("cbc", "ID", null, "VAT");
-                writer.WriteEndElement(); // TaxScheme
-                writer.WriteEndElement(); // PartyTaxScheme
+                    // PartyLegalEntity
+                    writer.WriteStartElement("cac", "PartyLegalEntity", null);
+                    writer.WriteElementString("cbc", "RegistrationName", null, Cust.Taxnumber);
+                    writer.WriteEndElement(); // PartyLegalEntity
 
-                // PartyLegalEntity
-                writer.WriteStartElement("cac", "PartyLegalEntity", null);
-                writer.WriteElementString("cbc", "RegistrationName", null, Cust.Taxnumber);
-                writer.WriteEndElement(); // PartyLegalEntity
+                    writer.WriteEndElement(); // Party
+                    writer.WriteEndElement(); // AccountingCustomerParty
+                }
+                else
+                {
+                    writer.WriteStartElement("cac", "AccountingCustomerParty", null);
+                    writer.WriteStartElement("cac", "Party", null);
 
-                writer.WriteEndElement(); // Party
-                writer.WriteEndElement(); // AccountingCustomerParty
+                    // PostalAddress
+                    writer.WriteStartElement("cac", "PostalAddress", null);
+                    writer.WriteElementString("cbc", "StreetName", null, "NA");
+                    writer.WriteElementString("cbc", "BuildingNumber", null, "NA");
+                    writer.WriteElementString("cbc", "CitySubdivisionName", null, "NA");
+                    writer.WriteElementString("cbc", "CityName", null, "NA");
+                    writer.WriteElementString("cbc", "PostalZone", null, "00000");
+                    writer.WriteStartElement("cac", "Country", null);
+                    writer.WriteElementString("cbc", "IdentificationCode", null, "SA");
+                    writer.WriteEndElement(); // Country
+                    writer.WriteEndElement(); // PostalAddress
+
+                    // PartyTaxScheme
+                    writer.WriteStartElement("cac", "PartyTaxScheme", null);
+                    writer.WriteElementString("cbc", "CompanyID", null, "300000000000003");
+                    writer.WriteStartElement("cac", "TaxScheme", null);
+                    writer.WriteElementString("cbc", "ID", null, "VAT");
+                    writer.WriteEndElement(); // TaxScheme
+                    writer.WriteEndElement(); // PartyTaxScheme
+
+                    // PartyLegalEntity
+                    writer.WriteStartElement("cac", "PartyLegalEntity", null);
+                    writer.WriteElementString("cbc", "RegistrationName", null, Cust.Name);
+                    writer.WriteEndElement(); // PartyLegalEntity
+
+                    writer.WriteEndElement(); // Party
+                    writer.WriteEndElement(); // AccountingCustomerParty
+                }
 
                 // Delivery
                 writer.WriteStartElement("cac", "Delivery", null);

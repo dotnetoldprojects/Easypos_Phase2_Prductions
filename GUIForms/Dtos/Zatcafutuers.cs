@@ -3,7 +3,10 @@ using Domain.Dtos;
 using Domain.Models;
 using GUI.Helpers;
 using GUIForms.helpers;
+using GUIForms.models;
 using Helpers.Dtos;
+using java.time.format;
+using QRCoder.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -21,9 +24,9 @@ namespace GUIForms.Dtos
         public int invid { get; set; }
         public int nextNumber { get; set; }
         public string Zatcainv { get; set; }
+        public Paymentenum Payenum { get; set; }
         public company DC { get; set; }
         Getcentralaizes GC;
-
         public Zatcafutuers()
         {
             // Constructor فارغ، التحميل بيتم يدويًا
@@ -102,7 +105,12 @@ namespace GUIForms.Dtos
             if (GUL != null)
             {
                 Sdtos.Ublid = GUL.Id;
-                await Sdtos.SendInvoiceAsync(GUL.Invoicehash, GUL.Uuid, GUL.Invoice, GUL.Path, GUL.QRCode, GUL.PIH);
+                Sdtos.flage = "فاتورة مبيعات";
+                if (DC.Signtype == (int)Payenum)
+                {
+                    // ✅ فقط لو نوع التوقيع يستدعي الإرسال
+                    await Sdtos.SendInvoiceAsync(GUL.Invoicehash, GUL.Uuid, GUL.Invoice, GUL.Path, GUL.QRCode, GUL.PIH);
+                }
             }
         }
     }

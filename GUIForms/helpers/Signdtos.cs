@@ -329,6 +329,7 @@ namespace GUI.Helpers
         IUnitofwork _IUW;
         public string QR { get; set; }
         public string Status { get; set; }
+        public string flage { get; set; }
         public int Saleid { get; set; }
         public int Ublid { get; set; }
         public int invno { get; set; }
@@ -675,7 +676,8 @@ namespace GUI.Helpers
                     Status = "سجلت",
                     Path = path,
                     invoicenumber = invno,
-                    PIH = correctPIH
+                    PIH = correctPIH,
+                    Flage = flage,
                 });
                 _IUW.Complete();
             }

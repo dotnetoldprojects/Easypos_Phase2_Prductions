@@ -305,12 +305,13 @@ namespace Easypos.Masters
                         var logger = new ExceptionLogger(_IUW);
                         logger.Log(ex, "Third Party");
                     }
-                    Clearfieldes();
                     if (Application.OpenForms["Frmtailoring"] != null)
                     {
                         Frmtailoring p = (Application.OpenForms["Frmtailoring"] as Frmtailoring);
-                        p.Loading();
+                        p.LoadAllCombos();
                         p.clientID.Text = txtName.Text;
+                        p.textBox15.Text = txtMobile.Text;
+                        Clearfieldes();
                         this.Close();
                         return;
                         //p.textBox15.Text = txtMobile.Text;
@@ -336,9 +337,18 @@ namespace Easypos.Masters
             {
                 if (TP.ID != null)
                 {
-                    _IUW.thirdparties.Delbyid(TP.ID);
-                    _IUW.Complete();
-                    Clearfieldes();
+                    var TH = _IUW.tailorheaders.GetAll().Where(x => x.Id == TP.ID.ToString()).FirstOrDefault();
+                    if (TH != null)
+                    {
+                        MessageBox.Show("You cannot delete this third party because it is linked to tailoring records.", "Error");
+                        return;
+                    }
+                    else
+                    {
+                        _IUW.thirdparties.Delbyid(TP.ID);
+                        _IUW.Complete();
+                        Clearfieldes();
+                    }
                 }
             }
             catch (Exception ex)

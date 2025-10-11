@@ -501,6 +501,7 @@
     <Compile Include="models\ExpenseViwModel.cs" />
     <Compile Include="models\Invoice.cs" />
     <Compile Include="models\InvoiceLine.cs" />
+    <Compile Include="models\Paymentenum.cs" />
     <Compile Include="models\PricesViewModel.cs" />
     <Compile Include="models\Product.cs" />
     <Compile Include="models\ItemsViewModel.cs" />
