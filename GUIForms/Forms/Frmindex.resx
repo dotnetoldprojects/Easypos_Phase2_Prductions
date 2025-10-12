@@ -789,9 +789,6 @@
   <data name="ارسالرسائلToolStripMenuItem.Text" xml:space="preserve">
     <value>ارسال رسائل</value>
   </data>
-  <data name="ارسالرسائلToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="MS.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>

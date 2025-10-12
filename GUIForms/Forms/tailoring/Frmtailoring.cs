@@ -299,9 +299,9 @@ namespace Easypos.Tailoring
             TN.Chinese = checkBox25.Checked;
             TN.Openflap = checkBox18.Checked;
             TN.Frenchflip = checkBox17.Checked;
-            TN.txtnumber = int.Parse(textBox14.Text);
-            TN.texta = decimal.Parse(textBox13.Text);
-            TN.textb = decimal.Parse(textBox12.Text);
+            TN.txtnumber = textBox14.Text == "" ? 0 : int.Parse(textBox14.Text);
+            TN.texta = textBox13.Text == "" ? 0 : decimal.Parse(textBox13.Text);
+            TN.textb = textBox12.Text == "" ? 0 : decimal.Parse(textBox12.Text);
             _IUW.tailornecks.Update(TN);
             _IUW.Complete();
         }
@@ -318,8 +318,8 @@ namespace Easypos.Tailoring
             TJ.Jab8 = checkBox7.Checked;
             TJ.Jab9 = checkBox6.Checked;
             TJ.Jab10 = checkBox5.Checked;
-            TJ.txtnumber = int.Parse(textBox31.Text);
-            TJ.txt = decimal.Parse(textBox30.Text);
+            TJ.txtnumber = textBox31.Text == "" ? 0 : int.Parse(textBox31.Text);
+            TJ.txt = textBox30.Text == "" ? 0 : decimal.Parse(textBox30.Text);
             _IUW.tailorjabzors.Update(TJ);
             _IUW.Complete();
         }

@@ -187,14 +187,14 @@ namespace Easypos.Masters
         {
             if (!radioClient.Checked && !radioSupplier.Checked)
             {
-                MessageBox.Show("Please enter the type used.", "Error");
+                MessageBox.Show("برجاء ادخال نوع المستخدم.", "خطأ");
                 return;
             }
             else
             {
                 if (string.IsNullOrEmpty(txtName.Text))
                 {
-                    MessageBox.Show("Please insert name", "Error");
+                    MessageBox.Show("من فضلك ادخل الاسم", "خطأ");
                     return;
                 }
                 else
@@ -204,7 +204,7 @@ namespace Easypos.Masters
                     {
                         if (string.IsNullOrEmpty(txt_seller_street.Text))
                         {
-                            MessageBox.Show("Please enter the street name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("من فضلك ادخل اسم الشارع.", "خطأ في التحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         else
@@ -213,7 +213,7 @@ namespace Easypos.Masters
                         }
                         if (string.IsNullOrEmpty(txt_seller_buildingnumber.Text))
                         {
-                            MessageBox.Show("Please enter the building number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("من فضلك ادخل رقم المبنى.", "خطأ في التحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         else
@@ -222,7 +222,7 @@ namespace Easypos.Masters
                         }
                         if (string.IsNullOrEmpty(txt_seller_citysubdiv.Text))
                         {
-                            MessageBox.Show("Please enter the city subdivision name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("من فضلك ادخل اسم الحي.", "خطأ في التحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         else
@@ -231,7 +231,7 @@ namespace Easypos.Masters
                         }
                         if (string.IsNullOrEmpty(txt_seller_cityname.Text))
                         {
-                            MessageBox.Show("Please enter the city name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("من فضلك ادخل اسم البلده.", "خطأ في التحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         else
@@ -240,7 +240,7 @@ namespace Easypos.Masters
                         }
                         if (string.IsNullOrEmpty(txt_seller_postalzone.Text))
                         {
-                            MessageBox.Show("Please enter the postal zone.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("من فضلك ادخل الرقم البريدي.", "خطا في التحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
                         else
@@ -260,7 +260,7 @@ namespace Easypos.Masters
                             var isValid = phoneNumberUtil.IsValidNumber(phoneNumber);
                             if (!isValid)
                             {
-                                MessageBox.Show("The mobile number is not valid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("من فضلك تحقق من رقم الهاتف الصحيح.", "خطا في التحقق", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                             else
