@@ -439,6 +439,7 @@ namespace Easypos
             // 
             // ارسالرسائلToolStripMenuItem
             // 
+            this.ارسالرسائلToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.ارسالرسائلToolStripMenuItem.Name = "ارسالرسائلToolStripMenuItem";
             resources.ApplyResources(this.ارسالرسائلToolStripMenuItem, "ارسالرسائلToolStripMenuItem");
             this.ارسالرسائلToolStripMenuItem.Click += new System.EventHandler(this.ارسالرسائلToolStripMenuItem_Click);

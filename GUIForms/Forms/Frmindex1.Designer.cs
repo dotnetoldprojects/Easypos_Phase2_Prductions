@@ -1997,7 +1997,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=152, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem10_Size {
             get {
@@ -2064,7 +2064,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=168, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem3_Size {
             get {
@@ -2083,7 +2083,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=168, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem4_Size {
             get {
@@ -2102,7 +2102,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=152, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem5_Size {
             get {
@@ -2121,7 +2121,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=152, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem6_Size {
             get {
@@ -2140,7 +2140,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=152, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem7_Size {
             get {
@@ -2159,7 +2159,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=152, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem8_Size {
             get {
@@ -2178,7 +2178,7 @@ namespace GUIForms.Forms {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=152, Height=22}.
+        ///   Looks up a localized resource of type System.Drawing.Size similar to {Width=180, Height=22}.
         /// </summary>
         public static System.Drawing.Size toolStripMenuItem9_Size {
             get {

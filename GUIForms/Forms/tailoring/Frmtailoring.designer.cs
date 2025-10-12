@@ -247,6 +247,9 @@ namespace Easypos.Tailoring
             this.label4 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label37 = new System.Windows.Forms.Label();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             this.panel17.SuspendLayout();
@@ -715,6 +718,8 @@ namespace Easypos.Tailoring
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.label37);
+            this.groupBox7.Controls.Add(this.textBox32);
             this.groupBox7.Controls.Add(this.label32);
             this.groupBox7.Controls.Add(this.Statustype);
             this.groupBox7.Controls.Add(this.textBox25);
@@ -750,7 +755,9 @@ namespace Easypos.Tailoring
             this.Statustype.Items.AddRange(new object[] {
             resources.GetString("Statustype.Items"),
             resources.GetString("Statustype.Items1"),
-            resources.GetString("Statustype.Items2")});
+            resources.GetString("Statustype.Items2"),
+            resources.GetString("Statustype.Items3"),
+            resources.GetString("Statustype.Items4")});
             this.Statustype.Name = "Statustype";
             // 
             // textBox25
@@ -1879,10 +1886,31 @@ namespace Easypos.Tailoring
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // textBox32
+            // 
+            resources.ApplyResources(this.textBox32, "textBox32");
+            this.textBox32.Name = "textBox32";
+            // 
+            // button2
+            // 
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.BackColor = System.Drawing.Color.PowderBlue;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // Frmtailoring
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Btnbull);
             this.Controls.Add(this.Btnreport);
@@ -2243,5 +2271,8 @@ namespace Easypos.Tailoring
         private System.Windows.Forms.TextBox textBox30;
         private System.Windows.Forms.TextBox textBox31;
         private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -952,7 +952,18 @@ namespace Easypos.Tailoring
             }
             else
             {
-                textBox25.Text = (int.Parse(textBox22.Text) - int.Parse(textBox24.Text)).ToString();
+                var Tot = textBox22.Text == "" ? 0 : int.Parse(textBox22.Text);
+                var Recived = textBox24.Text == "" ? 0 : int.Parse(textBox24.Text);
+                if (Recived > Tot)
+                {
+                    MessageBox.Show("لا يمكن استلام عدد اكبر من العدد الكلي للملابس", "خطأ");
+                    textBox24.Text = "0";
+                    return;
+                }
+                else
+                {
+                    textBox25.Text = (int.Parse(textBox22.Text) - int.Parse(textBox24.Text)).ToString();
+                }
             }
         }
         private void textBox17_TextChanged(object sender, EventArgs e)
