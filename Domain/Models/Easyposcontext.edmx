@@ -431,6 +431,7 @@
           <Property Name="Custid" Type="int" Nullable="false" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" />
           <Property Name="Clothesnumber" Type="int" />
+          <Property Name="Clothesready" Type="int" />
           <Property Name="Clothesrecived" Type="int" />
           <Property Name="Clothesremining" Type="int" />
           <Property Name="Total" Type="int" />
@@ -553,7 +554,7 @@
           <Property Name="Methode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="expensesview">
           <Key>
             <PropertyRef Name="ID" />
@@ -1259,6 +1260,7 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
           <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorheader" FromRole="tailorheader" ToRole="alltailoring" />
           <NavigationProperty Name="thirdparty" Relationship="EasyposModel.FK_tailorheader_thirdparty" FromRole="tailorheader" ToRole="thirdparty" />
+          <Property Name="Clothesready" Type="Int32" />
         </EntityType>
         <Association Name="FK_alltailoring_tailorbocket">
           <End Type="EasyposModel.tailorbocket" Role="tailorbocket" Multiplicity="1" />
@@ -1926,6 +1928,7 @@ warning 6002: The table/view 'EPBoom.resturant.expensesview' does not have a pri
           <EntitySetMapping Name="tailorheaders">
             <EntityTypeMapping TypeName="EasyposModel.tailorheader">
               <MappingFragment StoreEntitySet="tailorheader">
+                <ScalarProperty Name="Clothesready" ColumnName="Clothesready" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Reciveddate" ColumnName="Reciveddate" />

@@ -262,6 +262,7 @@ namespace Easypos.Tailoring
             TH.Custid = int.Parse(clientID.SelectedValue.ToString());
             TH.Date = dateTimePicker1.Value.ToString("dd-MM-yyyy");
             TH.Clothesnumber = int.Parse(textBox22.Text);
+            TH.Clothesready = int.Parse(textBox32.Text);
             TH.Clothesrecived = int.Parse(textBox24.Text);
             TH.Clothesremining = int.Parse(textBox25.Text);
             TH.Total = int.Parse(textBox17.Text);
