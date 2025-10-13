@@ -8,6 +8,7 @@ using Easypos.Masters.Subforms;
 using Easypos.Salesforms;
 using Easypos.Salesforms.Cashier;
 using GUIForms.Dtos;
+using GUIForms.Forms.tailoring;
 using GUIForms.helpers;
 using GUIForms.models;
 using Microsoft.VisualBasic;
@@ -181,7 +182,7 @@ namespace Easypos.Tailoring
                 var deatile = _IUW.tailorheaders.GetAll().Where(x => x.thirdparty.ID == Res.ID).FirstOrDefault();
                 if (deatile != null)
                 {
-                    //Getingdata(deatile.Id.ToString());
+                    Getcustdata();
                 }
             }
             else
@@ -369,24 +370,28 @@ namespace Easypos.Tailoring
         }
         private void clientID_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            Getcustdata();
+        }
+        void Getcustdata()
+        {
             var Res = int.Parse(clientID.SelectedValue.ToString());
             var deatile = _IUW.alltailorings.GetQueryable()
                                             .Include(x => x.tailorheader)
                                             .Where(x => x.tailorheader.Custid == Res)
                                              .Select(x => new
-                                              {
-                                                  Id = x.Alltable,
-                                                  Date = x.tailorheader.Date,
-                                                  Custname = x.tailorheader.thirdparty.Name,
-                                                  Clothesnumber = x.tailorheader.Clothesnumber,
-                                                  Clothesremining = x.tailorheader.Clothesremining,
-                                                  Total = x.tailorheader.Total,
-                                                  Paied = x.tailorheader.Paied,
-                                                  Totalremining = 0,
-                                                  Recivrddate = x.tailorheader.Reciveddate,
-                                                  Status = x.tailorheader.Status,
-                                                  Note = x.tailorheader.Note,
-                                              })
+                                             {
+                                                 Id = x.Alltable,
+                                                 Date = x.tailorheader.Date,
+                                                 Custname = x.tailorheader.thirdparty.Name,
+                                                 Clothesnumber = x.tailorheader.Clothesnumber,
+                                                 Clothesremining = x.tailorheader.Clothesremining,
+                                                 Total = x.tailorheader.Total,
+                                                 Paied = x.tailorheader.Paied,
+                                                 Totalremining = 0,
+                                                 Recivrddate = x.tailorheader.Reciveddate,
+                                                 Status = x.tailorheader.Status,
+                                                 Note = x.tailorheader.Note,
+                                             })
                                              .ToList();
             BindingSource bs = new BindingSource();
             bs.DataSource = deatile;
@@ -397,6 +402,7 @@ namespace Easypos.Tailoring
             clientID.SelectedValue = TH.Custid;
             dateTimePicker1.Text = TH.Date;
             textBox22.Text = TH.Clothesnumber.ToString();
+            textBox32.Text = TH.Clothesready.ToString();
             textBox24.Text = TH.Clothesrecived.ToString();
             textBox25.Text = TH.Clothesremining.ToString();
             textBox16.Text = TH.Paied.ToString();
@@ -504,6 +510,7 @@ namespace Easypos.Tailoring
                         Date = entity.tailorheader.Date,
                         Custid = entity.tailorheader.thirdparty.ID,
                         Clothesnumber = entity.tailorheader.Clothesnumber,
+                        Clothesready = entity.tailorheader.Clothesready,
                         Clothesrecived = entity.tailorheader.Clothesrecived,
                         Clothesremining = entity.tailorheader.Clothesremining,
                         Total = entity.tailorheader.Total,
@@ -1020,6 +1027,12 @@ namespace Easypos.Tailoring
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
             textBox12.Text = textBox9.Text;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Frmoprator FO = new Frmoprator();
+            FO.Show();
         }
     }
 }
