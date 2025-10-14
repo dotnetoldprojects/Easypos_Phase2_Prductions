@@ -13,6 +13,7 @@ namespace GUIForms.Dtos
         public string ThirdPartyName { get; set; }
         public int ClothesNumber { get; set; }
         public int ClothesReady { get; set; }
+        public int Clothesrecived { get; set; }
         public int ClothesRemining { get; set; }
     }
 }

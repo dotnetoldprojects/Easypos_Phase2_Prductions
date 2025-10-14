@@ -1137,5 +1137,11 @@ namespace Easypos.Tailoring
             Frmoprator FO = new Frmoprator();
             FO.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           Frmcustrecived FCR = new Frmcustrecived();
+            FCR.Show(); 
+        }
     }
 }
