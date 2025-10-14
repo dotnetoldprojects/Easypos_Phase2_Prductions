@@ -1,7 +1,7 @@
 ﻿
 using Aspose.Pdf;
 using Aspose.Pdf.Operators;
-using Centeralized;
+using Domain;
 using Domain.Models;
 using Easypos.Masters;
 using Easypos.Masters.Subforms;
@@ -32,12 +32,14 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Xml.Linq;
 using UOW;
+using ZXing;
+using ZXing.Common;
 using static iText.Kernel.Pdf.Colorspace.PdfDeviceCs;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Application = System.Windows.Forms.Application;
-using Dataset = Centeralized.Dataset;
 using Image = System.Drawing.Image;
+using Rectangle = System.Drawing.Rectangle;
 
 namespace Easypos.Tailoring
 {
@@ -55,6 +57,7 @@ namespace Easypos.Tailoring
         alltailoring AT;
         Usingnumber _NO;
         public int TilId { get; set; }
+        public int Btcn { get; set; }
         public string TilGId { get; set; }
         public Guid TilHId { get; set; }
         public Guid TilDId { get; set; }
@@ -260,10 +263,11 @@ namespace Easypos.Tailoring
         void tailorheadersave()
         {
             TH.Id = TilHId.ToString();
+            TH.BTCNumber = TH.BTCNumber == null ? _IUW.tailorheaders.GetAll().Count() + 1 : TH.BTCNumber;
             TH.Custid = int.Parse(clientID.SelectedValue.ToString());
             TH.Date = dateTimePicker1.Value.ToString("dd-MM-yyyy");
             TH.Clothesnumber = int.Parse(textBox22.Text);
-            TH.Clothesready = int.Parse(textBox32.Text);
+            TH.Clothesready = textBox32.Text == "" ? 0: int.Parse(textBox32.Text);
             TH.Clothesrecived = int.Parse(textBox24.Text);
             TH.Clothesremining = int.Parse(textBox25.Text);
             TH.Total = int.Parse(textBox17.Text);
@@ -370,6 +374,71 @@ namespace Easypos.Tailoring
         }
         private void clientID_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            Statustype.SelectedIndex = 0;
+            Btnsave.Text = "حفظ";
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            textBox32.Clear();
+            textBox15.Clear();
+            textBox29.Clear();
+            textBox26.Clear();
+            textBox27.Clear();
+            textBox25.Text = "0";
+            textBox24.Text = "0";
+            textBox23.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+            textBox7.Clear();
+            textBox8.Clear();
+            textBox16.Text = "0";
+            textBox17.Text = "0";
+            textBox18.Clear();
+            textBox19.Clear();
+            textBox20.Clear();
+            textBox21.Text = "0";
+            textBox22.Text = "0";
+            textBox28.Clear();
+            checkBox1.Checked = false;
+            checkBox2.Checked = false;
+            checkBox3.Checked = false;
+            checkBox5.Checked = false;
+            checkBox6.Checked = false;
+            checkBox7.Checked = false;
+            checkBox8.Checked = false;
+            checkBox9.Checked = false;
+            checkBox10.Checked = false;
+            checkBox11.Checked = false;
+            checkBox12.Checked = false;
+            checkBox14.Checked = false;
+            checkBox15.Checked = false;
+            checkBox16.Checked = false;
+            checkBox17.Checked = false;
+            checkBox18.Checked = false;
+            checkBox19.Checked = false;
+            checkBox23.Checked = false;
+            checkBox20.Checked = false;
+            checkBox21.Checked = false;
+            checkBox22.Checked = false;
+            checkBox24.Checked = false;
+            checkBox25.Checked = false;
+            checkBox26.Checked = false;
+            checkBox27.Checked = false;
+            checkBox28.Checked = false;
+            checkBox29.Checked = false;
+            checkBox30.Checked = false;
+            checkBox31.Checked = false;
+            checkBox32.Checked = false;
+            checkBox33.Checked = false;
+            checkBox34.Checked = false;
+            checkBox35.Checked = false;
+            checkBox36.Checked = false;
+            checkBox37.Checked = false;
+            checkBox38.Checked = false;
+            checkBox39.Checked = false;
             Getcustdata();
         }
         void Getcustdata()
@@ -508,6 +577,7 @@ namespace Easypos.Tailoring
                     dataheader = new tailorheader
                     {
                         Date = entity.tailorheader.Date,
+                        //BTCNumber = entity.tailorheader.BTCNumber,
                         Custid = entity.tailorheader.thirdparty.ID,
                         Clothesnumber = entity.tailorheader.Clothesnumber,
                         Clothesready = entity.tailorheader.Clothesready,
@@ -520,6 +590,7 @@ namespace Easypos.Tailoring
                         Status = entity.tailorheader.Status,
                         Note = entity.tailorheader.Note,
                     };
+                    Btcn = (int)entity.tailorheader.BTCNumber;
                 }
 
                 tailorhand datahand = null;
@@ -676,8 +747,40 @@ namespace Easypos.Tailoring
                 return ms.ToArray();
             }
         }
+        public byte[] GetBarcodeBytes(string value)
+        {
+            var writer = new BarcodeWriterPixelData
+            {
+                Format = BarcodeFormat.CODE_128,
+                Options = new EncodingOptions
+                {
+                    Height = 100,
+                    Width = 300,
+                    Margin = 1
+                }
+            };
+
+            var pixelData = writer.Write(value);
+
+            using (var bitmap = new Bitmap(pixelData.Width, pixelData.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb))
+            {
+                var bitmapData = bitmap.LockBits(new Rectangle(0, 0, pixelData.Width, pixelData.Height),
+                    System.Drawing.Imaging.ImageLockMode.WriteOnly, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
+
+                System.Runtime.InteropServices.Marshal.Copy(pixelData.Pixels, 0, bitmapData.Scan0, pixelData.Pixels.Length);
+                bitmap.UnlockBits(bitmapData);
+
+                using (var ms = new MemoryStream())
+                {
+                    bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    return ms.ToArray(); // ده الباركود كـ byte[] جاهز لأي تقرير أو تحويل Base64
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            //TilHId
+            var bytes = GetBarcodeBytes(TilHId.ToString());
             Dataset ds = new Dataset();
 
             //تفاصيل الرأس
@@ -918,7 +1021,7 @@ namespace Easypos.Tailoring
 
             Tialorder CRA = new Tialorder();
             Frmreporting FCCR = new Frmreporting();
-            ds.Custordertile.Rows.Add(new object[] { Date, Custnumber, Custname });
+            ds.Custordertile.Rows.Add(new object[] { Date, Custnumber, Custname, bytes, Btcn });
             ds.Detaileordertile.Rows.Add(new object[] {
                 textBox1.Text, textBox26.Text,textBox2.Text,
                 textBox6.Text,textBox3.Text, textBox5.Text,

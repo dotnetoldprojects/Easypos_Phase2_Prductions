@@ -428,6 +428,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BTCNumber" Type="int" />
           <Property Name="Custid" Type="int" Nullable="false" />
           <Property Name="Date" Type="nvarchar" MaxLength="50" />
           <Property Name="Clothesnumber" Type="int" />
@@ -641,18 +642,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tailorheader_thirdparty">
-          <End Role="thirdparty" Type="Self.thirdparty" Multiplicity="1" />
-          <End Role="tailorheader" Type="Self.tailorheader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="thirdparty">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tailorheader">
-              <PropertyRef Name="Custid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="Getpaymentin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="resturant" />
         <Function Name="Getpaymentout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="resturant" />
         <Function Name="Getreturne" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="resturant" />
@@ -726,10 +715,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <AssociationSet Name="FK_alltailoring_tailorneck" Association="Self.FK_alltailoring_tailorneck">
             <End Role="tailorneck" EntitySet="tailorneck" />
             <End Role="alltailoring" EntitySet="alltailoring" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tailorheader_thirdparty" Association="Self.FK_tailorheader_thirdparty">
-            <End Role="thirdparty" EntitySet="thirdparty" />
-            <End Role="tailorheader" EntitySet="tailorheader" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -1261,6 +1246,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorheader" FromRole="tailorheader" ToRole="alltailoring" />
           <NavigationProperty Name="thirdparty" Relationship="EasyposModel.FK_tailorheader_thirdparty" FromRole="tailorheader" ToRole="thirdparty" />
           <Property Name="Clothesready" Type="Int32" />
+          <Property Name="BTCNumber" Type="Int32" />
         </EntityType>
         <Association Name="FK_alltailoring_tailorbocket">
           <End Type="EasyposModel.tailorbocket" Role="tailorbocket" Multiplicity="1" />
@@ -1928,6 +1914,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySetMapping Name="tailorheaders">
             <EntityTypeMapping TypeName="EasyposModel.tailorheader">
               <MappingFragment StoreEntitySet="tailorheader">
+                <ScalarProperty Name="BTCNumber" ColumnName="BTCNumber" />
                 <ScalarProperty Name="Clothesready" ColumnName="Clothesready" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

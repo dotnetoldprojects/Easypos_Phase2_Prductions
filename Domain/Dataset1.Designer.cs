@@ -7530,6 +7530,10 @@ namespace Domain {
             
             private global::System.Data.DataColumn columnCustname;
             
+            private global::System.Data.DataColumn columnBarcode;
+            
+            private global::System.Data.DataColumn columnBCT;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public CustordertileDataTable() {
@@ -7589,6 +7593,22 @@ namespace Domain {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BarcodeColumn {
+                get {
+                    return this.columnBarcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BCTColumn {
+                get {
+                    return this.columnBCT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7624,12 +7644,14 @@ namespace Domain {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CustordertileRow AddCustordertileRow(string Date, string Custnumber, string Custname) {
+            public CustordertileRow AddCustordertileRow(string Date, string Custnumber, string Custname, byte[] Barcode, string BCT) {
                 CustordertileRow rowCustordertileRow = ((CustordertileRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Date,
                         Custnumber,
-                        Custname};
+                        Custname,
+                        Barcode,
+                        BCT};
                 rowCustordertileRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustordertileRow);
                 return rowCustordertileRow;
@@ -7655,6 +7677,8 @@ namespace Domain {
                 this.columnDate = base.Columns["Date"];
                 this.columnCustnumber = base.Columns["Custnumber"];
                 this.columnCustname = base.Columns["Custname"];
+                this.columnBarcode = base.Columns["Barcode"];
+                this.columnBCT = base.Columns["BCT"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7666,6 +7690,10 @@ namespace Domain {
                 base.Columns.Add(this.columnCustnumber);
                 this.columnCustname = new global::System.Data.DataColumn("Custname", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustname);
+                this.columnBarcode = new global::System.Data.DataColumn("Barcode", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBarcode);
+                this.columnBCT = new global::System.Data.DataColumn("BCT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBCT);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14675,6 +14703,38 @@ namespace Domain {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte[] Barcode {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableCustordertile.BarcodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Barcode\' in table \'Custordertile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustordertile.BarcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BCT {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustordertile.BCTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BCT\' in table \'Custordertile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustordertile.BCTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsDateNull() {
                 return this.IsNull(this.tableCustordertile.DateColumn);
             }
@@ -14707,6 +14767,30 @@ namespace Domain {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetCustnameNull() {
                 this[this.tableCustordertile.CustnameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBarcodeNull() {
+                return this.IsNull(this.tableCustordertile.BarcodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBarcodeNull() {
+                this[this.tableCustordertile.BarcodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBCTNull() {
+                return this.IsNull(this.tableCustordertile.BCTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBCTNull() {
+                this[this.tableCustordertile.BCTColumn] = global::System.Convert.DBNull;
             }
         }
         

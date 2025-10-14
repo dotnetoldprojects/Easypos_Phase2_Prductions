@@ -34,6 +34,7 @@ namespace GUIForms.Forms.tailoring
                               .Select(tailorheader => new Tailopratordto // <= استخدم الكلاس هنا
                               {
                                   Id = tailorheader.Id,
+                                  Btcn = tailorheader.BTCNumber != null ? tailorheader.BTCNumber.Value : 0,
                                   ThirdPartyName = tailorheader.thirdparty != null ? tailorheader.thirdparty.Name : "عميل افتراضي",
                                   ClothesNumber = tailorheader.Clothesnumber != null ? tailorheader.Clothesnumber.Value : 0,
                                   ClothesReady = tailorheader.Clothesready == null ? 0 : tailorheader.Clothesready.Value, // تأكد من التعامل مع القيمة القابلة لـ Null
@@ -46,37 +47,6 @@ namespace GUIForms.Forms.tailoring
         {
             Close();
         }
-        private void dgvoprator_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-        private void textBox15_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(textBox15.Text.Trim()))
-            {
-                string searchText = textBox15.Text.Trim();
-
-                // 1. ابحث عن العنصر داخل القائمة الأصلية
-                var foundItem = _LTO.FirstOrDefault(x => x.Id == searchText);
-
-                if (foundItem != null)
-                {
-                    int newRowIndex = dgvoprator.Rows.Add();
-                    dgvoprator.Rows[newRowIndex].Cells["Id"].Value = foundItem.Id;
-                    dgvoprator.Rows[newRowIndex].Cells["ThirdPartyName"].Value = foundItem.ThirdPartyName;
-                    dgvoprator.Rows[newRowIndex].Cells["ClothesNumber"].Value = foundItem.ClothesNumber;
-                    dgvoprator.Rows[newRowIndex].Cells["ClothesReady"].Value = foundItem.ClothesReady;
-                    dgvoprator.Rows[newRowIndex].Cells["ClothesRemining"].Value = foundItem.ClothesRemining;
-                    textBox15.Clear();
-                }
-                else
-                {
-                    // لو مش لاقي العنصر، ممكن تمسح كل الصفوف أو تعمل حاجة تانية
-                    dgvoprator.Rows.Clear();
-                }
-            }
-        }
-
         private void Btnsave_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvoprator.Rows)
@@ -141,6 +111,62 @@ namespace GUIForms.Forms.tailoring
             //_IUW.Complete();
 
             //MessageBox.Show("تم حفظ جميع التعديلات بنجاح ✅", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void textBox15_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                if (!string.IsNullOrEmpty(textBox15.Text.Trim()))
+                {
+                    string searchText = textBox15.Text.Trim();
+
+                    // 1. ابحث عن العنصر داخل القائمة الأصلية
+                    var foundItem = _LTO.FirstOrDefault(x => x.Id == searchText || x.Btcn == int.Parse(searchText));
+
+                    if (foundItem != null)
+                    {
+                        int newRowIndex = dgvoprator.Rows.Add();
+                        dgvoprator.Rows[newRowIndex].Cells["Id"].Value = foundItem.Id;
+                        dgvoprator.Rows[newRowIndex].Cells["ThirdPartyName"].Value = foundItem.ThirdPartyName;
+                        dgvoprator.Rows[newRowIndex].Cells["ClothesNumber"].Value = foundItem.ClothesNumber;
+                        dgvoprator.Rows[newRowIndex].Cells["ClothesReady"].Value = foundItem.ClothesReady;
+                        dgvoprator.Rows[newRowIndex].Cells["ClothesRemining"].Value = foundItem.ClothesRemining;
+                        textBox15.Clear();
+                    }
+                    else
+                    {
+                        // لو مش لاقي العنصر، ممكن تمسح كل الصفوف أو تعمل حاجة تانية
+                        dgvoprator.Rows.Clear();
+                    }
+                }
+            }
+        }
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBox15.Text.Trim()))
+            {
+                string searchText = textBox15.Text.Trim();
+
+                // 1. ابحث عن العنصر داخل القائمة الأصلية
+                var foundItem = _LTO.FirstOrDefault(x => x.Id == searchText || x.Btcn == int.Parse(searchText));
+
+                if (foundItem != null)
+                {
+                    int newRowIndex = dgvoprator.Rows.Add();
+                    dgvoprator.Rows[newRowIndex].Cells["Id"].Value = foundItem.Id;
+                    dgvoprator.Rows[newRowIndex].Cells["ThirdPartyName"].Value = foundItem.ThirdPartyName;
+                    dgvoprator.Rows[newRowIndex].Cells["ClothesNumber"].Value = foundItem.ClothesNumber;
+                    dgvoprator.Rows[newRowIndex].Cells["ClothesReady"].Value = foundItem.ClothesReady;
+                    dgvoprator.Rows[newRowIndex].Cells["ClothesRemining"].Value = foundItem.ClothesRemining;
+                    textBox15.Clear();
+                }
+                else
+                {
+                    // لو مش لاقي العنصر، ممكن تمسح كل الصفوف أو تعمل حاجة تانية
+                    dgvoprator.Rows.Clear();
+                }
+            }
         }
     }
 }

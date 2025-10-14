@@ -53,6 +53,8 @@ public partial class tailorheader
 
     public Nullable<int> Clothesready { get; set; }
 
+    public Nullable<int> BTCNumber { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
