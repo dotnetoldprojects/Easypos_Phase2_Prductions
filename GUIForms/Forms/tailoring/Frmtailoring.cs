@@ -1128,32 +1128,32 @@ namespace Easypos.Tailoring
 
         private void textBox14_TextChanged(object sender, EventArgs e)
         {
-            textBox11.Text = textBox14.Text;
+            //textBox11.Text = textBox14.Text;
         }
 
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
-            textBox14.Text = textBox11.Text;
+            //textBox14.Text = textBox11.Text;
         }
 
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
-            textBox10.Text = textBox13.Text;
+            //textBox10.Text = textBox13.Text;
         }
 
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
-            textBox13.Text = textBox10.Text;
+            //textBox13.Text = textBox10.Text;
         }
 
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
-            textBox9.Text = textBox12.Text;
+            //textBox9.Text = textBox12.Text;
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
-            textBox12.Text = textBox9.Text;
+            //textBox12.Text = textBox9.Text;
         }
 
         private void button2_Click(object sender, EventArgs e)
