@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frmoprator));
             this.dgvoprator = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.picClose = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.Btnsave = new System.Windows.Forms.Button();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThirdPartyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clothesnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clothesready = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clothesremining = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.picClose = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Clothesrecived = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.Btnsave = new System.Windows.Forms.Button();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvoprator)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
@@ -56,70 +57,38 @@
             // 
             this.dgvoprator.AllowUserToAddRows = false;
             this.dgvoprator.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvoprator.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvoprator.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvoprator.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvoprator.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvoprator.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvoprator.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvoprator.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.ThirdPartyName,
             this.Clothesnumber,
             this.Clothesready,
-            this.Clothesremining});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvoprator.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Clothesremining,
+            this.Clothesrecived});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvoprator.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvoprator.Location = new System.Drawing.Point(12, 110);
             this.dgvoprator.Name = "dgvoprator";
             this.dgvoprator.Size = new System.Drawing.Size(514, 427);
             this.dgvoprator.TabIndex = 3;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "المسلسل";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // ThirdPartyName
-            // 
-            this.ThirdPartyName.DataPropertyName = "ThirdPartyName";
-            this.ThirdPartyName.HeaderText = "اسم العميل";
-            this.ThirdPartyName.Name = "ThirdPartyName";
-            this.ThirdPartyName.ReadOnly = true;
-            // 
-            // Clothesnumber
-            // 
-            this.Clothesnumber.DataPropertyName = "Clothesnumber";
-            this.Clothesnumber.HeaderText = "عدد الاثواب الكلي";
-            this.Clothesnumber.Name = "Clothesnumber";
-            this.Clothesnumber.ReadOnly = true;
-            // 
-            // Clothesready
-            // 
-            this.Clothesready.DataPropertyName = "Clothesready";
-            this.Clothesready.HeaderText = "عدد الاثواب الجاهزه";
-            this.Clothesready.Name = "Clothesready";
-            // 
-            // Clothesremining
-            // 
-            this.Clothesremining.DataPropertyName = "Clothesremining";
-            this.Clothesremining.HeaderText = "عدد الاثواب المتبقيه";
-            this.Clothesremining.Name = "Clothesremining";
-            this.Clothesremining.ReadOnly = true;
+            this.dgvoprator.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvoprator_CellEndEdit);
             // 
             // panel2
             // 
@@ -171,25 +140,12 @@
             this.label1.Text = "استلام الاثواب من المشغل";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Sylfaen", 11.25F);
-            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(434, 79);
-            this.label15.Name = "label15";
-            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(93, 19);
-            this.label15.TabIndex = 81;
-            this.label15.Text = "البحث عن عميل:";
-            // 
             // textBox15
             // 
             this.textBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox15.Location = new System.Drawing.Point(49, 79);
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(379, 20);
+            this.textBox15.Size = new System.Drawing.Size(361, 20);
             this.textBox15.TabIndex = 80;
             this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox15.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox15_KeyPress);
@@ -228,14 +184,68 @@
             this.iconButton1.UseVisualStyleBackColor = true;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "المسلسل";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // ThirdPartyName
+            // 
+            this.ThirdPartyName.DataPropertyName = "ThirdPartyName";
+            this.ThirdPartyName.HeaderText = "اسم العميل";
+            this.ThirdPartyName.Name = "ThirdPartyName";
+            this.ThirdPartyName.ReadOnly = true;
+            // 
+            // Clothesnumber
+            // 
+            this.Clothesnumber.DataPropertyName = "Clothesnumber";
+            this.Clothesnumber.HeaderText = "عدد الاثواب الكلي";
+            this.Clothesnumber.Name = "Clothesnumber";
+            this.Clothesnumber.ReadOnly = true;
+            // 
+            // Clothesready
+            // 
+            this.Clothesready.DataPropertyName = "Clothesready";
+            this.Clothesready.HeaderText = "عدد الاثواب الجاهزه";
+            this.Clothesready.Name = "Clothesready";
+            // 
+            // Clothesremining
+            // 
+            this.Clothesremining.DataPropertyName = "Clothesremining";
+            this.Clothesremining.HeaderText = "عدد الاثواب المتبقيه";
+            this.Clothesremining.Name = "Clothesremining";
+            this.Clothesremining.ReadOnly = true;
+            // 
+            // Clothesrecived
+            // 
+            this.Clothesrecived.DataPropertyName = "Clothesrecived";
+            this.Clothesrecived.HeaderText = "Clothesrecived";
+            this.Clothesrecived.Name = "Clothesrecived";
+            this.Clothesrecived.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Sylfaen", 11.25F);
+            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label15.Location = new System.Drawing.Point(416, 80);
+            this.label15.Name = "label15";
+            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label15.Size = new System.Drawing.Size(111, 19);
+            this.label15.TabIndex = 88;
+            this.label15.Text = "البحث برقم التفصيل:";
+            // 
             // Frmoprator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(539, 585);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.Btnsave);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.textBox15);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvoprator);
@@ -261,14 +271,15 @@
         private System.Windows.Forms.PictureBox picClose;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label15;
         public System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Button Btnsave;
+        private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThirdPartyName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clothesnumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clothesready;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clothesremining;
-        private System.Windows.Forms.Button Btnsave;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clothesrecived;
+        private System.Windows.Forms.Label label15;
     }
 }

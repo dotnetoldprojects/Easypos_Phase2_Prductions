@@ -30,10 +30,10 @@ namespace Easypos.Tailoring
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frmtailoring));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -114,6 +114,8 @@ namespace Easypos.Tailoring
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.Btncustomers = new System.Windows.Forms.Button();
             this.Btnclose = new System.Windows.Forms.Button();
@@ -155,6 +157,8 @@ namespace Easypos.Tailoring
             this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.BTCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Custnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -752,6 +756,7 @@ namespace Easypos.Tailoring
             // 
             resources.ApplyResources(this.textBox32, "textBox32");
             this.textBox32.Name = "textBox32";
+            this.textBox32.TextChanged += new System.EventHandler(this.textBox32_TextChanged);
             // 
             // label32
             // 
@@ -865,6 +870,8 @@ namespace Easypos.Tailoring
             // groupBox4
             // 
             resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Controls.Add(this.label39);
+            this.groupBox4.Controls.Add(this.label38);
             this.groupBox4.Controls.Add(this.iconButton1);
             this.groupBox4.Controls.Add(this.Btncustomers);
             this.groupBox4.Controls.Add(this.dateTimePicker1);
@@ -875,6 +882,16 @@ namespace Easypos.Tailoring
             this.groupBox4.Controls.Add(this.clientID);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
             // 
             // iconButton1
             // 
@@ -1076,21 +1093,21 @@ namespace Easypos.Tailoring
             this.dgw.AllowUserToDeleteRows = false;
             this.dgw.AllowUserToResizeColumns = false;
             this.dgw.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FloralWhite;
-            this.dgw.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FloralWhite;
+            this.dgw.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             resources.ApplyResources(this.dgw, "dgw");
             this.dgw.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgw.BackgroundColor = System.Drawing.Color.White;
             this.dgw.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgw.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.PowderBlue;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgw.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.PowderBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgw.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column15,
             this.Date,
@@ -1103,7 +1120,9 @@ namespace Easypos.Tailoring
             this.Recivrddate,
             this.Status,
             this.Note,
-            this.Delete});
+            this.Delete,
+            this.BTCNumber,
+            this.Custnumber});
             this.dgw.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgw.EnableHeadersVisualStyles = false;
             this.dgw.GridColor = System.Drawing.Color.White;
@@ -1111,21 +1130,21 @@ namespace Easypos.Tailoring
             this.dgw.Name = "dgw";
             this.dgw.ReadOnly = true;
             this.dgw.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.NavajoWhite;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DarkSalmon;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgw.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.NavajoWhite;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkSalmon;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgw.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgw.RowHeadersVisible = false;
             this.dgw.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SandyBrown;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.dgw.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SandyBrown;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.dgw.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgw.RowTemplate.Height = 40;
             this.dgw.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgw.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1216,6 +1235,20 @@ namespace Easypos.Tailoring
             this.Delete.ReadOnly = true;
             this.Delete.Text = "حذف";
             this.Delete.UseColumnTextForButtonValue = true;
+            // 
+            // BTCNumber
+            // 
+            this.BTCNumber.DataPropertyName = "BTCNumber";
+            resources.ApplyResources(this.BTCNumber, "BTCNumber");
+            this.BTCNumber.Name = "BTCNumber";
+            this.BTCNumber.ReadOnly = true;
+            // 
+            // Custnumber
+            // 
+            this.Custnumber.DataPropertyName = "Custnumber";
+            resources.ApplyResources(this.Custnumber, "Custnumber");
+            this.Custnumber.Name = "Custnumber";
+            this.Custnumber.ReadOnly = true;
             // 
             // panel2
             // 
@@ -2251,18 +2284,6 @@ namespace Easypos.Tailoring
         private System.Windows.Forms.Panel panel35;
         private System.Windows.Forms.PictureBox pictureBox35;
         private System.Windows.Forms.CheckBox checkBox37;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cust;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Clothesnumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Clothesremining;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Paied;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Totalremining;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Recivrddate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
-        private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -2289,5 +2310,21 @@ namespace Easypos.Tailoring
         private System.Windows.Forms.TextBox textBox32;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cust;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clothesnumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clothesremining;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Paied;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Totalremining;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Recivrddate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BTCNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Custnumber;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
     }
 }

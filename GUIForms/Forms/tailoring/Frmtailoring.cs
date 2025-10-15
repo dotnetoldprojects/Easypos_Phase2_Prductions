@@ -90,6 +90,7 @@ namespace Easypos.Tailoring
         {
             LoadAllCombos();
             dgw.Rows.Clear();
+            label39.Text = "0";
             Statustype.SelectedIndex = 0;
             Btnsave.Text = "حفظ";
             dateTimePicker1.Value = DateTime.Now;
@@ -308,6 +309,9 @@ namespace Easypos.Tailoring
             TN.txtnumber = textBox14.Text == "" ? 0 : int.Parse(textBox14.Text);
             TN.texta = textBox13.Text == "" ? 0 : decimal.Parse(textBox13.Text);
             TN.textb = textBox12.Text == "" ? 0 : decimal.Parse(textBox12.Text);
+            TN.txtnumberb = textBox11.Text == "" ? 0 : int.Parse(textBox11.Text);
+            TN.textc = textBox10.Text == "" ? 0 : decimal.Parse(textBox10.Text);
+            TN.textd = textBox9.Text == "" ? 0 : decimal.Parse(textBox9.Text);
             _IUW.tailornecks.Update(TN);
             _IUW.Complete();
         }
@@ -378,13 +382,24 @@ namespace Easypos.Tailoring
             Btnsave.Text = "حفظ";
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
-            textBox32.Clear();
+            label39.Text = "0";
+            textBox32.Text = "0";
             textBox15.Clear();
             textBox29.Clear();
             textBox26.Clear();
             textBox27.Clear();
             textBox25.Text = "0";
             textBox24.Text = "0";
+            textBox30.Clear();
+            textBox31.Clear();
+            textBox9.Clear();
+            textBox10.Clear();
+            textBox11.Clear();
+            textBox12.Clear();
+            textBox13.Clear();
+            textBox14.Clear();
+            textBox19.Clear();
+            textBox20.Clear();
             textBox23.Clear();
             textBox1.Clear();
             textBox2.Clear();
@@ -452,6 +467,7 @@ namespace Easypos.Tailoring
                                                  Id = x.Alltable,
                                                  Date = x.tailorheader.Date,
                                                  Custname = x.tailorheader.thirdparty.Name,
+                                                 Custnumber = x.tailorheader.thirdparty.MobileNumber,
                                                  Clothesnumber = x.tailorheader.Clothesnumber,
                                                  Clothesremining = x.tailorheader.Clothesremining,
                                                  Total = x.tailorheader.Total,
@@ -460,8 +476,10 @@ namespace Easypos.Tailoring
                                                  Recivrddate = x.tailorheader.Reciveddate,
                                                  Status = x.tailorheader.Status,
                                                  Note = x.tailorheader.Note,
+                                                 BTCNumber = x.tailorheader.BTCNumber,
                                              })
                                              .ToList();
+            textBox15.Text = deatile.Select(x => x.Custnumber).FirstOrDefault();
             BindingSource bs = new BindingSource();
             bs.DataSource = deatile;
             dgw.DataSource = bs;
@@ -479,6 +497,8 @@ namespace Easypos.Tailoring
             dateTimePicker2.Text = TH.Reciveddate;
             Statustype.Text = TH.Status;
             textBox23.Text = TH.Note;
+            textBox32.Text = TH.Clothesready.ToString();
+            label39.Text = TH.BTCNumber.ToString();
         }
         void Gethanddata(tailorhand THN)
         {
@@ -503,11 +523,11 @@ namespace Easypos.Tailoring
             checkBox18.Checked = (bool)TN.Openflap;
             checkBox17.Checked = (bool)TN.Frenchflip;
             textBox14.Text = TN.txtnumber.ToString();
-            textBox11.Text = TN.txtnumber.ToString();
             textBox13.Text = TN.texta.ToString();
-            textBox10.Text = TN.texta.ToString();
             textBox12.Text = TN.textb.ToString();
-            textBox9.Text = TN.textb.ToString();
+            textBox11.Text = TN.txtnumberb.ToString();
+            textBox10.Text = TN.textc.ToString();
+            textBox9.Text = TN.textd.ToString();
         }
         void Getjabzordata(tailorjabzor TJ)
         {
@@ -577,7 +597,7 @@ namespace Easypos.Tailoring
                     dataheader = new tailorheader
                     {
                         Date = entity.tailorheader.Date,
-                        //BTCNumber = entity.tailorheader.BTCNumber,
+                        BTCNumber = entity.tailorheader.BTCNumber,
                         Custid = entity.tailorheader.thirdparty.ID,
                         Clothesnumber = entity.tailorheader.Clothesnumber,
                         Clothesready = entity.tailorheader.Clothesready,
@@ -590,7 +610,8 @@ namespace Easypos.Tailoring
                         Status = entity.tailorheader.Status,
                         Note = entity.tailorheader.Note,
                     };
-                    Btcn = (int)entity.tailorheader.BTCNumber;
+                    //Btcn = (int)entity.tailorheader.Clothesready;
+                    //label39.Text = BTCNumber.ToString();
                 }
 
                 tailorhand datahand = null;
@@ -625,7 +646,10 @@ namespace Easypos.Tailoring
                         Frenchflip = entity.tailorneck.Frenchflip,
                         txtnumber = entity.tailorneck.txtnumber,
                         texta = entity.tailorneck.texta,
-                        textb = entity.tailorneck.textb
+                        textb = entity.tailorneck.textb,
+                        txtnumberb = entity.tailorneck.txtnumberb,
+                        textc = entity.tailorneck.textc,
+                        textd = entity.tailorneck.textd
                     };
                 }
 
@@ -1142,6 +1166,18 @@ namespace Easypos.Tailoring
         {
            Frmcustrecived FCR = new Frmcustrecived();
             FCR.Show(); 
+        }
+
+        private void textBox32_TextChanged(object sender, EventArgs e)
+        {
+            var Tot = textBox22.Text == "" ? 0 : int.Parse(textBox22.Text);
+            var Recived = textBox32.Text == "" ? 0 : int.Parse(textBox32.Text);
+            if (Recived > Tot)
+            {
+                MessageBox.Show("لا يمكن استلام عدد اكبر من العدد الكلي للملابس", "خطأ");
+                textBox32.Text = "0";
+                return;
+            }
         }
     }
 }

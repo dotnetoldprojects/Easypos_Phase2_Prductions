@@ -71,9 +71,16 @@ namespace GUIForms.Forms.tailoring
                 {
                     // حدّث خاصية واحدة فقط
                     originalHeader.Clothesrecived = int.Parse(clothesValue);
-
-                    // حدّث في الريبوزيتوري (لا تنفذ Complete هنا لكل صف)
-                    _IUW.tailorheaders.Update(originalHeader);
+                    if (int.Parse(clothesValue) > originalHeader.Clothesnumber)
+                    {
+                        MessageBox.Show("لا يمكن ان تكون الكميه المستلمه اكبر من المطلوبه", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        // حدّث في الريبوزيتوري (لا تنفذ Complete هنا لكل صف)
+                        _IUW.tailorheaders.Update(originalHeader);
+                    }
                 }
                 // لو ما لقيتش originalHeader: ممكن تتجاهل أو تسجل لوج أو تضيف كائن جديد حسب حاجتك
             }
@@ -165,6 +172,26 @@ namespace GUIForms.Forms.tailoring
                 {
                     // لو مش لاقي العنصر، ممكن تمسح كل الصفوف أو تعمل حاجة تانية
                     dgvoprator.Rows.Clear();
+                }
+            }
+        }
+
+        private void dgvoprator_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var editedCell = dgvoprator.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            var otherCell = dgvoprator.Rows[e.RowIndex].Cells[2];
+            // تأكد إن القيم مش null
+            if (editedCell.Value != null && otherCell.Value != null)
+            {
+                // حاول تحول القيم لأرقام (حسب نوع العمود)
+                if (decimal.TryParse(editedCell.Value.ToString(), out decimal editedValue) &&
+                    decimal.TryParse(otherCell.Value.ToString(), out decimal otherValue))
+                {
+                    if (editedValue > otherValue)
+                    {
+                        MessageBox.Show("لا يمكن ان تكون الكميه المستلمه اكبر من المطلوبه", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
         }

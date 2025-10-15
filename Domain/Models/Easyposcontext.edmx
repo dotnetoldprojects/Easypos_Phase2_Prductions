@@ -476,6 +476,9 @@
           <Property Name="txtnumber" Type="int" />
           <Property Name="texta" Type="decimal" Precision="18" Scale="2" />
           <Property Name="textb" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="txtnumberb" Type="int" />
+          <Property Name="textc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="textd" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="thirdparty">
           <Key>
@@ -1413,6 +1416,9 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="texta" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="textb" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorneck" FromRole="tailorneck" ToRole="alltailoring" />
+          <Property Name="txtnumberb" Type="Int32" />
+          <Property Name="textc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="textd" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK_alltailoring_tailorjabzor">
           <End Type="EasyposModel.tailorjabzor" Role="tailorjabzor" Multiplicity="1" />
@@ -2027,6 +2033,9 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySetMapping Name="tailornecks">
             <EntityTypeMapping TypeName="EasyposModel.tailorneck">
               <MappingFragment StoreEntitySet="tailorneck">
+                <ScalarProperty Name="textd" ColumnName="textd" />
+                <ScalarProperty Name="textc" ColumnName="textc" />
+                <ScalarProperty Name="txtnumberb" ColumnName="txtnumberb" />
                 <ScalarProperty Name="textb" ColumnName="textb" />
                 <ScalarProperty Name="texta" ColumnName="texta" />
                 <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
