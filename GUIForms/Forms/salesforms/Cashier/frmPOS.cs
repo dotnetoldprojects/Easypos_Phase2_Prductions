@@ -281,7 +281,7 @@ namespace Easypos.Salesforms.Cashier
                 openpayment();
                 if (Invid != 0)
                 {
-                    _PI.Invoice(Invid);
+                    _PI.Invoice(Invid, null);
                     Clearfieldes();
                 }
             }

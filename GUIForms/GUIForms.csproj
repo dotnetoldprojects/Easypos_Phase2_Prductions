@@ -369,6 +369,12 @@
     <Compile Include="Forms\Returned\Returnedlist.Designer.cs">
       <DependentUpon>Returnedlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\salesforms\Frmzatcalist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\salesforms\Frmzatcalist.Designer.cs">
+      <DependentUpon>Frmzatcalist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SendMessages\Authorize.cs" />
     <Compile Include="Forms\SendMessages\FrmTemplet.cs">
       <SubType>Form</SubType>
@@ -646,6 +652,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Returned\Returnedlist.resx">
       <DependentUpon>Returnedlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\salesforms\Frmzatcalist.resx">
+      <DependentUpon>Frmzatcalist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SendMessages\FrmTemplet.resx">
       <DependentUpon>FrmTemplet.cs</DependentUpon>

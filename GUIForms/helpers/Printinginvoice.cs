@@ -45,7 +45,7 @@ namespace GUIForms.helpers
             _IUW = new Unitofwork(new EasyposEntities());
             DC = (company)GC.Getcompanydatalist();
         }
-        public void Invoice(int Invid)
+        public void Invoice(int Invid,string invchar)
         {
             ReportDocument Rep = new ReportDocument();
             Frmreporting FR = new Frmreporting();
@@ -157,7 +157,7 @@ namespace GUIForms.helpers
                     ConvertNumbersToArabicAlphabet a = new ConvertNumbersToArabicAlphabet(GTot.ToString());
                     Wordofnumber = a.GetNumberAr();
                     Ds.Bill.Rows.Add(new object[] {
-                        item.Billtype == "مسوده" ? "مسوده" : item.Invoiceno.ToString(),
+                        item.Billtype == "مسوده" ? "مسوده" : !string.IsNullOrEmpty(invchar) ? invchar : item.Invoiceno.ToString(),
                         item.NonVatTotal,
                         item.Quantity,
                         0,

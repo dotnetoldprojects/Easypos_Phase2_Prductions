@@ -11,6 +11,7 @@ using Easypos.Vouchers;
 using GUIForms.Dtos;
 using GUIForms.Forms.Masters;
 using GUIForms.Forms.Returned;
+using GUIForms.Forms.salesforms;
 using GUIForms.Forms.salesforms.Normal;
 using GUIForms.Forms.SendMessages;
 using InternetConnection;
@@ -719,6 +720,18 @@ namespace Easypos
             {
                 MessageBox.Show("برجاء التحقق من اتصال الانترنت", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void قائمةالمبيعاتالمسجلهبالزكاهToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frmzatcalist FZL = new Frmzatcalist();
+            FZL.Show();
+        }
+
+        private void toolStripMenuItem12_Click(object sender, EventArgs e)
+        {
+            Frmzatcalist FZL = new Frmzatcalist();
+            FZL.Show();
         }
     }
 }

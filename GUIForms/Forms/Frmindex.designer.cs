@@ -89,6 +89,7 @@ namespace Easypos
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.Btntail = new MetroFramework.Controls.MetroTile();
             this.Btnreportsales = new MetroFramework.Controls.MetroTile();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.HP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Btnmin)).BeginInit();
@@ -338,7 +339,8 @@ namespace Easypos
             // Resturantmenu
             // 
             this.Resturantmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Restreport});
+            this.Restreport,
+            this.toolStripMenuItem12});
             this.Resturantmenu.ForeColor = System.Drawing.Color.White;
             this.Resturantmenu.Name = "Resturantmenu";
             resources.ApplyResources(this.Resturantmenu, "Resturantmenu");
@@ -704,6 +706,14 @@ namespace Easypos
             this.Btnreportsales.UseTileImage = true;
             this.Btnreportsales.Click += new System.EventHandler(this.Btnreportsales_Click);
             // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.toolStripMenuItem12.ForeColor = System.Drawing.Color.White;
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            resources.ApplyResources(this.toolStripMenuItem12, "toolStripMenuItem12");
+            this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
+            // 
             // Frmindex
             // 
             resources.ApplyResources(this, "$this");
@@ -795,5 +805,6 @@ namespace Easypos
         private MetroFramework.Controls.MetroTile metroTile1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
         private System.Windows.Forms.ToolStripMenuItem ارسالرسائلToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
     }
 }

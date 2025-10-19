@@ -38,6 +38,7 @@ namespace GUIForms.Forms.salesforms.Normal
         transaction trn;
         Usingnumber _NO;
         public int Invid { get; set; }
+        public string Ztkinv { get; set; }
         public frmMSalesBill()
         {
             InitializeComponent();
@@ -393,8 +394,16 @@ namespace GUIForms.Forms.salesforms.Normal
         }
         private void Btnbilllist_Click(object sender, EventArgs e)
         {
-            Frmbilllist frmbilllist = new Frmbilllist();
-            frmbilllist.ShowDialog();
+            if (Lblinvoice.Visible != true)
+            {
+                Frmbilllist frmbilllist = new Frmbilllist();
+                frmbilllist.ShowDialog();
+            }
+            else
+            {
+                Frmzatcalist ZFL = new Frmzatcalist();
+                ZFL.ShowDialog();
+            }
         }
         public void Getsalesbill()
         {
@@ -543,7 +552,7 @@ namespace GUIForms.Forms.salesforms.Normal
                 openpayment();
                 if (Invid != 0)
                 {
-                    _PI.Invoice(Invid);
+                    _PI.Invoice(Invid, null);
                     ClearAll();
                 }
             }
@@ -631,6 +640,11 @@ namespace GUIForms.Forms.salesforms.Normal
             {
                 txtTotal.Text = ST.ToString();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _PI.Invoice(Invid, Ztkinv);
         }
     }
 }

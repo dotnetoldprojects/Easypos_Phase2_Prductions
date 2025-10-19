@@ -7,30 +7,22 @@ using GUIForms.helpers;
 using GUIForms.models;
 using Helpers.Dtos;
 using InternetConnection;
-using javax.xml.transform;
+using iText.Layout.Element;
+using iText.StyledXmlParser.Jsoup.Nodes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using UOW;
-using Zatca.EInvoice.SDK.Contracts.Models;
-using static net.sf.saxon.expr.JPConverter;
 
-
-namespace Easypos.Salesforms
+namespace GUIForms.Forms.salesforms
 {
-    public partial class Frmbilllist : Form
+    public partial class Frmzatcalist : Form
     {
         Printinginvoice _PI;
         company DC;
@@ -40,45 +32,11 @@ namespace Easypos.Salesforms
         List<SaleViewModel> Res;
         Zatcafutuers ZF;
         public bool Filter { get; set; }
-        public Frmbilllist()
+        public Frmzatcalist()
         {
             InitializeComponent();
             Loading();
             DataTotals();
-        }
-        public async void Generatexml(sale sale,List<salesdetaile> Saledetail)
-        {
-            List<ProductLine> productLines = new List<ProductLine>();
-            Geneatexml GXL = new Geneatexml();
-            GXL.Custid = int.Parse(clientID.SelectedValue.ToString());
-            GXL.Invtitle = "Inv-" + sale.Invoiceno.ToString();
-            const string unitCode = "PCE";
-            const decimal taxPercent = 15m;
-
-            for (int i = 0; i < Saledetail.Count; i++)
-            {
-                productLines.Add(new ProductLine
-                {
-                    Id = Saledetail[i].TDetailNo.ToString(),
-                    Name = Saledetail[i].TDDesc.ToString(),
-                    Quantity = int.Parse(Saledetail[i].Quantity.ToString()),
-                    UnitCode = unitCode,
-                    UnitPrice = decimal.Parse(Saledetail[i].ItemPrice.ToString()),
-                    Discount = decimal.Parse(Saledetail[i].Discount.ToString()),
-                    TaxPercent = taxPercent
-                });
-            }
-            string InputPath = @"Data/Invoice.xml";
-            var data = DC;
-            var RBD = Convert.ToDecimal(sale.Discount);
-            GXL.Custid = sale.ThirdPartyID ?? 10;
-            GXL.Createxmldata(productLines, DC, false, RBD);
-
-            var xmlContent = File.ReadAllText(InputPath);
-            var Doc = GC.LoadInvoiceFromString(xmlContent);
-            Signdtos Sdtos = new Signdtos();
-            Sdtos.Saleid = sale.Invoiceno;
-            await Sdtos.Sign(Doc, $"Inv{sale.Invoiceno}");
         }
         private void Loading()
         {
@@ -90,8 +48,6 @@ namespace Easypos.Salesforms
             _PI = new Printinginvoice();
             Getdatalist();
             LoadAllCombos();
-            CMBStatus.SelectedIndex = 0;
-            CMPay.SelectedIndex = 0;
         }
         private void LoadAllCombos()
         {
@@ -108,7 +64,7 @@ namespace Easypos.Salesforms
         private void Getdatalist()
         {
             GAS = new Getallsales();
-            Res = GAS.GetSaleslist();
+            Res = GAS.GetSaleslist().Where(u => u.Status == "سجلت").ToList();
             DGV.DataSource = Res.Select(x => new
             {
                 x.Invoiceno,
@@ -131,11 +87,8 @@ namespace Easypos.Salesforms
         }
         private async void DGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var Datedata = DGV.CurrentRow.Cells[5].Value.ToString();
-            var MDate = DateTime.Now.ToString("dd-MM-yyyy");
-            var Dataid = DGV.CurrentRow.Cells[4].Value.ToString();
-            var Datatye = DGV.CurrentRow.Cells[14].Value.ToString();
-            var Datareg = DGV.CurrentRow.Cells[15].Value.ToString();
+            var Dataid = DGV.CurrentRow.Cells[2].Value.ToString();
+            var Datatye = DGV.CurrentRow.Cells[12].Value.ToString();
             if (DGV.Columns[e.ColumnIndex].Name == "Show")
             {
                 frmMSalesBill FMS = new frmMSalesBill();
@@ -148,6 +101,7 @@ namespace Easypos.Salesforms
                     FMS.Btnsaveandprint.Text = "تعديل وطباعه";
                     if (Datatye == "مسوده")
                     {
+                        FMS.Invid = int.Parse(Dataid);
                         FMS.Btnsaveandprint.Visible = true;
                         FMS.Btnsave.Visible = true;
                         FMS.Btnsave.Visible = true;
@@ -156,6 +110,20 @@ namespace Easypos.Salesforms
                     }
                     else
                     {
+                        FMS.Ztkinv = DGV.CurrentRow.Cells[14].Value.ToString();
+                        FMS.button1.Visible = true;
+                        FMS.Invid = int.Parse(Dataid);
+                        FMS.GroupBox1.Enabled = false;
+                        FMS.DGV.Columns["Delete"].Visible = false;
+                        FMS.DGV.Enabled = false;
+                        FMS.groupBox3.Visible = false;
+                        FMS.groupBox4.Visible = false;
+                        FMS.RB1.Visible = false;
+                        FMS.RB2.Visible = false;
+                        FMS.Lblinvoice.Visible = true;
+                        FMS.Lblinvoice.Text = "رقم الفاتوره : " + DGV.CurrentRow.Cells[14].Value.ToString();
+                        FMS.Lblinvoice.Location = new Point(46, 33);
+                        FMS.groupBox2.Location = new Point(550, 3);
                         FMS.Btnsaveandprint.Visible = false;
                         FMS.Btnsave.Visible = false;
                         FMS.Btnsave.Visible = false;
@@ -175,6 +143,7 @@ namespace Easypos.Salesforms
                         open.Invid = int.Parse(Dataid);
                         if (Datatye == "مسوده")
                         {
+                            open.Invid = int.Parse(Dataid);
                             open.Btnsaveandprint.Visible = true;
                             open.Btnsave.Visible = true;
                             open.Btnsave.Visible = true;
@@ -184,11 +153,25 @@ namespace Easypos.Salesforms
                         }
                         else
                         {
+                            open.Ztkinv = DGV.CurrentRow.Cells[14].Value.ToString();
+                            open.button1.Visible = true;
+                            open.Invid = int.Parse(Dataid);
+                            open.GroupBox1.Enabled = false;
+                            open.DGV.Columns["Delete"].Visible = false;
+                            open.DGV.Enabled = false;
+                            open.groupBox3.Visible = false;
+                            open.groupBox4.Visible = false;
+                            open.RB1.Visible = false;
+                            open.RB2.Visible = false;
+                            open.Lblinvoice.Visible = true;
+                            open.Lblinvoice.Text = "رقم الفاتوره : " + DGV.CurrentRow.Cells[14].Value.ToString();
+                            open.Lblinvoice.Location = new Point(46, 33);
+                            //open.groupBox2.Location = new Point(550, 3);
                             open.Btnsaveandprint.Visible = false;
                             open.Btnsave.Visible = false;
                             open.Btnsave.Visible = false;
-                            open.Billtype.Text = Datatye;
                             open.Billtype.Enabled = false;
+                            open.Billtype.Text = Datatye;
                         }
                         open.Getsalesbill();
                         this.Close();
@@ -197,85 +180,7 @@ namespace Easypos.Salesforms
             }
             else if (DGV.Columns[e.ColumnIndex].Name == "Print")
             {
-                _PI.Invoice(int.Parse(Dataid),null);
-            }
-            else if (DGV.Columns[e.ColumnIndex].Name == "Delete")
-            {
-                if (Datatye == "مسوده")
-                {
-                    if (MessageBox.Show("هل تريد حذف الفاتوره؟", "حذف فاتوره", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        var data = _IUW.salesdetailes.GetAll().Where(x => x.InvoiceNo == int.Parse(Dataid)).ToList();
-                        foreach (var item in data)
-                        {
-                            _IUW.salesdetailes.Delbyid(Convert.ToInt32(item.TDetailNo));
-                            _IUW.Complete();
-                        }
-                        _IUW.sales.Delbyid(int.Parse(Dataid));
-                        _IUW.Complete();
-                        Loading();
-                        MessageBox.Show("تم حذف الفاتوره بنجاح", "حذف فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("لا يمكن حذف الفاتوره لانها صدرت", "حذف فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (DGV.Columns[e.ColumnIndex].Name == "Btnreg")
-            {
-                if (DC.ISUsePhase2)
-                {
-                    if (Datatye == "مسوده")
-                    {
-                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسوده", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (Datareg == "سجلت")
-                    {
-                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    else if (Datedata != MDate)
-                    {
-                        MessageBox.Show("لا يمكن تسجيل فاتوره بتاريخ مسبق", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    else
-                    {
-                        Connector checker = new Connector();
-                        bool isConnected = checker.CheckIfInternetConnected();
-                        if (isConnected)
-                        {
-                            Cursor.Current = Cursors.WaitCursor;
-                            // Get the last invoice number
-                            ZF.invid = int.Parse(Dataid);
-                            ZF.DC = DC;
-                            await ZF.Loading();
-                            if (Filter)
-                            {
-                                GAS = new Getallsales();
-                                Res = GAS.GetSaleslist();
-                                Getsalesbyfilters();
-                                DataTotals();
-                            }
-                            else
-                            {
-                                Loading();
-                            }
-                            Cursor.Current = Cursors.Default;
-                        }
-                        else
-                        {
-                            MessageBox.Show("لا يوجد اتصال بالانترنت", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("لا يمكن تسجيل الفاتوره لان النظام غير مفعل عليه المرحله الثانيه برجاء التواصل مع الدعم الفني", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                _PI.Invoice(int.Parse(Dataid), DGV.CurrentRow.Cells[14].Value.ToString());
             }
         }
         private void Btnsearch_Click(object sender, EventArgs e)
@@ -343,32 +248,6 @@ namespace Easypos.Salesforms
             if (!string.IsNullOrEmpty(txtPhone.Text))
             {
                 query = query.Where(x => x.Phone.Contains(txtPhone.Text));
-            }
-
-            // شرط الملاحظات
-            if (!string.IsNullOrEmpty(txtNote.Text))
-            {
-                query = query.Where(x => x.Note.Contains(txtNote.Text));
-            }
-            // شرط الحالة من ComboBox
-            if (CMBStatus.SelectedItem != null && CMBStatus.SelectedItem.ToString() != "الكل")
-            {
-                string selectedStatus = CMBStatus.SelectedItem.ToString();
-                query = query.Where(x => x.Status == selectedStatus);
-            }
-            if (CMPay.SelectedItem != null && CMPay.SelectedItem.ToString() != "الكل")
-            {
-                string selectedStatus = CMPay.SelectedItem.ToString();
-                if (selectedStatus == "نقدي")
-                {
-                    query = query.Where(x => x.Cash != 0);
-
-                }
-                if (selectedStatus == "بنكي")
-                {
-                    query = query.Where(x => x.Bank != 0);
-
-                }
             }
             var result = query
     .AsEnumerable() // نحول لـ LINQ to Objects عشان نقدر نستخدم TryParse

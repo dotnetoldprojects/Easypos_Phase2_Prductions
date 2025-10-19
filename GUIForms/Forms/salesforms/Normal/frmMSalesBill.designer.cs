@@ -111,6 +111,8 @@
             this.Btnsave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Btnsaveandprint = new System.Windows.Forms.Button();
+            this.Lblinvoice = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QRPic)).BeginInit();
@@ -267,6 +269,7 @@
             // groupBox2
             // 
             resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Controls.Add(this.Lblinvoice);
             this.groupBox2.Controls.Add(this.RB2);
             this.groupBox2.Controls.Add(this.RB1);
             this.groupBox2.Controls.Add(this.label21);
@@ -672,6 +675,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.Btnsave);
             this.panel1.Controls.Add(this.Btnclose);
             this.panel1.Controls.Add(this.Btnbilllist);
@@ -689,6 +693,22 @@
             this.Btnsaveandprint.Name = "Btnsaveandprint";
             this.Btnsaveandprint.UseVisualStyleBackColor = false;
             this.Btnsaveandprint.Click += new System.EventHandler(this.Btnsaveandprint_Click);
+            // 
+            // Lblinvoice
+            // 
+            resources.ApplyResources(this.Lblinvoice, "Lblinvoice");
+            this.Lblinvoice.Name = "Lblinvoice";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.PowderBlue;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMSalesBill
             // 
@@ -730,7 +750,6 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox QRPic;
         private System.Windows.Forms.Panel panel4;
-        internal System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button Btnadd;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.TextBox txtBarcode;
@@ -775,7 +794,6 @@
         public System.Windows.Forms.TextBox txtDiscount;
         public System.Windows.Forms.DataGridView DGV;
         public System.Windows.Forms.Button Btnsave;
-        internal System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
@@ -794,7 +812,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineTotal;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.RadioButton RB2;
-        private System.Windows.Forms.RadioButton RB1;
+        public System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.RadioButton RB2;
+        public System.Windows.Forms.RadioButton RB1;
+        public System.Windows.Forms.Label Lblinvoice;
+        public System.Windows.Forms.Button button1;
     }
 }
