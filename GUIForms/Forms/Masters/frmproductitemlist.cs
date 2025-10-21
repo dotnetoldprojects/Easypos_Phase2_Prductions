@@ -307,67 +307,105 @@ namespace Easypos.Masters
 
             #region
             //مبيعات
-            var result2 = from its in itemsales
-                          join it in items
-                          on its.Itemid equals it.ID into joined
-                          from it in joined.DefaultIfEmpty()
-                          from sa in joined.DefaultIfEmpty()
-                          where its.Itemid == IID
-                          select new
-                          {
-                              it.ID,
-                              Itemname = it?.Itemname ?? "",
-                              its.Date,
-                              Itemqty = it?.Itemqty ?? 0,
-                              its.Quantity,
-                              its.invoiceno
-                          };
-    //        var result2 =
-    //from its in itemsales
-    //join it in items
-    //    on its.Itemid equals it.ID into itemsJoin
-    //from it in itemsJoin.DefaultIfEmpty()
-    //join sa in sale
-    //    on its.invoiceno equals sa.InvoiceNo into salesJoin
-    //from sa in salesJoin.DefaultIfEmpty()
-    //where its.Itemid == IID
-    //select new
-    //{
-    //    ID = it != null ? it.ID : 0,
-    //    Itemname = it != null ? it.Itemname : "",
-    //    Date = its.Date,
-    //    Itemqty = it != null ? it.Itemqty : 0,
-    //    Quantity = its.Quantity,
-    //    SaleQuantity = sa != null ? sa.Quantity : 0,
-    //    TotalQuantity = (its.Quantity) * (sa != null ? sa.Quantity : 0),
-    //    Invoiceno = its.invoiceno
-    //};
+            //        var subQuery =
+            //from sd in _IUW.salesdetailes.GetAll()
+            //join pi in _IUW.productitems.GetAll()
+            //    on sd.ProductNo.ToString() equals pi.Proid
+            //join sa in _IUW.itemsales.GetAll()
+            //    on sd.InvoiceNo equals sa.invoiceno
+            //where pi.itemid == IID.ToString()
+            //group new { sd, pi, sa } by new
+            //{
+            //    sd.TDetailNo,
+            //    sd.InvoiceNo,
+            //    sd.ProductNo,
+            //    sd.TDDesc,
+            //    sd.Quantity,
+            //    sa.Date
+            //} into g
+            //select new
+            //{
+            //    InvoiceNo = g.Key.InvoiceNo,
+            //    Date = g.Key.Date,
+            //    Quantity = Convert.ToDecimal(g.Key.Quantity),
+            //    ItemQuantity = g.Max(x => Convert.ToDecimal(x.pi.Quantity)),
+            //    Total = Convert.ToDecimal(g.Key.Quantity) *
+            //            g.Max(x => Convert.ToDecimal(x.pi.Quantity))
+            //};
 
-            foreach (var item in result2)
+            //        var result2 =
+            //            from s in subQuery
+            //            group s by new { s.InvoiceNo, s.Date } into g
+            //            select new
+            //            {
+            //                InvoiceNo = g.Key.InvoiceNo,
+            //                Date = g.Key.Date,
+            //                TotalSalesQuantity = g.Sum(x => x.Quantity),
+            //                TotalItemQuantity = g.Sum(x => x.ItemQuantity),
+            //                GrandTotal = g.Sum(x => x.Total)
+            //            };
+
+            //        var finalList = result2.ToList();
+
+
+            var subQuery =
+                from sd in _IUW.salesdetailes.GetAll()
+                join pi in _IUW.productitems.GetAll()
+                    on sd.ProductNo.ToString() equals pi.Proid.ToString()
+                join sa in _IUW.itemsales.GetAll()
+                    on sd.InvoiceNo equals sa.invoiceno
+                where pi.itemid == IID.ToString()
+                group new { sd, pi, sa } by new
+                {
+                    sd.TDetailNo,
+                    sd.InvoiceNo,
+                    sd.ProductNo,
+                    sd.TDDesc,
+                    sd.Quantity,
+                    sa.Date,
+                    pi.itemid
+                } into g
+                select new
+                {
+                    Itemid = g.Key.itemid,
+                    InvoiceNo = g.Key.InvoiceNo,
+                    Date = g.Key.Date,
+                    Quantity = Convert.ToDecimal(g.Key.Quantity),
+                    ItemQuantity = g.Max(x => Convert.ToDecimal(x.pi.Quantity ?? "0")),
+                    Total = Convert.ToDecimal(g.Key.Quantity) *
+                            g.Max(x => Convert.ToDecimal(x.pi.Quantity ?? "0"))
+                };
+
+            var result2 =
+                from s in subQuery
+                group s by new { s.InvoiceNo, s.Date, s.Itemid } into g
+                select new
+                {
+                    Itemid = g.Key.Itemid,
+                    InvoiceNo = g.Key.InvoiceNo,
+                    Date = g.Key.Date,
+                    TotalSalesQuantity = g.Sum(x => x.Quantity),
+                    TotalItemQuantity = g.Sum(x => x.ItemQuantity),
+                    GrandTotal = g.Sum(x => x.Total)
+                };
+
+            var finalList = result2.ToList();
+
+            // ✅ لو عايز تحطها في كلاس معين (زي SalesReportItem):
+            foreach (var item in finalList)
             {
-                //SO.Add(new SalesReportItem
-                //{
-                //    ID = item.ID,
-                //    Itemname = item.Itemname,
-                //    Date = item.Date.ToString(),
-                //    Itemqty = item.Itemqty,
-                //    Quantity = int.Parse(item.TotalQuantity.ToString()),
-                //    Remining = item.Itemqty - item.Quantity,
-                //    Invoiceno = item.Invoiceno.ToString(),
-                //    Type = "فاتورة مبيعات"
-                //});
                 SO.Add(new SalesReportItem
                 {
-                    ID = item.ID,
-                    Itemname = item.Itemname,
-                    Date = item.Date.ToString(),
-                    Itemqty = item.Itemqty,
-                    Quantity = item.Quantity,
-                    Remining = item.Itemqty - item.Quantity,
-                    Invoiceno = item.invoiceno.ToString(),
+                    ID = Convert.ToInt32(item.Itemid),
+                    Invoiceno = item.InvoiceNo.ToString(),
+                    Date = item.Date,
+                    Quantity = (int)item.GrandTotal,
+                    Itemqty = (int)item.TotalItemQuantity,
+                    Remining = (int)(item.TotalItemQuantity - item.TotalSalesQuantity),
                     Type = "فاتورة مبيعات"
                 });
             }
+
             #endregion
 
             var result3 = from ret in returneds
