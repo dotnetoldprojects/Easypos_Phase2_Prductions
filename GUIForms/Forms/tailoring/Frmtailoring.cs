@@ -91,6 +91,15 @@ namespace Easypos.Tailoring
             LoadAllCombos();
             dgw.Rows.Clear();
             label39.Text = "0";
+            checkBox4.Checked = false;
+            textBox9.Clear();
+            textBox10.Clear();
+            textBox11.Clear();
+            textBox12.Clear();
+            textBox13.Clear();
+            textBox14.Clear();
+            textBox30.Clear();
+            textBox31.Clear();
             Statustype.SelectedIndex = 0;
             Btnsave.Text = "حفظ";
             dateTimePicker1.Value = DateTime.Now;
@@ -328,6 +337,7 @@ namespace Easypos.Tailoring
             TJ.Jab8 = checkBox7.Checked;
             TJ.Jab9 = checkBox6.Checked;
             TJ.Jab10 = checkBox5.Checked;
+            TJ.Zigzag = checkBox4.Checked;
             TJ.txtnumber = textBox31.Text == "" ? 0 : int.Parse(textBox31.Text);
             TJ.txt = textBox30.Text == "" ? 0 : decimal.Parse(textBox30.Text);
             _IUW.tailorjabzors.Update(TJ);
@@ -420,6 +430,7 @@ namespace Easypos.Tailoring
             checkBox1.Checked = false;
             checkBox2.Checked = false;
             checkBox3.Checked = false;
+            checkBox4.Checked = false;
             checkBox5.Checked = false;
             checkBox6.Checked = false;
             checkBox7.Checked = false;
@@ -541,6 +552,7 @@ namespace Easypos.Tailoring
             checkBox7.Checked = (bool)TJ.Jab8;
             checkBox6.Checked = (bool)TJ.Jab9;
             checkBox5.Checked = (bool)TJ.Jab10; 
+            checkBox4.Checked = (bool)TJ.Zigzag; 
             textBox31.Text = TJ.txtnumber.ToString();
             textBox30.Text = TJ.txt.ToString();
         }
@@ -668,6 +680,7 @@ namespace Easypos.Tailoring
                         Jab8 = entity.tailorjabzor.Jab8,
                         Jab9 = entity.tailorjabzor.Jab9,
                         Jab10 = entity.tailorjabzor.Jab10,
+                        Zigzag = entity.tailorjabzor.Zigzag,
                         txtnumber = entity.tailorjabzor.txtnumber,
                         txt = entity.tailorjabzor.txt
                     };
@@ -1053,7 +1066,14 @@ namespace Easypos.Tailoring
                 textBox8.Text, textBox28.Text,textBox29.Text,
             });
             CRA.SetDataSource(ds);
-
+            if (checkBox4.Checked)
+            {
+                CRA.SetParameterValue("Zizag", "سحاب");
+            }
+            else
+            {
+                CRA.SetParameterValue("Zizag", "بدون سحاب");
+            }
             CRA.SetParameterValue("CompanyName", DC.Name);
             CRA.SetParameterValue("Taxnum", DC.Taxnumber);
             CRA.SetParameterValue("Proname", DC.CRN);
@@ -1125,49 +1145,40 @@ namespace Easypos.Tailoring
                 textBox21.Text = (decimal.Parse(textBox17.Text) - decimal.Parse(textBox16.Text)).ToString();
             }
         }
-
         private void textBox14_TextChanged(object sender, EventArgs e)
         {
             //textBox11.Text = textBox14.Text;
         }
-
         private void textBox11_TextChanged(object sender, EventArgs e)
         {
             //textBox14.Text = textBox11.Text;
         }
-
         private void textBox13_TextChanged(object sender, EventArgs e)
         {
             //textBox10.Text = textBox13.Text;
         }
-
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
             //textBox13.Text = textBox10.Text;
         }
-
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
             //textBox9.Text = textBox12.Text;
         }
-
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
             //textBox12.Text = textBox9.Text;
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             Frmoprator FO = new Frmoprator();
             FO.Show();
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
            Frmcustrecived FCR = new Frmcustrecived();
             FCR.Show(); 
         }
-
         private void textBox32_TextChanged(object sender, EventArgs e)
         {
             var Tot = textBox22.Text == "" ? 0 : int.Parse(textBox22.Text);

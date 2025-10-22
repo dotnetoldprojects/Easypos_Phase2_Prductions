@@ -643,7 +643,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel18.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="panel17.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -724,7 +724,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel17.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="panel16.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -805,7 +805,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel16.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="panel15.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -886,7 +886,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel15.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="panel14.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -940,7 +940,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel14.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="panel13.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1021,7 +1021,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel13.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="panel12.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1102,7 +1102,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel12.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="panel11.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1183,7 +1183,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel11.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="panel10.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1264,7 +1264,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel10.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="panel9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1348,7 +1348,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;panel9.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="checkBox17.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4756,6 +4756,39 @@
   <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="checkBox4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="checkBox4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 197</value>
+  </data>
+  <data name="checkBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 23</value>
+  </data>
+  <data name="checkBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>83</value>
+  </data>
+  <data name="checkBox4.Text" xml:space="preserve">
+    <value>سحاب</value>
+  </data>
+  <data name="&gt;&gt;checkBox4.Name" xml:space="preserve">
+    <value>checkBox4</value>
+  </data>
+  <data name="&gt;&gt;checkBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox4.Parent" xml:space="preserve">
+    <value>tabPage3</value>
+  </data>
+  <data name="&gt;&gt;checkBox4.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label35.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4790,7 +4823,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="textBox30.Location" type="System.Drawing.Point, System.Drawing">
     <value>234, 194</value>
@@ -4814,7 +4847,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;textBox30.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="textBox31.Location" type="System.Drawing.Point, System.Drawing">
     <value>389, 195</value>
@@ -4838,7 +4871,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;textBox31.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label36.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4874,7 +4907,7 @@
     <value>tabPage3</value>
   </data>
   <data name="&gt;&gt;label36.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="tabPage3.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 28</value>

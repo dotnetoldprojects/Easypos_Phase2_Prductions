@@ -457,6 +457,7 @@
           <Property Name="Jab8" Type="bit" />
           <Property Name="Jab9" Type="bit" />
           <Property Name="Jab10" Type="bit" />
+          <Property Name="Zigzag" Type="bit" />
           <Property Name="txtnumber" Type="int" />
           <Property Name="txt" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
@@ -1398,6 +1399,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="txtnumber" Type="Int32" />
           <Property Name="txt" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorjabzor" FromRole="tailorjabzor" ToRole="alltailoring" />
+          <Property Name="Zigzag" Type="Boolean" />
         </EntityType>
         <EntityType Name="tailorneck">
           <Key>
@@ -2014,6 +2016,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySetMapping Name="tailorjabzors">
             <EntityTypeMapping TypeName="EasyposModel.tailorjabzor">
               <MappingFragment StoreEntitySet="tailorjabzor">
+                <ScalarProperty Name="Zigzag" ColumnName="Zigzag" />
                 <ScalarProperty Name="txt" ColumnName="txt" />
                 <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
                 <ScalarProperty Name="Jab10" ColumnName="Jab10" />

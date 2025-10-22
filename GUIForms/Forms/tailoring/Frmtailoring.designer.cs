@@ -199,6 +199,7 @@ namespace Easypos.Tailoring
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.checkBox28 = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.label35 = new System.Windows.Forms.Label();
             this.textBox30 = new System.Windows.Forms.TextBox();
             this.textBox31 = new System.Windows.Forms.TextBox();
@@ -1562,6 +1563,7 @@ namespace Easypos.Tailoring
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.checkBox4);
             this.tabPage3.Controls.Add(this.label35);
             this.tabPage3.Controls.Add(this.textBox30);
             this.tabPage3.Controls.Add(this.textBox31);
@@ -1579,6 +1581,12 @@ namespace Easypos.Tailoring
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            resources.ApplyResources(this.checkBox4, "checkBox4");
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // label35
             // 
@@ -2326,5 +2334,6 @@ namespace Easypos.Tailoring
         private System.Windows.Forms.DataGridViewTextBoxColumn Custnumber;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }

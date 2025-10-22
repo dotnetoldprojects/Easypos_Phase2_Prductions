@@ -53,6 +53,8 @@ public partial class tailorjabzor
 
     public Nullable<decimal> txt { get; set; }
 
+    public Nullable<bool> Zigzag { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
