@@ -386,7 +386,7 @@ namespace Easypos.Tailoring
             _IUW.alltailorings.Insert(AT);
             _IUW.Complete();
         }
-        private void clientID_SelectionChangeCommitted(object sender, EventArgs e)
+        public void Cleargc()
         {
             Statustype.SelectedIndex = 0;
             Btnsave.Text = "حفظ";
@@ -465,9 +465,13 @@ namespace Easypos.Tailoring
             checkBox37.Checked = false;
             checkBox38.Checked = false;
             checkBox39.Checked = false;
+        }
+        private void clientID_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            Cleargc();
             Getcustdata();
         }
-        void Getcustdata()
+        public void Getcustdata()
         {
             var Res = int.Parse(clientID.SelectedValue.ToString());
             var deatile = _IUW.alltailorings.GetQueryable()
@@ -552,7 +556,7 @@ namespace Easypos.Tailoring
             checkBox7.Checked = (bool)TJ.Jab8;
             checkBox6.Checked = (bool)TJ.Jab9;
             checkBox5.Checked = (bool)TJ.Jab10; 
-            checkBox4.Checked = (bool)TJ.Zigzag; 
+            checkBox4.Checked = TJ.Zigzag.GetValueOrDefault(false);
             textBox31.Text = TJ.txtnumber.ToString();
             textBox30.Text = TJ.txt.ToString();
         }
@@ -606,24 +610,21 @@ namespace Easypos.Tailoring
                 tailorheader dataheader = null;
                 if (entity != null && entity.tailorheader != null)
                 {
-                    dataheader = new tailorheader
-                    {
-                        Date = entity.tailorheader.Date,
-                        BTCNumber = entity.tailorheader.BTCNumber,
-                        Custid = entity.tailorheader.thirdparty.ID,
-                        Clothesnumber = entity.tailorheader.Clothesnumber,
-                        Clothesready = entity.tailorheader.Clothesready,
-                        Clothesrecived = entity.tailorheader.Clothesrecived,
-                        Clothesremining = entity.tailorheader.Clothesremining,
-                        Total = entity.tailorheader.Total,
-                        Paied = entity.tailorheader.Paied,
-                        Totalreimining = entity.tailorheader.Totalreimining,
-                        Reciveddate = entity.tailorheader.Reciveddate,
-                        Status = entity.tailorheader.Status,
-                        Note = entity.tailorheader.Note,
-                    };
-                    //Btcn = (int)entity.tailorheader.Clothesready;
-                    //label39.Text = BTCNumber.ToString();
+                    dataheader = new tailorheader();
+                    dataheader.Date = entity.tailorheader.Date;
+                    dataheader.BTCNumber = entity.tailorheader.BTCNumber;
+                    //dataheader.Custid = entity.tailorheader.thirdparty.ID;
+                    dataheader.Custid = int.Parse(clientID.SelectedValue.ToString());
+                    dataheader.Clothesnumber = entity.tailorheader.Clothesnumber;
+                    dataheader.Clothesready = entity.tailorheader.Clothesready;
+                    dataheader.Clothesrecived = entity.tailorheader.Clothesrecived;
+                    dataheader.Clothesremining = entity.tailorheader.Clothesremining;
+                    dataheader.Total = entity.tailorheader.Total;
+                    dataheader.Paied = entity.tailorheader.Paied;
+                    dataheader.Totalreimining = entity.tailorheader.Totalreimining;
+                    dataheader.Reciveddate = entity.tailorheader.Reciveddate;
+                    dataheader.Status = entity.tailorheader.Status;
+                    dataheader.Note = entity.tailorheader.Note;
                 }
 
                 tailorhand datahand = null;

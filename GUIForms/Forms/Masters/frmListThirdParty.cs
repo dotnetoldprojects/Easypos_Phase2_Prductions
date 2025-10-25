@@ -301,8 +301,10 @@ namespace Easypos.Masters
                     {
                         Frmtailoring p = (Application.OpenForms["Frmtailoring"] as Frmtailoring);
                         p.LoadAllCombos();
+                        //p.Cleargc();
                         p.clientID.Text = txtName.Text;
                         p.textBox15.Text = txtMobile.Text;
+                        p.Getcustdata();
                         Clearfieldes();
                         this.Close();
                         return;
