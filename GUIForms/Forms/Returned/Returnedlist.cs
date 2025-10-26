@@ -2,7 +2,9 @@
 using Aspose.Pdf.Operators;
 using Domain.Models;
 using GUIForms.Dtos;
+using GUIForms.Forms.salesforms.Normal;
 using GUIForms.helpers;
+using InternetConnection;
 using iText.StyledXmlParser.Jsoup.Nodes;
 using System;
 using System.Collections.Generic;
@@ -21,6 +23,7 @@ namespace GUIForms.Forms.Returned
     {
         company DC;
         Getcentralaizes GC;
+        Zatcacreditnote ZRF;
         IUnitofwork _IUW;
         public Returnedlist()
         {
@@ -32,6 +35,7 @@ namespace GUIForms.Forms.Returned
             GC = new Getcentralaizes();
             DC = (company)LanguageHelper.ApplyLanguage(this);
             _IUW = new Unitofwork(new EasyposEntities());
+            ZRF = new Zatcacreditnote();
             Getdatalist();
         }
         private void Btnclose_Click(object sender, EventArgs e)
@@ -103,6 +107,95 @@ namespace GUIForms.Forms.Returned
 
             // عرض النتائج
             DGV.DataSource = result;
+        }
+
+        private async void DGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var Datareg = DGV.CurrentRow.Cells[8].Value.ToString();
+            var Invnum = DGV.CurrentRow.Cells[1].Value.ToString();
+            if (DGV.Columns[e.ColumnIndex].Name == "Btnreg")
+            {
+                if (DC.ISUsePhase2)
+                {
+                    if (Datareg == "سجلت")
+                    {
+                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        Connector checker = new Connector();
+                        bool isConnected = checker.CheckIfInternetConnected();
+                        var Gp = _IUW.payments.GetAll().Where(x => x.InvoiceNo == int.Parse(Invnum)).FirstOrDefault();
+                        if (Gp.Bank > 0)
+                        {
+                            var trans = new transaction();
+                            trans.Invoiceno = Gp.InvoiceNo;
+                            trans.Paynum = Gp.paymentNo;
+                            trans.TDate = Gp.Date;
+                            trans.Type = "سند ايصال مرتجعات";
+                            trans.Paytype = "بنكي";
+                            trans.ThirdPartyID = Gp.ThirdPartyID;
+                            trans.Paid = Gp.Bank;
+                            trans.Note = "";
+                            _IUW.transactions.Insert(trans);
+                            _IUW.Complete();
+                        }
+                        if (Gp.Cash > 0)
+                        {
+                            var trans = new transaction();
+                            trans.Invoiceno = Gp.InvoiceNo;
+                            trans.Paynum = Gp.paymentNo;
+                            trans.TDate = Gp.Date;
+                            trans.Type = "سند ايصال مرتجعات";
+                            trans.Paytype = "نقدي";
+                            trans.ThirdPartyID = Gp.ThirdPartyID;
+                            trans.Paid = Gp.Cash;
+                            trans.Note = "";
+                            _IUW.transactions.Insert(trans);
+                            _IUW.Complete();
+                        }
+                        if (isConnected)
+                        {
+                            Cursor.Current = Cursors.WaitCursor;
+                            var Bank = Gp.Bank;
+                            var Cash = Gp.Cash;
+                            ZRF.TB = Gp.ThirdPartyID ?? 0;
+                            ZRF.invid = Gp.InvoiceNo ?? 0;
+                            ZRF.DC = DC;
+                            if (DC.Signtype == 0)
+                            {
+                                if (Cash > 0)
+                                {
+                                    await ZRF.Loading();
+                                }
+                            }
+                            if (DC.Signtype == 1)
+                            {
+                                if (Bank > 0)
+                                {
+                                    await ZRF.Loading();
+                                }
+                            }
+                            if (DC.Signtype == 2)
+                            {
+                                await ZRF.Loading();
+                            }
+                            Cursor.Current = Cursors.Default;
+                        }
+                        else
+                        {
+                            MessageBox.Show("لا يوجد اتصال بالانترنت", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("لا يمكن تسجيل الفاتوره لان النظام غير مفعل عليه المرحله الثانيه برجاء التواصل مع الدعم الفني", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
         }
     }
 }

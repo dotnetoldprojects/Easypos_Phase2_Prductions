@@ -3580,7 +3580,7 @@
     <value>True</value>
   </metadata>
   <data name="Totalremining.HeaderText" xml:space="preserve">
-    <value>اجنالي المتبقي</value>
+    <value>اجمالي المتبقي</value>
   </data>
   <data name="Totalremining.MinimumWidth" type="System.Int32, mscorlib">
     <value>6</value>
@@ -6568,70 +6568,16 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Tailoring</value>
   </data>
-  <data name="&gt;&gt;Column15.Name" xml:space="preserve">
-    <value>Column15</value>
+  <data name="&gt;&gt;Custnumber.Name" xml:space="preserve">
+    <value>Custnumber</value>
   </data>
-  <data name="&gt;&gt;Column15.Type" xml:space="preserve">
+  <data name="&gt;&gt;Custnumber.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Date.Name" xml:space="preserve">
-    <value>Date</value>
+  <data name="&gt;&gt;BTCNumber.Name" xml:space="preserve">
+    <value>BTCNumber</value>
   </data>
-  <data name="&gt;&gt;Date.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Cust.Name" xml:space="preserve">
-    <value>Cust</value>
-  </data>
-  <data name="&gt;&gt;Cust.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Clothesnumber.Name" xml:space="preserve">
-    <value>Clothesnumber</value>
-  </data>
-  <data name="&gt;&gt;Clothesnumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Clothesremining.Name" xml:space="preserve">
-    <value>Clothesremining</value>
-  </data>
-  <data name="&gt;&gt;Clothesremining.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Total.Name" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="&gt;&gt;Total.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Paied.Name" xml:space="preserve">
-    <value>Paied</value>
-  </data>
-  <data name="&gt;&gt;Paied.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Totalremining.Name" xml:space="preserve">
-    <value>Totalremining</value>
-  </data>
-  <data name="&gt;&gt;Totalremining.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Recivrddate.Name" xml:space="preserve">
-    <value>Recivrddate</value>
-  </data>
-  <data name="&gt;&gt;Recivrddate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Status.Name" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="&gt;&gt;Status.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Note.Name" xml:space="preserve">
-    <value>Note</value>
-  </data>
-  <data name="&gt;&gt;Note.Type" xml:space="preserve">
+  <data name="&gt;&gt;BTCNumber.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Delete.Name" xml:space="preserve">
@@ -6640,16 +6586,70 @@
   <data name="&gt;&gt;Delete.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewButtonColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;BTCNumber.Name" xml:space="preserve">
-    <value>BTCNumber</value>
+  <data name="&gt;&gt;Note.Name" xml:space="preserve">
+    <value>Note</value>
   </data>
-  <data name="&gt;&gt;BTCNumber.Type" xml:space="preserve">
+  <data name="&gt;&gt;Note.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;Custnumber.Name" xml:space="preserve">
-    <value>Custnumber</value>
+  <data name="&gt;&gt;Status.Name" xml:space="preserve">
+    <value>Status</value>
   </data>
-  <data name="&gt;&gt;Custnumber.Type" xml:space="preserve">
+  <data name="&gt;&gt;Status.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Recivrddate.Name" xml:space="preserve">
+    <value>Recivrddate</value>
+  </data>
+  <data name="&gt;&gt;Recivrddate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Totalremining.Name" xml:space="preserve">
+    <value>Totalremining</value>
+  </data>
+  <data name="&gt;&gt;Totalremining.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Paied.Name" xml:space="preserve">
+    <value>Paied</value>
+  </data>
+  <data name="&gt;&gt;Paied.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Total.Name" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="&gt;&gt;Total.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Clothesremining.Name" xml:space="preserve">
+    <value>Clothesremining</value>
+  </data>
+  <data name="&gt;&gt;Clothesremining.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Clothesnumber.Name" xml:space="preserve">
+    <value>Clothesnumber</value>
+  </data>
+  <data name="&gt;&gt;Clothesnumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Cust.Name" xml:space="preserve">
+    <value>Cust</value>
+  </data>
+  <data name="&gt;&gt;Cust.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Date.Name" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="&gt;&gt;Date.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Column15.Name" xml:space="preserve">
+    <value>Column15</value>
+  </data>
+  <data name="&gt;&gt;Column15.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

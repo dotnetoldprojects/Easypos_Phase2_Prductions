@@ -487,7 +487,7 @@ namespace Easypos.Tailoring
                                                  Clothesremining = x.tailorheader.Clothesremining,
                                                  Total = x.tailorheader.Total,
                                                  Paied = x.tailorheader.Paied,
-                                                 Totalremining = 0,
+                                                 Totalremining = x.tailorheader.Total - x.tailorheader.Paied,
                                                  Recivrddate = x.tailorheader.Reciveddate,
                                                  Status = x.tailorheader.Status,
                                                  Note = x.tailorheader.Note,
@@ -621,7 +621,7 @@ namespace Easypos.Tailoring
                     dataheader.Clothesremining = entity.tailorheader.Clothesremining;
                     dataheader.Total = entity.tailorheader.Total;
                     dataheader.Paied = entity.tailorheader.Paied;
-                    dataheader.Totalreimining = entity.tailorheader.Totalreimining;
+                    dataheader.Totalreimining = entity.tailorheader.Total - entity.tailorheader.Paied;
                     dataheader.Reciveddate = entity.tailorheader.Reciveddate;
                     dataheader.Status = entity.tailorheader.Status;
                     dataheader.Note = entity.tailorheader.Note;

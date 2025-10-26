@@ -145,20 +145,6 @@ namespace Easypos.Tailoring
             this.textBox26 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dgw = new System.Windows.Forms.DataGridView();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cust = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clothesnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Clothesremining = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Paied = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Totalremining = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Recivrddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.BTCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Custnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -256,6 +242,20 @@ namespace Easypos.Tailoring
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.Custnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BTCNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Recivrddate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Totalremining = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Paied = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clothesremining = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clothesnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cust = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             this.panel17.SuspendLayout();
@@ -1152,105 +1152,6 @@ namespace Easypos.Tailoring
             this.dgw.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgw_CellClick);
             this.dgw.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgw_CellContentClick);
             // 
-            // Column15
-            // 
-            this.Column15.DataPropertyName = "Id";
-            resources.ApplyResources(this.Column15, "Column15");
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            resources.ApplyResources(this.Date, "Date");
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // Cust
-            // 
-            this.Cust.DataPropertyName = "Custname";
-            resources.ApplyResources(this.Cust, "Cust");
-            this.Cust.Name = "Cust";
-            this.Cust.ReadOnly = true;
-            // 
-            // Clothesnumber
-            // 
-            this.Clothesnumber.DataPropertyName = "Clothesnumber";
-            resources.ApplyResources(this.Clothesnumber, "Clothesnumber");
-            this.Clothesnumber.Name = "Clothesnumber";
-            this.Clothesnumber.ReadOnly = true;
-            // 
-            // Clothesremining
-            // 
-            this.Clothesremining.DataPropertyName = "Clothesremining";
-            resources.ApplyResources(this.Clothesremining, "Clothesremining");
-            this.Clothesremining.Name = "Clothesremining";
-            this.Clothesremining.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            resources.ApplyResources(this.Total, "Total");
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // Paied
-            // 
-            this.Paied.DataPropertyName = "Paied";
-            resources.ApplyResources(this.Paied, "Paied");
-            this.Paied.Name = "Paied";
-            this.Paied.ReadOnly = true;
-            // 
-            // Totalremining
-            // 
-            this.Totalremining.DataPropertyName = "Totalremining";
-            resources.ApplyResources(this.Totalremining, "Totalremining");
-            this.Totalremining.Name = "Totalremining";
-            this.Totalremining.ReadOnly = true;
-            // 
-            // Recivrddate
-            // 
-            this.Recivrddate.DataPropertyName = "Recivrddate";
-            resources.ApplyResources(this.Recivrddate, "Recivrddate");
-            this.Recivrddate.Name = "Recivrddate";
-            this.Recivrddate.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            resources.ApplyResources(this.Status, "Status");
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // Note
-            // 
-            this.Note.DataPropertyName = "Note";
-            resources.ApplyResources(this.Note, "Note");
-            this.Note.Name = "Note";
-            this.Note.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            resources.ApplyResources(this.Delete, "Delete");
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Text = "حذف";
-            this.Delete.UseColumnTextForButtonValue = true;
-            // 
-            // BTCNumber
-            // 
-            this.BTCNumber.DataPropertyName = "BTCNumber";
-            resources.ApplyResources(this.BTCNumber, "BTCNumber");
-            this.BTCNumber.Name = "BTCNumber";
-            this.BTCNumber.ReadOnly = true;
-            // 
-            // Custnumber
-            // 
-            this.Custnumber.DataPropertyName = "Custnumber";
-            resources.ApplyResources(this.Custnumber, "Custnumber");
-            this.Custnumber.Name = "Custnumber";
-            this.Custnumber.ReadOnly = true;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.PowderBlue;
@@ -1960,6 +1861,105 @@ namespace Easypos.Tailoring
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // Custnumber
+            // 
+            this.Custnumber.DataPropertyName = "Custnumber";
+            resources.ApplyResources(this.Custnumber, "Custnumber");
+            this.Custnumber.Name = "Custnumber";
+            this.Custnumber.ReadOnly = true;
+            // 
+            // BTCNumber
+            // 
+            this.BTCNumber.DataPropertyName = "BTCNumber";
+            resources.ApplyResources(this.BTCNumber, "BTCNumber");
+            this.BTCNumber.Name = "BTCNumber";
+            this.BTCNumber.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            resources.ApplyResources(this.Delete, "Delete");
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Text = "حذف";
+            this.Delete.UseColumnTextForButtonValue = true;
+            // 
+            // Note
+            // 
+            this.Note.DataPropertyName = "Note";
+            resources.ApplyResources(this.Note, "Note");
+            this.Note.Name = "Note";
+            this.Note.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            resources.ApplyResources(this.Status, "Status");
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // Recivrddate
+            // 
+            this.Recivrddate.DataPropertyName = "Recivrddate";
+            resources.ApplyResources(this.Recivrddate, "Recivrddate");
+            this.Recivrddate.Name = "Recivrddate";
+            this.Recivrddate.ReadOnly = true;
+            // 
+            // Totalremining
+            // 
+            this.Totalremining.DataPropertyName = "Totalremining";
+            resources.ApplyResources(this.Totalremining, "Totalremining");
+            this.Totalremining.Name = "Totalremining";
+            this.Totalremining.ReadOnly = true;
+            // 
+            // Paied
+            // 
+            this.Paied.DataPropertyName = "Paied";
+            resources.ApplyResources(this.Paied, "Paied");
+            this.Paied.Name = "Paied";
+            this.Paied.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            resources.ApplyResources(this.Total, "Total");
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // Clothesremining
+            // 
+            this.Clothesremining.DataPropertyName = "Clothesremining";
+            resources.ApplyResources(this.Clothesremining, "Clothesremining");
+            this.Clothesremining.Name = "Clothesremining";
+            this.Clothesremining.ReadOnly = true;
+            // 
+            // Clothesnumber
+            // 
+            this.Clothesnumber.DataPropertyName = "Clothesnumber";
+            resources.ApplyResources(this.Clothesnumber, "Clothesnumber");
+            this.Clothesnumber.Name = "Clothesnumber";
+            this.Clothesnumber.ReadOnly = true;
+            // 
+            // Cust
+            // 
+            this.Cust.DataPropertyName = "Custname";
+            resources.ApplyResources(this.Cust, "Cust");
+            this.Cust.Name = "Cust";
+            this.Cust.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            resources.ApplyResources(this.Date, "Date");
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // Column15
+            // 
+            this.Column15.DataPropertyName = "Id";
+            resources.ApplyResources(this.Column15, "Column15");
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            // 
             // Frmtailoring
             // 
             resources.ApplyResources(this, "$this");
@@ -2318,6 +2318,9 @@ namespace Easypos.Tailoring
         private System.Windows.Forms.TextBox textBox32;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cust;
@@ -2332,8 +2335,5 @@ namespace Easypos.Tailoring
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.DataGridViewTextBoxColumn BTCNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Custnumber;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.CheckBox checkBox4;
     }
 }
