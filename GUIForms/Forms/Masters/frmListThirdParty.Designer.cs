@@ -32,6 +32,8 @@ namespace Easypos.Masters
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListThirdParty));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Countrybox = new System.Windows.Forms.ComboBox();
             this.cbzatca = new System.Windows.Forms.CheckBox();
             this.comdata = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -95,8 +97,9 @@ namespace Easypos.Masters
             this.Taxnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Billnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pagenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Countrybox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.comdata.SuspendLayout();
@@ -117,6 +120,9 @@ namespace Easypos.Masters
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.Countrybox);
             this.groupBox3.Controls.Add(this.cbzatca);
@@ -142,6 +148,18 @@ namespace Easypos.Masters
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // Countrybox
+            // 
+            this.Countrybox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Countrybox.FormattingEnabled = true;
+            resources.ApplyResources(this.Countrybox, "Countrybox");
+            this.Countrybox.Name = "Countrybox";
             // 
             // cbzatca
             // 
@@ -588,17 +606,28 @@ namespace Easypos.Masters
             this.Pagenumber.Name = "Pagenumber";
             this.Pagenumber.ReadOnly = true;
             // 
-            // Countrybox
+            // button2
             // 
-            this.Countrybox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Countrybox.FormattingEnabled = true;
-            resources.ApplyResources(this.Countrybox, "Countrybox");
-            this.Countrybox.Name = "Countrybox";
+            this.button2.BackColor = System.Drawing.Color.PowderBlue;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label5
+            // comboBox1
             // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
             // 
             // frmListThirdParty
             // 
@@ -696,5 +725,8 @@ namespace Easypos.Masters
         private System.Windows.Forms.CheckBox cbzatca;
         internal System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox Countrybox;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        internal System.Windows.Forms.Label label6;
     }
 }

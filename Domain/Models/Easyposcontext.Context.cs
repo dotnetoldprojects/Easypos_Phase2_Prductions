@@ -39,8 +39,6 @@ public partial class EasyposEntities : DbContext
 
     public virtual DbSet<category> categories { get; set; }
 
-    public virtual DbSet<company> companies { get; set; }
-
     public virtual DbSet<expencestype> expencestypes { get; set; }
 
     public virtual DbSet<expens> expenses { get; set; }
@@ -73,8 +71,6 @@ public partial class EasyposEntities : DbContext
 
     public virtual DbSet<staff> staffs { get; set; }
 
-    public virtual DbSet<thirdparty> thirdparties { get; set; }
-
     public virtual DbSet<transaction> transactions { get; set; }
 
     public virtual DbSet<unittype> unittypes { get; set; }
@@ -82,16 +78,6 @@ public partial class EasyposEntities : DbContext
     public virtual DbSet<expensesview> expensesviews { get; set; }
 
     public virtual DbSet<voucher> vouchers { get; set; }
-
-    public virtual DbSet<alltailoring> alltailorings { get; set; }
-
-    public virtual DbSet<tailorbocket> tailorbockets { get; set; }
-
-    public virtual DbSet<tailordetaile> tailordetailes { get; set; }
-
-    public virtual DbSet<tailorhand> tailorhands { get; set; }
-
-    public virtual DbSet<tailorheader> tailorheaders { get; set; }
 
     public virtual DbSet<stok_transaction> stok_transaction { get; set; }
 
@@ -103,11 +89,27 @@ public partial class EasyposEntities : DbContext
 
     public virtual DbSet<invtransaction> invtransactions { get; set; }
 
+    public virtual DbSet<exceptionpro> exceptionproes { get; set; }
+
+    public virtual DbSet<company> companies { get; set; }
+
+    public virtual DbSet<alltailoring> alltailorings { get; set; }
+
+    public virtual DbSet<tailorbocket> tailorbockets { get; set; }
+
+    public virtual DbSet<tailordetaile> tailordetailes { get; set; }
+
+    public virtual DbSet<tailorhand> tailorhands { get; set; }
+
+    public virtual DbSet<tailorheader> tailorheaders { get; set; }
+
     public virtual DbSet<tailorjabzor> tailorjabzors { get; set; }
 
     public virtual DbSet<tailorneck> tailornecks { get; set; }
 
-    public virtual DbSet<exceptionpro> exceptionproes { get; set; }
+    public virtual DbSet<thirdparty> thirdparties { get; set; }
+
+    public virtual DbSet<Kafil> Kafils { get; set; }
 
 
     public virtual int Getpaymentin()

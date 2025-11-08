@@ -29,11 +29,15 @@ public partial class tailorheader
 
     public string Id { get; set; }
 
+    public Nullable<int> BTCNumber { get; set; }
+
     public int Custid { get; set; }
 
     public string Date { get; set; }
 
     public Nullable<int> Clothesnumber { get; set; }
+
+    public Nullable<int> Clothesready { get; set; }
 
     public Nullable<int> Clothesrecived { get; set; }
 
@@ -50,10 +54,6 @@ public partial class tailorheader
     public string Status { get; set; }
 
     public string Note { get; set; }
-
-    public Nullable<int> Clothesready { get; set; }
-
-    public Nullable<int> BTCNumber { get; set; }
 
 
 

@@ -49,6 +49,7 @@ namespace UOW
         public IRepository<returned> returneds { get; private set; }
         public IRepository<returnedetaile> returnedetailes { get; private set; }
         public IRepository<invtransaction> invtransactions { get; private set; }
+        public IRepository<Kafil> Kafils { get; private set; }
         public Unitofwork(EasyposEntities Dbc)
         {
             _Dbc = Dbc;
@@ -89,6 +90,7 @@ namespace UOW
             returneds = new Repository<returned>(_Dbc);
             returnedetailes = new Repository<returnedetaile>(_Dbc);
             invtransactions = new Repository<invtransaction>(_Dbc);
+            Kafils = new Repository<Kafil>(_Dbc);
         }
         public int Complete()
         {

@@ -47,6 +47,8 @@ namespace UOW
         IRepository<returned> returneds { get; }
         IRepository<returnedetaile> returnedetailes { get; }
         IRepository<invtransaction> invtransactions { get; }
+        IRepository<Kafil> Kafils { get; }
+
         int Complete();
     }
 }

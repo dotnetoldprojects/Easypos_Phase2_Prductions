@@ -115,6 +115,9 @@
             this.txt_commonName = new System.Windows.Forms.TextBox();
             this.Others = new System.Windows.Forms.TabPage();
             this.GOthers = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.Lineproduction = new System.Windows.Forms.CheckBox();
             this.Printgroup = new System.Windows.Forms.GroupBox();
             this.CBPrinters = new System.Windows.Forms.ComboBox();
@@ -142,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Cashierdgv)).BeginInit();
             this.Others.SuspendLayout();
             this.GOthers.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.Printgroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -730,6 +734,7 @@
             // 
             // GOthers
             // 
+            this.GOthers.Controls.Add(this.groupBox2);
             this.GOthers.Controls.Add(this.Lineproduction);
             this.GOthers.Controls.Add(this.Printgroup);
             this.GOthers.Controls.Add(this.Restlist);
@@ -740,6 +745,29 @@
             resources.ApplyResources(this.GOthers, "GOthers");
             this.GOthers.Name = "GOthers";
             this.GOthers.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.label20);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
             // 
             // Lineproduction
             // 
@@ -858,6 +886,8 @@
             this.Others.ResumeLayout(false);
             this.GOthers.ResumeLayout(false);
             this.GOthers.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.Printgroup.ResumeLayout(false);
             this.Printgroup.PerformLayout();
             this.ResumeLayout(false);
@@ -964,5 +994,8 @@
         private System.Windows.Forms.CheckBox DSC;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox CSType;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label20;
     }
 }

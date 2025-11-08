@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="CompanyID" />
           </Key>
-          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="ENName" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="1000" Nullable="false" />
@@ -73,10 +73,9 @@
           <Property Name="PostalZone" Type="nvarchar" MaxLength="50" />
           <Property Name="VatPercent" Type="float" />
           <Property Name="PricesWithVAT" Type="smallint" />
-          <Property Name="VatPercent1" Type="float" Nullable="false" />
-          <Property Name="PricesWithVAT1" Type="smallint" />
           <Property Name="Isusesigne" Type="bit" />
           <Property Name="Signtype" Type="int" />
+          <Property Name="Salestype" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="exceptionpro">
           <Key>
@@ -145,6 +144,14 @@
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Itemid" Type="int" Nullable="false" />
           <Property Name="invoiceno" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kafil">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="orders">
           <Key>
@@ -505,6 +512,7 @@
           <Property Name="CityName" Type="nvarchar" MaxLength="50" />
           <Property Name="PostalZone" Type="nvarchar" MaxLength="50" />
           <Property Name="ISUsePhase2" Type="bit" />
+          <Property Name="Kafid" Type="int" />
         </EntityType>
         <EntityType Name="transactions">
           <Key>
@@ -646,6 +654,30 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tailorheader_thirdparty">
+          <End Role="thirdparty" Type="Self.thirdparty" Multiplicity="1" />
+          <End Role="tailorheader" Type="Self.tailorheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="thirdparty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tailorheader">
+              <PropertyRef Name="Custid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_thirdparty_Kafil">
+          <End Role="Kafil" Type="Self.Kafil" Multiplicity="0..1" />
+          <End Role="thirdparty" Type="Self.thirdparty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="thirdparty">
+              <PropertyRef Name="Kafid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="Getpaymentin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="resturant" />
         <Function Name="Getpaymentout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="resturant" />
         <Function Name="Getreturne" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="resturant" />
@@ -661,6 +693,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySet Name="invtransaction" EntityType="Self.invtransaction" Schema="resturant" store:Type="Tables" />
           <EntitySet Name="items" EntityType="Self.items" Schema="resturant" store:Type="Tables" />
           <EntitySet Name="itemsales" EntityType="Self.itemsales" Schema="resturant" store:Type="Tables" />
+          <EntitySet Name="Kafil" EntityType="Self.Kafil" Schema="resturant" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="resturant" store:Type="Tables" />
           <EntitySet Name="payment" EntityType="Self.payment" Schema="resturant" store:Type="Tables" />
           <EntitySet Name="paymentout" EntityType="Self.paymentout" Schema="resturant" store:Type="Tables" />
@@ -720,6 +753,14 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             <End Role="tailorneck" EntitySet="tailorneck" />
             <End Role="alltailoring" EntitySet="alltailoring" />
           </AssociationSet>
+          <AssociationSet Name="FK_tailorheader_thirdparty" Association="Self.FK_tailorheader_thirdparty">
+            <End Role="thirdparty" EntitySet="thirdparty" />
+            <End Role="tailorheader" EntitySet="tailorheader" />
+          </AssociationSet>
+          <AssociationSet Name="FK_thirdparty_Kafil" Association="Self.FK_thirdparty_Kafil">
+            <End Role="Kafil" EntitySet="Kafil" />
+            <End Role="thirdparty" EntitySet="thirdparty" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -751,44 +792,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="CategoryName" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Color" Type="Int32" />
-        </EntityType>
-        <EntityType Name="company">
-          <Key>
-            <PropertyRef Name="CompanyID" />
-          </Key>
-          <Property Name="CompanyID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ENName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PhoneNo" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Taxnumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CRN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyLogo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Logoname" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="LogoENName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="AllowInventory" Type="Binary" MaxLength="1" FixedLength="true" />
-          <Property Name="ShowInPOS" Type="Binary" MaxLength="1" FixedLength="true" />
-          <Property Name="IsUseShift" Type="Binary" MaxLength="1" FixedLength="true" />
-          <Property Name="Discuontcheck" Type="Binary" MaxLength="1" FixedLength="true" />
-          <Property Name="Printername" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Printertype" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Sysnametype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ISUSEPrinter" Type="Boolean" />
-          <Property Name="ISUSEResturant" Type="Boolean" />
-          <Property Name="ISUSElineproduction" Type="Boolean" />
-          <Property Name="Systemlang" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="ISUsePhase2" Type="Boolean" Nullable="false" />
-          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BuildingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CitySubdivisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PostalZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="VatPercent" Type="Double" />
-          <Property Name="PricesWithVAT" Type="Int16" />
-          <Property Name="VatPercent1" Type="Double" Nullable="false" />
-          <Property Name="PricesWithVAT1" Type="Int16" />
-          <Property Name="Isusesigne" Type="Boolean" />
-          <Property Name="Signtype" Type="Int32" />
         </EntityType>
         <EntityType Name="expencestype">
           <Key>
@@ -1015,32 +1018,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="UPassword" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="thirdparty">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="850" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="850" FixedLength="false" Unicode="true" />
-          <Property Name="Comments" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="OpeningBalance" Type="Double" />
-          <Property Name="Taxnumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Billnumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Pagenumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BuildingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CitySubdivisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PostalZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ISUsePhase2" Type="Boolean" />
-          <Property Name="CRN" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tailorheaders" Relationship="EasyposModel.FK_tailorheader_thirdparty" FromRole="thirdparty" ToRole="tailorheader" />
-        </EntityType>
         <EntityType Name="transaction">
           <Key>
             <PropertyRef Name="ID" />
@@ -1079,7 +1056,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
         <EntityContainer Name="EasyposEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cashiers" EntityType="Self.cashier" />
           <EntitySet Name="categories" EntityType="Self.category" />
-          <EntitySet Name="companies" EntityType="Self.company" />
           <EntitySet Name="expencestypes" EntityType="Self.expencestype" />
           <EntitySet Name="expenses" EntityType="Self.expens" />
           <EntitySet Name="items" EntityType="Self.item" />
@@ -1096,7 +1072,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySet Name="sales" EntityType="Self.sale" />
           <EntitySet Name="salesdetailes" EntityType="Self.salesdetaile" />
           <EntitySet Name="staffs" EntityType="Self.staff" />
-          <EntitySet Name="thirdparties" EntityType="Self.thirdparty" />
           <EntitySet Name="transactions" EntityType="Self.transaction" />
           <EntitySet Name="unittypes" EntityType="Self.unittype" />
           <EntitySet Name="expensesviews" EntityType="Self.expensesview" />
@@ -1105,11 +1080,21 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <FunctionImport Name="Getreturne" />
           <FunctionImport Name="Gettransactions" />
           <EntitySet Name="vouchers" EntityType="EasyposModel.voucher" />
+          <EntitySet Name="stok_transaction" EntityType="EasyposModel.stok_transaction" />
+          <EntitySet Name="returneds" EntityType="EasyposModel.returned" />
+          <EntitySet Name="returnedetailes" EntityType="EasyposModel.returnedetaile" />
+          <EntitySet Name="UBLs" EntityType="EasyposModel.UBL" />
+          <EntitySet Name="invtransactions" EntityType="EasyposModel.invtransaction" />
+          <EntitySet Name="exceptionproes" EntityType="EasyposModel.exceptionpro" />
+          <EntitySet Name="companies" EntityType="EasyposModel.company" />
           <EntitySet Name="alltailorings" EntityType="EasyposModel.alltailoring" />
           <EntitySet Name="tailorbockets" EntityType="EasyposModel.tailorbocket" />
           <EntitySet Name="tailordetailes" EntityType="EasyposModel.tailordetaile" />
           <EntitySet Name="tailorhands" EntityType="EasyposModel.tailorhand" />
           <EntitySet Name="tailorheaders" EntityType="EasyposModel.tailorheader" />
+          <EntitySet Name="tailorjabzors" EntityType="EasyposModel.tailorjabzor" />
+          <EntitySet Name="tailornecks" EntityType="EasyposModel.tailorneck" />
+          <EntitySet Name="thirdparties" EntityType="EasyposModel.thirdparty" />
           <AssociationSet Name="FK_alltailoring_tailorbocket" Association="EasyposModel.FK_alltailoring_tailorbocket">
             <End Role="tailorbocket" EntitySet="tailorbockets" />
             <End Role="alltailoring" EntitySet="alltailorings" />
@@ -1126,17 +1111,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             <End Role="tailorheader" EntitySet="tailorheaders" />
             <End Role="alltailoring" EntitySet="alltailorings" />
           </AssociationSet>
-          <AssociationSet Name="FK_tailorheader_thirdparty" Association="EasyposModel.FK_tailorheader_thirdparty">
-            <End Role="thirdparty" EntitySet="thirdparties" />
-            <End Role="tailorheader" EntitySet="tailorheaders" />
-          </AssociationSet>
-          <EntitySet Name="stok_transaction" EntityType="EasyposModel.stok_transaction" />
-          <EntitySet Name="returneds" EntityType="EasyposModel.returned" />
-          <EntitySet Name="returnedetailes" EntityType="EasyposModel.returnedetaile" />
-          <EntitySet Name="UBLs" EntityType="EasyposModel.UBL" />
-          <EntitySet Name="invtransactions" EntityType="EasyposModel.invtransaction" />
-          <EntitySet Name="tailorjabzors" EntityType="EasyposModel.tailorjabzor" />
-          <EntitySet Name="tailornecks" EntityType="EasyposModel.tailorneck" />
           <AssociationSet Name="FK_alltailoring_tailorjabzor" Association="EasyposModel.FK_alltailoring_tailorjabzor">
             <End Role="tailorjabzor" EntitySet="tailorjabzors" />
             <End Role="alltailoring" EntitySet="alltailorings" />
@@ -1145,7 +1119,15 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             <End Role="tailorneck" EntitySet="tailornecks" />
             <End Role="alltailoring" EntitySet="alltailorings" />
           </AssociationSet>
-          <EntitySet Name="exceptionproes" EntityType="EasyposModel.exceptionpro" />
+          <AssociationSet Name="FK_tailorheader_thirdparty" Association="EasyposModel.FK_tailorheader_thirdparty">
+            <End Role="thirdparty" EntitySet="thirdparties" />
+            <End Role="tailorheader" EntitySet="tailorheaders" />
+          </AssociationSet>
+          <EntitySet Name="Kafils" EntityType="EasyposModel.Kafil" />
+          <AssociationSet Name="FK_thirdparty_Kafil" Association="EasyposModel.FK_thirdparty_Kafil">
+            <End Role="Kafil" EntitySet="Kafils" />
+            <End Role="thirdparty" EntitySet="thirdparties" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="voucher">
           <Key>
@@ -1161,6 +1143,126 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Methode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Billnum" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="stok_transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proid" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="returned">
+          <Key>
+            <PropertyRef Name="Invoiceno" />
+          </Key>
+          <Property Name="Invoiceno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TDate" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="NonVatTotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="VatAmount" Type="Double" Nullable="false" />
+          <Property Name="TotalAmount" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Returnedtype" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="returnedetaile">
+          <Key>
+            <PropertyRef Name="TDetailNo" />
+          </Key>
+          <Property Name="TDetailNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="Int32" Nullable="false" />
+          <Property Name="ProductNo" Type="Int64" Nullable="false" />
+          <Property Name="TDDesc" Type="String" MaxLength="145" FixedLength="false" Unicode="true" />
+          <Property Name="Unitid" Type="Int32" />
+          <Property Name="ItemPrice" Type="Double" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="Subtotal" Type="Double" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="Totafterdiscount" Type="Double" />
+          <Property Name="Total" Type="Decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="UBL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Invoicehash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Uuid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Invoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Saleid" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="invoicenumber" Type="Int32" Nullable="false" />
+          <Property Name="PIH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Flage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="invtransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Credit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Dipt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Proid" Type="Int32" Nullable="false" />
+          <Property Name="transid" Type="Int32" Nullable="false" />
+          <Property Name="Itemid" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="exceptionpro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MethodName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LineNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ENName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Taxnumber" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CRN" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyLogo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Logoname" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LogoENName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AllowInventory" Type="Binary" MaxLength="1" FixedLength="true" />
+          <Property Name="ShowInPOS" Type="Binary" MaxLength="1" FixedLength="true" />
+          <Property Name="IsUseShift" Type="Binary" MaxLength="1" FixedLength="true" />
+          <Property Name="Discuontcheck" Type="Binary" MaxLength="1" FixedLength="true" />
+          <Property Name="Printername" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Printertype" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Sysnametype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ISUSEPrinter" Type="Boolean" />
+          <Property Name="ISUSEResturant" Type="Boolean" />
+          <Property Name="ISUSElineproduction" Type="Boolean" />
+          <Property Name="Systemlang" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="ISUsePhase2" Type="Boolean" Nullable="false" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuildingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CitySubdivisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VatPercent" Type="Double" />
+          <Property Name="PricesWithVAT" Type="Int16" />
+          <Property Name="Isusesigne" Type="Boolean" />
+          <Property Name="Signtype" Type="Int32" />
+          <Property Name="Salestype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="alltailoring">
           <Key>
@@ -1236,9 +1338,11 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BTCNumber" Type="Int32" />
           <Property Name="Custid" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Clothesnumber" Type="Int32" />
+          <Property Name="Clothesready" Type="Int32" />
           <Property Name="Clothesrecived" Type="Int32" />
           <Property Name="Clothesremining" Type="Int32" />
           <Property Name="Total" Type="Int32" />
@@ -1249,8 +1353,75 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorheader" FromRole="tailorheader" ToRole="alltailoring" />
           <NavigationProperty Name="thirdparty" Relationship="EasyposModel.FK_tailorheader_thirdparty" FromRole="tailorheader" ToRole="thirdparty" />
-          <Property Name="Clothesready" Type="Int32" />
-          <Property Name="BTCNumber" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tailorjabzor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Jab1" Type="Boolean" />
+          <Property Name="Jab2" Type="Boolean" />
+          <Property Name="Jab3" Type="Boolean" />
+          <Property Name="Jab4" Type="Boolean" />
+          <Property Name="Jab5" Type="Boolean" />
+          <Property Name="Jab6" Type="Boolean" />
+          <Property Name="Jab7" Type="Boolean" />
+          <Property Name="Jab8" Type="Boolean" />
+          <Property Name="Jab9" Type="Boolean" />
+          <Property Name="Jab10" Type="Boolean" />
+          <Property Name="Zigzag" Type="Boolean" />
+          <Property Name="txtnumber" Type="Int32" />
+          <Property Name="txt" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorjabzor" FromRole="tailorjabzor" ToRole="alltailoring" />
+        </EntityType>
+        <EntityType Name="tailorneck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Plain" Type="Boolean" />
+          <Property Name="Plainfrench" Type="Boolean" />
+          <Property Name="Regulartipper" Type="Boolean" />
+          <Property Name="Closedflap" Type="Boolean" />
+          <Property Name="Plainhidden" Type="Boolean" />
+          <Property Name="Chinese" Type="Boolean" />
+          <Property Name="Openflap" Type="Boolean" />
+          <Property Name="Frenchflip" Type="Boolean" />
+          <Property Name="txtnumber" Type="Int32" />
+          <Property Name="texta" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="textb" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="txtnumberb" Type="Int32" />
+          <Property Name="textc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="textd" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorneck" FromRole="tailorneck" ToRole="alltailoring" />
+        </EntityType>
+        <EntityType Name="thirdparty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="850" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="850" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="OpeningBalance" Type="Double" />
+          <Property Name="Taxnumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="CRN" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Billnumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Pagenumber" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuildingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CitySubdivisionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalZone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISUsePhase2" Type="Boolean" />
+          <NavigationProperty Name="tailorheaders" Relationship="EasyposModel.FK_tailorheader_thirdparty" FromRole="thirdparty" ToRole="tailorheader" />
+          <Property Name="Kafid" Type="Int32" />
+          <NavigationProperty Name="Kafil" Relationship="EasyposModel.FK_thirdparty_Kafil" FromRole="thirdparty" ToRole="Kafil" />
         </EntityType>
         <Association Name="FK_alltailoring_tailorbocket">
           <End Type="EasyposModel.tailorbocket" Role="tailorbocket" Multiplicity="1" />
@@ -1300,128 +1471,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tailorheader_thirdparty">
-          <End Type="EasyposModel.thirdparty" Role="thirdparty" Multiplicity="1" />
-          <End Type="EasyposModel.tailorheader" Role="tailorheader" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="thirdparty">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="tailorheader">
-              <PropertyRef Name="Custid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="stok_transaction">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Proid" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="returned">
-          <Key>
-            <PropertyRef Name="Invoiceno" />
-          </Key>
-          <Property Name="Invoiceno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TDate" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="NonVatTotal" Type="Double" Nullable="false" />
-          <Property Name="Discount" Type="Double" Nullable="false" />
-          <Property Name="VatAmount" Type="Double" Nullable="false" />
-          <Property Name="TotalAmount" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Returnedtype" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="returnedetaile">
-          <Key>
-            <PropertyRef Name="TDetailNo" />
-          </Key>
-          <Property Name="TDetailNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvoiceNo" Type="Int32" Nullable="false" />
-          <Property Name="ProductNo" Type="Int64" Nullable="false" />
-          <Property Name="TDDesc" Type="String" MaxLength="145" FixedLength="false" Unicode="true" />
-          <Property Name="Unitid" Type="Int32" />
-          <Property Name="ItemPrice" Type="Double" Nullable="false" />
-          <Property Name="Quantity" Type="Double" Nullable="false" />
-          <Property Name="Subtotal" Type="Double" Nullable="false" />
-          <Property Name="Discount" Type="Double" Nullable="false" />
-          <Property Name="Totafterdiscount" Type="Double" />
-          <Property Name="Total" Type="Decimal" Precision="8" Scale="2" />
-        </EntityType>
-        <EntityType Name="UBL">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QRCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Invoicehash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Uuid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Invoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Saleid" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="invoicenumber" Type="Int32" Nullable="false" />
-          <Property Name="PIH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Flage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="invtransaction">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Credit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Dipt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="Proid" Type="Int32" Nullable="false" />
-          <Property Name="transid" Type="Int32" Nullable="false" />
-          <Property Name="Itemid" Type="Int32" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="tailorjabzor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Jab1" Type="Boolean" />
-          <Property Name="Jab2" Type="Boolean" />
-          <Property Name="Jab3" Type="Boolean" />
-          <Property Name="Jab4" Type="Boolean" />
-          <Property Name="Jab5" Type="Boolean" />
-          <Property Name="Jab6" Type="Boolean" />
-          <Property Name="Jab7" Type="Boolean" />
-          <Property Name="Jab8" Type="Boolean" />
-          <Property Name="Jab9" Type="Boolean" />
-          <Property Name="Jab10" Type="Boolean" />
-          <Property Name="txtnumber" Type="Int32" />
-          <Property Name="txt" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorjabzor" FromRole="tailorjabzor" ToRole="alltailoring" />
-          <Property Name="Zigzag" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tailorneck">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Plain" Type="Boolean" />
-          <Property Name="Plainfrench" Type="Boolean" />
-          <Property Name="Regulartipper" Type="Boolean" />
-          <Property Name="Closedflap" Type="Boolean" />
-          <Property Name="Plainhidden" Type="Boolean" />
-          <Property Name="Chinese" Type="Boolean" />
-          <Property Name="Openflap" Type="Boolean" />
-          <Property Name="Frenchflip" Type="Boolean" />
-          <Property Name="txtnumber" Type="Int32" />
-          <Property Name="texta" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="textb" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="alltailorings" Relationship="EasyposModel.FK_alltailoring_tailorneck" FromRole="tailorneck" ToRole="alltailoring" />
-          <Property Name="txtnumberb" Type="Int32" />
-          <Property Name="textc" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="textd" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
         <Association Name="FK_alltailoring_tailorjabzor">
           <End Type="EasyposModel.tailorjabzor" Role="tailorjabzor" Multiplicity="1" />
           <End Type="EasyposModel.alltailoring" Role="alltailoring" Multiplicity="*" />
@@ -1446,20 +1495,39 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="exceptionpro">
+        <Association Name="FK_tailorheader_thirdparty">
+          <End Type="EasyposModel.thirdparty" Role="thirdparty" Multiplicity="1" />
+          <End Type="EasyposModel.tailorheader" Role="tailorheader" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="thirdparty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tailorheader">
+              <PropertyRef Name="Custid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Kafil">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="StackTrace" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MethodName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LineNumber" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FormName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="thirdparties" Relationship="EasyposModel.FK_thirdparty_Kafil" FromRole="Kafil" ToRole="thirdparty" />
         </EntityType>
+        <Association Name="FK_thirdparty_Kafil">
+          <End Type="EasyposModel.Kafil" Role="Kafil" Multiplicity="0..1" />
+          <End Type="EasyposModel.thirdparty" Role="thirdparty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kafil">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="thirdparty">
+              <PropertyRef Name="Kafid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1492,45 +1560,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="companies">
-            <EntityTypeMapping TypeName="EasyposModel.company">
-              <MappingFragment StoreEntitySet="company">
-                <ScalarProperty Name="Signtype" ColumnName="Signtype" />
-                <ScalarProperty Name="Isusesigne" ColumnName="Isusesigne" />
-                <ScalarProperty Name="PricesWithVAT1" ColumnName="PricesWithVAT1" />
-                <ScalarProperty Name="VatPercent1" ColumnName="VatPercent1" />
-                <ScalarProperty Name="PricesWithVAT" ColumnName="PricesWithVAT" />
-                <ScalarProperty Name="VatPercent" ColumnName="VatPercent" />
-                <ScalarProperty Name="PostalZone" ColumnName="PostalZone" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="CitySubdivisionName" ColumnName="CitySubdivisionName" />
-                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ENName" ColumnName="ENName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="Taxnumber" ColumnName="Taxnumber" />
-                <ScalarProperty Name="CRN" ColumnName="CRN" />
-                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
-                <ScalarProperty Name="Logoname" ColumnName="Logoname" />
-                <ScalarProperty Name="LogoENName" ColumnName="LogoENName" />
-                <ScalarProperty Name="AllowInventory" ColumnName="AllowInventory" />
-                <ScalarProperty Name="ShowInPOS" ColumnName="ShowInPOS" />
-                <ScalarProperty Name="IsUseShift" ColumnName="IsUseShift" />
-                <ScalarProperty Name="Discuontcheck" ColumnName="Discuontcheck" />
-                <ScalarProperty Name="Printername" ColumnName="Printername" />
-                <ScalarProperty Name="Printertype" ColumnName="Printertype" />
-                <ScalarProperty Name="Sysnametype" ColumnName="Sysnametype" />
-                <ScalarProperty Name="ISUSEPrinter" ColumnName="ISUSEPrinter" />
-                <ScalarProperty Name="ISUSEResturant" ColumnName="ISUSEResturant" />
-                <ScalarProperty Name="ISUSElineproduction" ColumnName="ISUSElineproduction" />
-                <ScalarProperty Name="Systemlang" ColumnName="Systemlang" />
-                <ScalarProperty Name="ISUsePhase2" ColumnName="ISUsePhase2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1775,32 +1804,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="thirdparties">
-            <EntityTypeMapping TypeName="EasyposModel.thirdparty">
-              <MappingFragment StoreEntitySet="thirdparty">
-                <ScalarProperty Name="CRN" ColumnName="CRN" />
-                <ScalarProperty Name="ISUsePhase2" ColumnName="ISUsePhase2" />
-                <ScalarProperty Name="PostalZone" ColumnName="PostalZone" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="CitySubdivisionName" ColumnName="CitySubdivisionName" />
-                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
-                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
-                <ScalarProperty Name="Taxnumber" ColumnName="Taxnumber" />
-                <ScalarProperty Name="Billnumber" ColumnName="Billnumber" />
-                <ScalarProperty Name="Pagenumber" ColumnName="Pagenumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="transactions">
             <EntityTypeMapping TypeName="EasyposModel.transaction">
               <MappingFragment StoreEntitySet="transactions">
@@ -1851,90 +1854,6 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Thiredpartyid" ColumnName="Thiredpartyid" />
                 <ScalarProperty Name="Billnumber" ColumnName="Billnumber" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="alltailorings">
-            <EntityTypeMapping TypeName="EasyposModel.alltailoring">
-              <MappingFragment StoreEntitySet="alltailoring">
-                <ScalarProperty Name="Alltable" ColumnName="Alltable" />
-                <ScalarProperty Name="Tailheaderid" ColumnName="Tailheaderid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tailorbockets">
-            <EntityTypeMapping TypeName="EasyposModel.tailorbocket">
-              <MappingFragment StoreEntitySet="tailorbocket">
-                <ScalarProperty Name="Bok11" ColumnName="Bok11" />
-                <ScalarProperty Name="Bok10" ColumnName="Bok10" />
-                <ScalarProperty Name="Bok9" ColumnName="Bok9" />
-                <ScalarProperty Name="Bok8" ColumnName="Bok8" />
-                <ScalarProperty Name="Bok7" ColumnName="Bok7" />
-                <ScalarProperty Name="Bok6" ColumnName="Bok6" />
-                <ScalarProperty Name="Bok5" ColumnName="Bok5" />
-                <ScalarProperty Name="Bok4" ColumnName="Bok4" />
-                <ScalarProperty Name="Bok3" ColumnName="Bok3" />
-                <ScalarProperty Name="Bok2" ColumnName="Bok2" />
-                <ScalarProperty Name="Bok1" ColumnName="Bok1" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tailordetailes">
-            <EntityTypeMapping TypeName="EasyposModel.tailordetaile">
-              <MappingFragment StoreEntitySet="tailordetaile">
-                <ScalarProperty Name="Aujra" ColumnName="Aujra" />
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Handpalm" ColumnName="Handpalm" />
-                <ScalarProperty Name="Breadthbelow" ColumnName="Breadthbelow" />
-                <ScalarProperty Name="Handwidthbelow" ColumnName="Handwidthbelow" />
-                <ScalarProperty Name="Handwidthabove" ColumnName="Handwidthabove" />
-                <ScalarProperty Name="Chest" ColumnName="Chest" />
-                <ScalarProperty Name="Breadth" ColumnName="Breadth" />
-                <ScalarProperty Name="Neck" ColumnName="Neck" />
-                <ScalarProperty Name="Handlength" ColumnName="Handlength" />
-                <ScalarProperty Name="Shoulder" ColumnName="Shoulder" />
-                <ScalarProperty Name="Backlength" ColumnName="Backlength" />
-                <ScalarProperty Name="Frontlength" ColumnName="Frontlength" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tailorhands">
-            <EntityTypeMapping TypeName="EasyposModel.tailorhand">
-              <MappingFragment StoreEntitySet="tailorhand">
-                <ScalarProperty Name="Triangle" ColumnName="Triangle" />
-                <ScalarProperty Name="Plain_cupcake" ColumnName="Plain-cupcake" />
-                <ScalarProperty Name="Plain" ColumnName="Plain" />
-                <ScalarProperty Name="Round" ColumnName="Round" />
-                <ScalarProperty Name="Horny" ColumnName="Horny" />
-                <ScalarProperty Name="Square" ColumnName="Square" />
-                <ScalarProperty Name="Inverted" ColumnName="Inverted" />
-                <ScalarProperty Name="Taxtb" ColumnName="Taxtb" />
-                <ScalarProperty Name="Texta" ColumnName="Texta" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tailorheaders">
-            <EntityTypeMapping TypeName="EasyposModel.tailorheader">
-              <MappingFragment StoreEntitySet="tailorheader">
-                <ScalarProperty Name="BTCNumber" ColumnName="BTCNumber" />
-                <ScalarProperty Name="Clothesready" ColumnName="Clothesready" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Reciveddate" ColumnName="Reciveddate" />
-                <ScalarProperty Name="Totalreimining" ColumnName="Totalreimining" />
-                <ScalarProperty Name="Paied" ColumnName="Paied" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="Clothesremining" ColumnName="Clothesremining" />
-                <ScalarProperty Name="Clothesrecived" ColumnName="Clothesrecived" />
-                <ScalarProperty Name="Clothesnumber" ColumnName="Clothesnumber" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Custid" ColumnName="Custid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2013,12 +1932,149 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="exceptionproes">
+            <EntityTypeMapping TypeName="EasyposModel.exceptionpro">
+              <MappingFragment StoreEntitySet="exceptionpro">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="EasyposModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="Salestype" ColumnName="Salestype" />
+                <ScalarProperty Name="Signtype" ColumnName="Signtype" />
+                <ScalarProperty Name="Isusesigne" ColumnName="Isusesigne" />
+                <ScalarProperty Name="PricesWithVAT" ColumnName="PricesWithVAT" />
+                <ScalarProperty Name="VatPercent" ColumnName="VatPercent" />
+                <ScalarProperty Name="PostalZone" ColumnName="PostalZone" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CitySubdivisionName" ColumnName="CitySubdivisionName" />
+                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="ISUsePhase2" ColumnName="ISUsePhase2" />
+                <ScalarProperty Name="Systemlang" ColumnName="Systemlang" />
+                <ScalarProperty Name="ISUSElineproduction" ColumnName="ISUSElineproduction" />
+                <ScalarProperty Name="ISUSEResturant" ColumnName="ISUSEResturant" />
+                <ScalarProperty Name="ISUSEPrinter" ColumnName="ISUSEPrinter" />
+                <ScalarProperty Name="Sysnametype" ColumnName="Sysnametype" />
+                <ScalarProperty Name="Printertype" ColumnName="Printertype" />
+                <ScalarProperty Name="Printername" ColumnName="Printername" />
+                <ScalarProperty Name="Discuontcheck" ColumnName="Discuontcheck" />
+                <ScalarProperty Name="IsUseShift" ColumnName="IsUseShift" />
+                <ScalarProperty Name="ShowInPOS" ColumnName="ShowInPOS" />
+                <ScalarProperty Name="AllowInventory" ColumnName="AllowInventory" />
+                <ScalarProperty Name="LogoENName" ColumnName="LogoENName" />
+                <ScalarProperty Name="Logoname" ColumnName="Logoname" />
+                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+                <ScalarProperty Name="CRN" ColumnName="CRN" />
+                <ScalarProperty Name="Taxnumber" ColumnName="Taxnumber" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ENName" ColumnName="ENName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alltailorings">
+            <EntityTypeMapping TypeName="EasyposModel.alltailoring">
+              <MappingFragment StoreEntitySet="alltailoring">
+                <ScalarProperty Name="Alltable" ColumnName="Alltable" />
+                <ScalarProperty Name="Tailheaderid" ColumnName="Tailheaderid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tailorbockets">
+            <EntityTypeMapping TypeName="EasyposModel.tailorbocket">
+              <MappingFragment StoreEntitySet="tailorbocket">
+                <ScalarProperty Name="Bok11" ColumnName="Bok11" />
+                <ScalarProperty Name="Bok10" ColumnName="Bok10" />
+                <ScalarProperty Name="Bok9" ColumnName="Bok9" />
+                <ScalarProperty Name="Bok8" ColumnName="Bok8" />
+                <ScalarProperty Name="Bok7" ColumnName="Bok7" />
+                <ScalarProperty Name="Bok6" ColumnName="Bok6" />
+                <ScalarProperty Name="Bok5" ColumnName="Bok5" />
+                <ScalarProperty Name="Bok4" ColumnName="Bok4" />
+                <ScalarProperty Name="Bok3" ColumnName="Bok3" />
+                <ScalarProperty Name="Bok2" ColumnName="Bok2" />
+                <ScalarProperty Name="Bok1" ColumnName="Bok1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tailordetailes">
+            <EntityTypeMapping TypeName="EasyposModel.tailordetaile">
+              <MappingFragment StoreEntitySet="tailordetaile">
+                <ScalarProperty Name="Aujra" ColumnName="Aujra" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Handpalm" ColumnName="Handpalm" />
+                <ScalarProperty Name="Breadthbelow" ColumnName="Breadthbelow" />
+                <ScalarProperty Name="Handwidthbelow" ColumnName="Handwidthbelow" />
+                <ScalarProperty Name="Handwidthabove" ColumnName="Handwidthabove" />
+                <ScalarProperty Name="Chest" ColumnName="Chest" />
+                <ScalarProperty Name="Breadth" ColumnName="Breadth" />
+                <ScalarProperty Name="Neck" ColumnName="Neck" />
+                <ScalarProperty Name="Handlength" ColumnName="Handlength" />
+                <ScalarProperty Name="Shoulder" ColumnName="Shoulder" />
+                <ScalarProperty Name="Backlength" ColumnName="Backlength" />
+                <ScalarProperty Name="Frontlength" ColumnName="Frontlength" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tailorhands">
+            <EntityTypeMapping TypeName="EasyposModel.tailorhand">
+              <MappingFragment StoreEntitySet="tailorhand">
+                <ScalarProperty Name="Triangle" ColumnName="Triangle" />
+                <ScalarProperty Name="Plain_cupcake" ColumnName="Plain-cupcake" />
+                <ScalarProperty Name="Plain" ColumnName="Plain" />
+                <ScalarProperty Name="Round" ColumnName="Round" />
+                <ScalarProperty Name="Horny" ColumnName="Horny" />
+                <ScalarProperty Name="Square" ColumnName="Square" />
+                <ScalarProperty Name="Inverted" ColumnName="Inverted" />
+                <ScalarProperty Name="Taxtb" ColumnName="Taxtb" />
+                <ScalarProperty Name="Texta" ColumnName="Texta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tailorheaders">
+            <EntityTypeMapping TypeName="EasyposModel.tailorheader">
+              <MappingFragment StoreEntitySet="tailorheader">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Reciveddate" ColumnName="Reciveddate" />
+                <ScalarProperty Name="Totalreimining" ColumnName="Totalreimining" />
+                <ScalarProperty Name="Paied" ColumnName="Paied" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Clothesremining" ColumnName="Clothesremining" />
+                <ScalarProperty Name="Clothesrecived" ColumnName="Clothesrecived" />
+                <ScalarProperty Name="Clothesready" ColumnName="Clothesready" />
+                <ScalarProperty Name="Clothesnumber" ColumnName="Clothesnumber" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="BTCNumber" ColumnName="BTCNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tailorjabzors">
             <EntityTypeMapping TypeName="EasyposModel.tailorjabzor">
               <MappingFragment StoreEntitySet="tailorjabzor">
-                <ScalarProperty Name="Zigzag" ColumnName="Zigzag" />
                 <ScalarProperty Name="txt" ColumnName="txt" />
                 <ScalarProperty Name="txtnumber" ColumnName="txtnumber" />
+                <ScalarProperty Name="Zigzag" ColumnName="Zigzag" />
                 <ScalarProperty Name="Jab10" ColumnName="Jab10" />
                 <ScalarProperty Name="Jab9" ColumnName="Jab9" />
                 <ScalarProperty Name="Jab8" ColumnName="Jab8" />
@@ -2054,17 +2110,38 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="exceptionproes">
-            <EntityTypeMapping TypeName="EasyposModel.exceptionpro">
-              <MappingFragment StoreEntitySet="exceptionpro">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="FormName" ColumnName="FormName" />
-                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
-                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
-                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
+          <EntitySetMapping Name="thirdparties">
+            <EntityTypeMapping TypeName="EasyposModel.thirdparty">
+              <MappingFragment StoreEntitySet="thirdparty">
+                <ScalarProperty Name="Kafid" ColumnName="Kafid" />
+                <ScalarProperty Name="ISUsePhase2" ColumnName="ISUsePhase2" />
+                <ScalarProperty Name="PostalZone" ColumnName="PostalZone" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CitySubdivisionName" ColumnName="CitySubdivisionName" />
+                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="Pagenumber" ColumnName="Pagenumber" />
+                <ScalarProperty Name="Billnumber" ColumnName="Billnumber" />
+                <ScalarProperty Name="CRN" ColumnName="CRN" />
+                <ScalarProperty Name="Taxnumber" ColumnName="Taxnumber" />
+                <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kafils">
+            <EntityTypeMapping TypeName="EasyposModel.Kafil">
+              <MappingFragment StoreEntitySet="Kafil">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

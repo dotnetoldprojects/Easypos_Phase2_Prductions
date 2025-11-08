@@ -2352,6 +2352,90 @@
   <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="comboBox1.Items" xml:space="preserve">
+    <value>مبيعات عاديه</value>
+  </data>
+  <data name="comboBox1.Items1" xml:space="preserve">
+    <value>مبيعات مقاولات</value>
+  </data>
+  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 31</value>
+  </data>
+  <data name="comboBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 2, 3, 2</value>
+  </data>
+  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 24</value>
+  </data>
+  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
+    <value>comboBox1</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>241, 34</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 16</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>نوع البيع</value>
+  </data>
+  <data name="&gt;&gt;label20.Name" xml:space="preserve">
+    <value>label20</value>
+  </data>
+  <data name="&gt;&gt;label20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 187</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 166</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>  تفاصيل المبيعات  </value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>GOthers</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="Lineproduction.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2380,7 +2464,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;Lineproduction.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="CBPrinters.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 31</value>
@@ -2557,7 +2641,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;Printgroup.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="Restlist.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2587,7 +2671,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;Restlist.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="PrintCheak.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2617,7 +2701,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;PrintCheak.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="Btnrest.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -2653,7 +2737,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;Btnrest.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2683,7 +2767,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="CMDLang.Items" xml:space="preserve">
     <value>العربية</value>
@@ -2710,7 +2794,7 @@
     <value>GOthers</value>
   </data>
   <data name="&gt;&gt;CMDLang.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="GOthers.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 14</value>

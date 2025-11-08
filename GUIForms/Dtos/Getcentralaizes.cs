@@ -56,6 +56,10 @@ namespace GUIForms.Dtos
         {
             return _IUOW.thirdparties.GetAll().Where(x => x.Type == 2).ToList();
         }
+        public List<Kafil> Getkafildatalist()
+        {
+            return _IUOW.Kafils.GetAll().ToList();
+        }
         public List<ItemsViewModel> GetItemsdatalist()
         {
             var items = _IUOW.items.GetAll().ToList();

@@ -49,11 +49,11 @@ public partial class tailorjabzor
 
     public Nullable<bool> Jab10 { get; set; }
 
+    public Nullable<bool> Zigzag { get; set; }
+
     public Nullable<int> txtnumber { get; set; }
 
     public Nullable<decimal> txt { get; set; }
-
-    public Nullable<bool> Zigzag { get; set; }
 
 
 

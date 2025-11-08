@@ -78,6 +78,10 @@ namespace GUIForms.Forms.salesforms.Normal
             _PI = new Printinginvoice();
             trn = new transaction();
             Billtype.SelectedIndex = 1;
+            if (DC.Salestype == "مبيعات مقاولات")
+            {
+                groupBox4.Visible = true;
+            }
             LoadAllCombos();
             DGVH();
         }

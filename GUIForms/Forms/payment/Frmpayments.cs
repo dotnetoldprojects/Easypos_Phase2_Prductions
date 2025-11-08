@@ -139,7 +139,7 @@ namespace Easypos.Payment
                             Cursor.Current = Cursors.WaitCursor;
                             var Bank = Gp.Bank;
                             var Cash = Gp.Cash;
-                            ZF.invid = Pos.Invid;
+                            ZF.invid = Sb.Invid;
                             ZF.DC = DC;
                             if (Cash > 0 && Bank == 0)
                             {

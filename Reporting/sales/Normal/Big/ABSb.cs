@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Reporting.sales.Normal.Small {
+namespace Reporting.sales.Normal.Big {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace Reporting.sales.Normal.Small {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Smallsalesbill : ReportClass {
+    public class ABSb : ReportClass {
         
-        public Smallsalesbill() {
+        public ABSb() {
         }
         
         public override string ResourceName {
             get {
-                return "Smallsalesbill.rpt";
+                return "ABSb.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Reporting.sales.Normal.Small {
         
         public override string FullResourceName {
             get {
-                return "Reporting.sales.Normal.Small.Smallsalesbill.rpt";
+                return "Reporting.sales.Normal.Big.ABSb.rpt";
             }
             set {
                 // Do nothing
@@ -58,7 +58,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section2 {
+        public CrystalDecisions.CrystalReports.Engine.Section ReportHeaderSection1 {
             get {
                 return this.ReportDefinition.Sections[1];
             }
@@ -66,7 +66,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section2 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,9 +82,17 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[4];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[5];
             }
         }
         
@@ -106,7 +114,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_PhoneNo {
+        public CrystalDecisions.Shared.IParameterField Parameter_Taxnum {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +122,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Taxnum {
+        public CrystalDecisions.Shared.IParameterField Parameter_Cashirname {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,7 +130,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Shopname {
+        public CrystalDecisions.Shared.IParameterField Parameter_Wordofnumber {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,7 +138,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Date {
+        public CrystalDecisions.Shared.IParameterField Parameter_Proname {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,7 +146,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Paid {
+        public CrystalDecisions.Shared.IParameterField Parameter_English_Shop_name {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -146,7 +154,7 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Remaining {
+        public CrystalDecisions.Shared.IParameterField Parameter_Projectname {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -154,17 +162,81 @@ namespace Reporting.sales.Normal.Small {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Address2 {
+        public CrystalDecisions.Shared.IParameterField Parameter_Totaldiscount {
             get {
                 return this.DataDefinition.ParameterFields[8];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Totalafterdiscount {
+            get {
+                return this.DataDefinition.ParameterFields[9];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Custaddress {
+            get {
+                return this.DataDefinition.ParameterFields[10];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Custtax {
+            get {
+                return this.DataDefinition.ParameterFields[11];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Date {
+            get {
+                return this.DataDefinition.ParameterFields[12];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Paymethode {
+            get {
+                return this.DataDefinition.ParameterFields[13];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Refransenumber {
+            get {
+                return this.DataDefinition.ParameterFields[14];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_KafilName {
+            get {
+                return this.DataDefinition.ParameterFields[15];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Kafilphone {
+            get {
+                return this.DataDefinition.ParameterFields[16];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedSmallsalesbill : Component, ICachedReport {
+    public class CachedABSb : Component, ICachedReport {
         
-        public CachedSmallsalesbill() {
+        public CachedABSb() {
         }
         
         [Browsable(false)]
@@ -201,7 +273,7 @@ namespace Reporting.sales.Normal.Small {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Smallsalesbill rpt = new Smallsalesbill();
+            ABSb rpt = new ABSb();
             rpt.Site = this.Site;
             return rpt;
         }

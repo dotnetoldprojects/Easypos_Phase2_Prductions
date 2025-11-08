@@ -2,6 +2,7 @@
 using Domain.Models;
 using Easypos.Tailoring;
 using GUIForms.Dtos;
+using GUIForms.Forms.Masters.Subforms;
 using GUIForms.helpers;
 using Microsoft.VisualBasic;
 using PhoneNumbers;
@@ -80,6 +81,7 @@ namespace Easypos.Masters
             _IUW = new Unitofwork(new EasyposEntities());
             DGV.DataSource = GC.Getthirdpartydatalist();
             Getingcountrycode();
+            Commondatasales.FillCombo(comboBox1, GC.Getkafildatalist(), "Name", "Id");
         }
         private void Clearfieldes(){
             txtNumber.Text = string.Empty;
@@ -290,10 +292,18 @@ namespace Easypos.Masters
                     if (!string.IsNullOrEmpty(txtNumber.Text.Trim()))
                     {
                         TP.ID = int.Parse(txtNumber.Text);
+                        if (comboBox1.SelectedIndex != 0)
+                        {
+                            TP.Kafid = int.Parse(comboBox1.SelectedValue.ToString());
+                        }
                         _IUW.thirdparties.Update(TP);
                     }
                     else
                     {
+                        if (comboBox1.SelectedIndex != 0)
+                        {
+                            TP.Kafid = int.Parse(comboBox1.SelectedValue.ToString());
+                        }
                         _IUW.thirdparties.Insert(TP);
                     }
                     _IUW.Complete();
@@ -390,6 +400,12 @@ namespace Easypos.Masters
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             _NO.Usenumber(sender, e);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Frmkafil fk = new Frmkafil();
+            fk.ShowDialog();
         }
     }
 }

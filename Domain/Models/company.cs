@@ -76,13 +76,11 @@ public partial class company
 
     public Nullable<short> PricesWithVAT { get; set; }
 
-    public double VatPercent1 { get; set; }
-
-    public Nullable<short> PricesWithVAT1 { get; set; }
-
     public Nullable<bool> Isusesigne { get; set; }
 
     public Nullable<int> Signtype { get; set; }
+
+    public string Salestype { get; set; }
 
 }
 

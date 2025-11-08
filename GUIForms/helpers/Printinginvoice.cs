@@ -39,6 +39,9 @@ namespace GUIForms.helpers
         public string CustTaxnumber { get; set; }
         public string Totalafterdiscount { get; set; }
         public string Wordofnumber { get; set; }
+        public string NID { get; set; }
+        public string KafilName { get; set; }
+        public string Kafilphone { get; set; }
         public Printinginvoice()
         {
             GC = new Getcentralaizes();
@@ -62,7 +65,14 @@ namespace GUIForms.helpers
             }
             else if (DC.Sysnametype == "طباعة نظام مبيعات كبير")
             {
-                Rep = new Bigsalesbill();
+                if (DC.Salestype == "مبيعات مقاولات")
+                {
+                    Rep = new Bigsalesbill();
+                }
+                else
+                {
+                    Rep = new ABSb();
+                }
             }
             else
             {
@@ -82,6 +92,10 @@ namespace GUIForms.helpers
                               join tp in _IUW.thirdparties.GetAll()
                                   on s.ThirdPartyID equals tp.ID into thirdPartyJoin
                               from tp in thirdPartyJoin.DefaultIfEmpty()
+
+                              join kf in _IUW.Kafils.GetAll()
+                                  on tp.Kafid equals kf.Id into kafilJoin
+                              from kf in kafilJoin.DefaultIfEmpty()
 
                               join pay in _IUW.payments.GetAll()
                                   on s.Invoiceno equals pay.InvoiceNo into paymentJoin
@@ -106,6 +120,9 @@ namespace GUIForms.helpers
                                   MobileNumber = tp != null ? tp.MobileNumber : null,
                                   TaxNumber = tp != null ? tp.Taxnumber : null,
                                   Custaddress = tp != null ? tp.Address : null,
+                                  NID = tp != null ? tp.Comments : null,
+                                  KafilName = kf != null ? kf.Name : null,
+                                  Kafilphone = kf != null ? kf.Phone : null,
                                   s.Billtype,
                                   s.Note,
                                   TDDesc = sd != null ? sd.TDDesc : null,
@@ -122,6 +139,9 @@ namespace GUIForms.helpers
                               }).ToList();
                 foreach (var item in result)
                 {
+                    NID = item.NID;
+                    KafilName = item.KafilName;
+                    Kafilphone = item.Kafilphone;
                     Paied = item.Billtype == "مسوده" ? "0" : item.Paid.ToString();
                     Dept = item.Billtype == "مسوده" ? item.TotalAmount : item.Remaining.ToString();
                     Filename = item.Path;
@@ -207,6 +227,7 @@ namespace GUIForms.helpers
                 }
                 if (DC.Sysnametype != "طباعة نظام مبيعات كبير")
                 {
+                    Rep.SetParameterValue("Address2", DC.Address + " - " + DC.CitySubdivisionName + " - " + DC.StreetName + " - " + DC.PostalZone);
                     Rep.SetParameterValue("Shopname", DC.Name);
                     Rep.SetParameterValue("PhoneNo", DC.PhoneNo);
                     Rep.SetParameterValue("Paid", Paied);
@@ -221,7 +242,16 @@ namespace GUIForms.helpers
                     Rep.SetParameterValue("Cashirname", "Admin");
                     //تفقيط الارقام
                     Rep.SetParameterValue("Wordofnumber", Wordofnumber);
-                    Rep.SetParameterValue("Projectname", Proname ?? "مشروع");
+                    if (DC.Salestype == "مبيعات مقاولات")
+                    {
+                        Rep.SetParameterValue("Projectname", Proname ?? "مشروع");
+                    }
+                    else
+                    {
+                        Rep.SetParameterValue("Projectname", NID);
+                        Rep.SetParameterValue("KafilName", KafilName);
+                        Rep.SetParameterValue("Kafilphone", Kafilphone);
+                    }
                     Rep.SetParameterValue("Refransenumber", RN ?? "Refranse number");
                     Rep.SetParameterValue("Custaddress", Custaddress ?? "السعوديه" );
                     Rep.SetParameterValue("Custtax", CustTaxnumber ?? "3000000000000003" );

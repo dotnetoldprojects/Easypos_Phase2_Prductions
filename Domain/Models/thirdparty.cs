@@ -49,6 +49,8 @@ public partial class thirdparty
 
     public string Taxnumber { get; set; }
 
+    public string CRN { get; set; }
+
     public string Billnumber { get; set; }
 
     public string Pagenumber { get; set; }
@@ -65,13 +67,15 @@ public partial class thirdparty
 
     public Nullable<bool> ISUsePhase2 { get; set; }
 
-    public string CRN { get; set; }
+    public Nullable<int> Kafid { get; set; }
 
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<tailorheader> tailorheaders { get; set; }
+
+    public virtual Kafil Kafil { get; set; }
 
 }
 

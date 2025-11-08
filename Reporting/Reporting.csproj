@@ -136,6 +136,12 @@
       <DependentUpon>Summarysales.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="sales\Normal\Big\ABSb.cs">
+      <DependentUpon>ABSb.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="sales\Normal\Big\Bigsalesbill1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -290,6 +296,10 @@
     <EmbeddedResource Include="resturantreports\Summarysales.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Summarysales1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sales\Normal\Big\ABSb.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ABSb.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="sales\Normal\Big\Bigsalesbill.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

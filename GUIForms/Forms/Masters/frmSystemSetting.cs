@@ -115,6 +115,7 @@ namespace Easypos.Masters
             Getalldevices();
             DDM.SelectedIndex = 2;
             CSType.SelectedIndex = 1;
+            comboBox1.Text = DC.Salestype;
         }
         private void picClose_Click(object sender, EventArgs e)
         {
@@ -276,6 +277,7 @@ namespace Easypos.Masters
                 DC.Sysnametype = "طباعة نظام مبيعات صغير خياطه";
             }
             DC.Printername = CBPrinters.Text;
+            DC.Salestype = comboBox1.Text;
             _IUW.companies.Update(DC);
             _IUW.Complete();
             MessageBox.Show("تم تعديل بيانات الشركه بنجاح برجاء فلق البرنامج وفتحه مره اخرى للعمل بشكل صحيح","تم");
