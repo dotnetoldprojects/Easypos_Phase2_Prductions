@@ -84,6 +84,7 @@ namespace GUIForms.Forms.Masters.Subforms
                 {
                     Id = k.Id,
                     Name = k.Name,
+                    NID = k.NID,
                     Phone = k.Phone
                 })
                 .ToList();
@@ -94,6 +95,7 @@ namespace GUIForms.Forms.Masters.Subforms
         {
             var Kaf = new Kafil();
             Kaf.Name = textBox2.Text;
+            Kaf.NID = textBox1.Text;
             if (!string.IsNullOrEmpty(textBox4.Text))
             {
                 var Codes = (CountryInfo)Countrybox.SelectedItem;
@@ -122,6 +124,7 @@ namespace GUIForms.Forms.Masters.Subforms
         {
             Kaf.Id = Kafid;
             Kaf.Name = textBox2.Text;
+            Kaf.NID = textBox1.Text;
             if (!string.IsNullOrEmpty(textBox4.Text) && !textBox4.Text.Contains("+966"))
             {
                 var Codes = (CountryInfo)Countrybox.SelectedItem;
@@ -163,7 +166,8 @@ namespace GUIForms.Forms.Masters.Subforms
                 Kaf = new Kafil();
                 Kafid = int.Parse(DGV.CurrentRow.Cells[0].Value.ToString());
                 textBox2.Text = DGV.CurrentRow.Cells[1].Value.ToString();
-                textBox4.Text = DGV.CurrentRow.Cells[2].Value.ToString();
+                textBox1.Text = DGV.CurrentRow.Cells[2].Value.ToString();
+                textBox4.Text = DGV.CurrentRow.Cells[3].Value.ToString();
             }
             else
             {

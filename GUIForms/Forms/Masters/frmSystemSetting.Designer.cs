@@ -131,6 +131,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.CMDLang = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -735,9 +736,7 @@
             // GOthers
             // 
             this.GOthers.Controls.Add(this.groupBox2);
-            this.GOthers.Controls.Add(this.Lineproduction);
             this.GOthers.Controls.Add(this.Printgroup);
-            this.GOthers.Controls.Add(this.Restlist);
             this.GOthers.Controls.Add(this.PrintCheak);
             this.GOthers.Controls.Add(this.Btnrest);
             this.GOthers.Controls.Add(this.label5);
@@ -748,8 +747,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.Lineproduction);
             this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.Restlist);
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
@@ -857,6 +859,12 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // frmSystemSetting
             // 
@@ -997,5 +1005,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

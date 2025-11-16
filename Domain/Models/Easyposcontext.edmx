@@ -76,6 +76,7 @@
           <Property Name="Isusesigne" Type="bit" />
           <Property Name="Signtype" Type="int" />
           <Property Name="Salestype" Type="nvarchar" MaxLength="100" />
+          <Property Name="ISUSETailor" Type="bit" />
         </EntityType>
         <EntityType Name="exceptionpro">
           <Key>
@@ -151,6 +152,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="NID" Type="nvarchar" MaxLength="150" />
           <Property Name="Phone" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="orders">
@@ -1263,6 +1265,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="Isusesigne" Type="Boolean" />
           <Property Name="Signtype" Type="Int32" />
           <Property Name="Salestype" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ISUSETailor" Type="Boolean" />
         </EntityType>
         <EntityType Name="alltailoring">
           <Key>
@@ -1515,6 +1518,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="thirdparties" Relationship="EasyposModel.FK_thirdparty_Kafil" FromRole="Kafil" ToRole="thirdparty" />
+          <Property Name="NID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_thirdparty_Kafil">
           <End Type="EasyposModel.Kafil" Role="Kafil" Multiplicity="0..1" />
@@ -1950,6 +1954,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySetMapping Name="companies">
             <EntityTypeMapping TypeName="EasyposModel.company">
               <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="ISUSETailor" ColumnName="ISUSETailor" />
                 <ScalarProperty Name="Salestype" ColumnName="Salestype" />
                 <ScalarProperty Name="Signtype" ColumnName="Signtype" />
                 <ScalarProperty Name="Isusesigne" ColumnName="Isusesigne" />
@@ -2140,6 +2145,7 @@ warning 6002: The table/view 'Easypos.resturant.expensesview' does not have a pr
           <EntitySetMapping Name="Kafils">
             <EntityTypeMapping TypeName="EasyposModel.Kafil">
               <MappingFragment StoreEntitySet="Kafil">
+                <ScalarProperty Name="NID" ColumnName="NID" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

@@ -122,7 +122,7 @@ namespace GUIForms.helpers
                                   Custaddress = tp != null ? tp.Address : null,
                                   NID = tp != null ? tp.Comments : null,
                                   KafilName = kf != null ? kf.Name : null,
-                                  Kafilphone = kf != null ? kf.Phone : null,
+                                  Kafilphone = kf != null ? kf.NID : null,
                                   s.Billtype,
                                   s.Note,
                                   TDDesc = sd != null ? sd.TDDesc : null,
@@ -248,9 +248,9 @@ namespace GUIForms.helpers
                     }
                     else
                     {
-                        Rep.SetParameterValue("Projectname", NID);
-                        Rep.SetParameterValue("KafilName", KafilName);
-                        Rep.SetParameterValue("Kafilphone", Kafilphone);
+                        Rep.SetParameterValue("Projectname", NID == "" ? "لا يوجد" : NID);
+                        Rep.SetParameterValue("KafilName", KafilName == null ? "لا يوجد" : KafilName);
+                        Rep.SetParameterValue("Kafilphone", Kafilphone == null ? "لا يوجد" : Kafilphone);
                     }
                     Rep.SetParameterValue("Refransenumber", RN ?? "Refranse number");
                     Rep.SetParameterValue("Custaddress", Custaddress ?? "السعوديه" );

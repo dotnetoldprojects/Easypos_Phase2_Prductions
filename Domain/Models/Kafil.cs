@@ -33,6 +33,8 @@ public partial class Kafil
 
     public string Phone { get; set; }
 
+    public string NID { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -241,32 +241,50 @@ namespace GUIForms.Forms.salesforms.Normal
         }
         private void DGV_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (DGV.CurrentCell.ColumnIndex == 4 || DGV.CurrentCell.ColumnIndex == 5)
+            var cell4 = DGV.CurrentRow.Cells[4].Value;
+            var cell5 = DGV.CurrentRow.Cells[5].Value;
+            var cell6 = DGV.CurrentRow.Cells[6].Value;
+
+            if (cell4 == null || cell4.ToString() == "0")
             {
-                var C1 = Convert.ToDouble(DGV.CurrentRow.Cells[4].Value.ToString());
-                var C2 = Convert.ToDouble(DGV.CurrentRow.Cells[5].Value);
-                var Res = C1 * C2;
-                DGV.CurrentRow.Cells[7].Value = Res;
+                MessageBox.Show("الكمية يجب ان تكون اكبر من صفر", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DGV.CurrentRow.Cells[4].Value = 1;
                 _DGVPH.UpdateDGVSummary();
+                return;
             }
-            if (DGV.CurrentCell.ColumnIndex == 7)
+            if (cell5 == null || cell5.ToString() == "0")
             {
-                var C1 = Convert.ToDouble(DGV.CurrentRow.Cells[4].Value.ToString());
-                var C2 = Convert.ToDouble(DGV.CurrentRow.Cells[5].Value);
-                var Res = C1 * C2;
-                DGV.CurrentRow.Cells[7].Value = Res;
+                MessageBox.Show("لا يمكن ان يكون سعر الصنف فارغ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DGV.CurrentRow.Cells[5].Value = 1;
                 _DGVPH.UpdateDGVSummary();
+                return;
             }
-            if (DGV.CurrentCell.ColumnIndex == 6)
+            if (cell6 == null || cell6.ToString() == "0")
             {
-                var C1 = Convert.ToDouble(DGV.CurrentRow.Cells[4].Value.ToString());
-                var C2 = Convert.ToDouble(DGV.CurrentRow.Cells[5].Value);
-                var C3 = Convert.ToDouble(DGV.CurrentRow.Cells[6].Value);
-                var Res = (C1 * C2) - C3;
-                DGV.CurrentRow.Cells[7].Value = Res;
+                MessageBox.Show("لا يمكن ان يكون خصم الصنف فارغ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DGV.CurrentRow.Cells[6].Value = 0;
                 _DGVPH.UpdateDGVSummary();
+                return;
             }
+            double C1 = Convert.ToDouble(cell4);
+            double C2 = Convert.ToDouble(cell5);
+            double C3 = cell6 != null ? Convert.ToDouble(cell6) : 0;
+
+            double Res = 0;
+
+            if (DGV.CurrentCell.ColumnIndex == 4 || DGV.CurrentCell.ColumnIndex == 5 || DGV.CurrentCell.ColumnIndex == 7)
+            {
+                Res = C1 * C2;
+            }
+            else if (DGV.CurrentCell.ColumnIndex == 6)
+            {
+                Res = (C1 * C2) - C3;
+            }
+
+            DGV.CurrentRow.Cells[7].Value = Res;
+            _DGVPH.UpdateDGVSummary();
         }
+
         private void Btnsave_Click(object sender, EventArgs e)
         {
             var Cust = int.Parse(clientID.SelectedValue.ToString());

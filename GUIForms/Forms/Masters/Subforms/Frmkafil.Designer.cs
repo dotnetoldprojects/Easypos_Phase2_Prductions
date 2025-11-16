@@ -53,8 +53,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.Countrybox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.CustId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -69,7 +72,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(7, 135);
+            this.label4.Location = new System.Drawing.Point(7, 171);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(104, 25);
             this.label4.TabIndex = 41;
@@ -81,7 +84,7 @@
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(7, 135);
+            this.label6.Location = new System.Drawing.Point(7, 171);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(110, 25);
             this.label6.TabIndex = 42;
@@ -97,7 +100,7 @@
             this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Add.Font = new System.Drawing.Font("Verdana", 11.25F);
             this.Add.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Add.Location = new System.Drawing.Point(13, 419);
+            this.Add.Location = new System.Drawing.Point(12, 490);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 63);
             this.Add.TabIndex = 39;
@@ -115,7 +118,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 11.25F);
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(297, 419);
+            this.button1.Location = new System.Drawing.Point(437, 491);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 63);
             this.button1.TabIndex = 38;
@@ -126,9 +129,9 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.textBox4.Location = new System.Drawing.Point(117, 134);
+            this.textBox4.Location = new System.Drawing.Point(117, 170);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(254, 30);
+            this.textBox4.Size = new System.Drawing.Size(396, 30);
             this.textBox4.TabIndex = 40;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
@@ -157,11 +160,12 @@
             this.DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CustId,
             this.Customername,
+            this.NID,
             this.MN});
             this.DGV.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DGV.EnableHeadersVisualStyles = false;
             this.DGV.GridColor = System.Drawing.Color.White;
-            this.DGV.Location = new System.Drawing.Point(12, 170);
+            this.DGV.Location = new System.Drawing.Point(12, 212);
             this.DGV.MultiSelect = false;
             this.DGV.Name = "DGV";
             this.DGV.ReadOnly = true;
@@ -186,7 +190,7 @@
             this.DGV.RowTemplate.Height = 40;
             this.DGV.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV.Size = new System.Drawing.Size(359, 231);
+            this.DGV.Size = new System.Drawing.Size(501, 272);
             this.DGV.TabIndex = 36;
             this.DGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CellClick);
             // 
@@ -195,7 +199,7 @@
             this.textBox2.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.textBox2.Location = new System.Drawing.Point(118, 71);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(254, 30);
+            this.textBox2.Size = new System.Drawing.Size(396, 30);
             this.textBox2.TabIndex = 35;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -243,7 +247,7 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Location = new System.Drawing.Point(-2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(386, 54);
+            this.panel1.Size = new System.Drawing.Size(528, 54);
             this.panel1.TabIndex = 33;
             // 
             // pictureBox1
@@ -279,7 +283,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 11.25F);
             this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button2.Location = new System.Drawing.Point(94, 419);
+            this.button2.Location = new System.Drawing.Point(93, 490);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 63);
             this.button2.TabIndex = 43;
@@ -296,7 +300,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(-2, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(386, 54);
+            this.panel2.Size = new System.Drawing.Size(528, 54);
             this.panel2.TabIndex = 34;
             // 
             // button3
@@ -309,7 +313,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Verdana", 11.25F);
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(175, 419);
+            this.button3.Location = new System.Drawing.Point(174, 490);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 63);
             this.button3.TabIndex = 45;
@@ -321,9 +325,9 @@
             // 
             this.Countrybox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Countrybox.FormattingEnabled = true;
-            this.Countrybox.Location = new System.Drawing.Point(118, 107);
+            this.Countrybox.Location = new System.Drawing.Point(118, 143);
             this.Countrybox.Name = "Countrybox";
-            this.Countrybox.Size = new System.Drawing.Size(253, 21);
+            this.Countrybox.Size = new System.Drawing.Size(395, 21);
             this.Countrybox.TabIndex = 111;
             // 
             // label7
@@ -332,11 +336,32 @@
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(43, 104);
+            this.label7.Location = new System.Drawing.Point(43, 140);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 25);
             this.label7.TabIndex = 113;
             this.label7.Text = "الدوله :";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.textBox1.Location = new System.Drawing.Point(118, 107);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(396, 30);
+            this.textBox1.TabIndex = 114;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(9, 109);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 25);
+            this.label5.TabIndex = 115;
+            this.label5.Text = "رقم الهويه :";
             // 
             // CustId
             // 
@@ -357,6 +382,13 @@
             this.Customername.Name = "Customername";
             this.Customername.ReadOnly = true;
             // 
+            // NID
+            // 
+            this.NID.DataPropertyName = "NID";
+            this.NID.HeaderText = "رقم الهويه";
+            this.NID.Name = "NID";
+            this.NID.ReadOnly = true;
+            // 
             // MN
             // 
             this.MN.DataPropertyName = "Phone";
@@ -369,7 +401,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(383, 495);
+            this.ClientSize = new System.Drawing.Size(525, 565);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Countrybox);
             this.Controls.Add(this.button3);
@@ -421,8 +455,11 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox Countrybox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Customername;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NID;
         private System.Windows.Forms.DataGridViewTextBoxColumn MN;
     }
 }

@@ -74,12 +74,28 @@ namespace Easypos.Masters
         }
         private void Loading()
         {
+            radioClient.Checked = true;
             _NO = new Usingnumber();
             TP = new thirdparty();
             GC = new Getcentralaizes();
             DC = (company)LanguageHelper.ApplyLanguage(this);
             _IUW = new Unitofwork(new EasyposEntities());
-            DGV.DataSource = GC.Getthirdpartydatalist();
+            DGV.DataSource = GC.Getthirdpartydatalist()
+                                .Select(x => new {
+                                    ID = x.ID, 
+                                    Name = x.Name,
+                                    Type = x.Type,
+                                    MobileNumber = x.MobileNumber,
+                                    Address = x.Address,
+                                    Typedata = x.Type,
+                                    City = x.City,
+                                    Comments = x.Comments,
+                                    Email = x.Email,
+                                    OpeningBalance = x.OpeningBalance,
+                                    Taxnumber = x.Taxnumber,
+                                    Billnumber= x.Billnumber,
+                                    Pagenumber = x.Pagenumber
+                                }).ToList();
             Getingcountrycode();
             Commondatasales.FillCombo(comboBox1, GC.Getkafildatalist(), "Name", "Id");
         }
@@ -136,11 +152,11 @@ namespace Easypos.Masters
             }
             if (DGV.Rows.Count > 0)
             {
-                txtNumber.Text = DGV.CurrentRow.Cells[0].Value.ToString();
+                txtNumber.Text = DGV.CurrentRow.Cells[1].Value.ToString();
                 TP.ID = int.Parse(txtNumber.Text);
-                txtName.Text = DGV.CurrentRow.Cells[1].Value.ToString();
-                string fullNumber = DGV.CurrentRow.Cells[3].Value != null
-                                       ? DGV.CurrentRow.Cells[3].Value.ToString()
+                txtName.Text = DGV.CurrentRow.Cells[2].Value.ToString();
+                string fullNumber = DGV.CurrentRow.Cells[4].Value != null
+                                       ? DGV.CurrentRow.Cells[4].Value.ToString()
                                        : "";
                 var matchedCountry = CI.FirstOrDefault(c => fullNumber.StartsWith(c.DialCode));
                 string localNumber = fullNumber;
@@ -155,22 +171,22 @@ namespace Easypos.Masters
                     txtMobile.Text = fullNumber; // Display the full number as is
                 }
                 //txtMobile.Text = DGV.CurrentRow.Cells[3].Value.ToString();
-                txt_seller_citysubdiv.Text = DGV.CurrentRow.Cells[4].Value != null
-                                       ? DGV.CurrentRow.Cells[4].Value.ToString()
+                //txt_seller_citysubdiv.Text = DGV.CurrentRow.Cells[4].Value != null
+                //                       ? DGV.CurrentRow.Cells[4].Value.ToString()
+                //                       : "";
+                //txt_seller_cityname.Text = DGV.CurrentRow.Cells[5].Value != null
+                //                       ? DGV.CurrentRow.Cells[5].Value.ToString()
+                //                       : "";
+                txtComments.Text = DGV.CurrentRow.Cells[13].Value?.ToString();
+                txtOpeningBalance.Text = DGV.CurrentRow.Cells[10].Value != null
+                                       ? DGV.CurrentRow.Cells[10].Value.ToString()
                                        : "";
-                txt_seller_cityname.Text = DGV.CurrentRow.Cells[5].Value != null
-                                       ? DGV.CurrentRow.Cells[5].Value.ToString()
-                                       : "";
-                txtComments.Text = DGV.CurrentRow.Cells[6].Value.ToString();
-                txtOpeningBalance.Text = DGV.CurrentRow.Cells[9].Value != null
-                                       ? DGV.CurrentRow.Cells[9].Value.ToString()
-                                       : "";
-                textBox4.Text = DGV.CurrentRow.Cells[10].Value.ToString();
-                textBox3.Text = DGV.CurrentRow.Cells[11].Value != null
-                                       ? DGV.CurrentRow.Cells[11].Value.ToString()
+                textBox4.Text = DGV.CurrentRow.Cells[11].Value.ToString();
+                textBox3.Text = DGV.CurrentRow.Cells[12].Value != null
+                                       ? DGV.CurrentRow.Cells[12].Value.ToString()
                                        : "";
                 // Type Member
-                var TM = DGV.CurrentRow.Cells[7].Value.ToString();
+                var TM = DGV.CurrentRow.Cells[6].Value.ToString();
                 if (TM == "2")
                 {
                     radioClient.Checked = true;
@@ -292,21 +308,30 @@ namespace Easypos.Masters
                     if (!string.IsNullOrEmpty(txtNumber.Text.Trim()))
                     {
                         TP.ID = int.Parse(txtNumber.Text);
-                        if (comboBox1.SelectedIndex != 0)
+                        if (comboBox1.SelectedIndex > 0)
                         {
                             TP.Kafid = int.Parse(comboBox1.SelectedValue.ToString());
                         }
-                        _IUW.thirdparties.Update(TP);
                     }
                     else
                     {
-                        if (comboBox1.SelectedIndex != 0)
+                        if (comboBox1.SelectedIndex > 0)
                         {
                             TP.Kafid = int.Parse(comboBox1.SelectedValue.ToString());
                         }
-                        _IUW.thirdparties.Insert(TP);
+                    }
+                    TP.Billnumber = textBox3.Text;
+                    TP.Pagenumber = txtComments.Text;
+                    if (Btnsave.Text == "حفظ")
+                    {
+                         _IUW.thirdparties.Insert(TP);
+                    }
+                    else
+                    {
+                        _IUW.thirdparties.Update(TP);
                     }
                     _IUW.Complete();
+                    Loading();
                     if (Application.OpenForms["Frmtailoring"] != null)
                     {
                         Frmtailoring p = (Application.OpenForms["Frmtailoring"] as Frmtailoring);
@@ -320,6 +345,7 @@ namespace Easypos.Masters
                         return;
                         //p.textBox15.Text = txtMobile.Text;
                     }
+                    Clearfieldes();
                 }
             }
         }
@@ -360,7 +386,21 @@ namespace Easypos.Masters
                 var Data = this.GC.Getthirdpartydatalist();
                 var Serch = Data
                     .Where(x => x.Name != null && x.Name.Contains(textBox2.Text))
-                    .ToList();
+                                                    .Select(x => new {
+                                                        ID = x.ID,
+                                                        Name = x.Name,
+                                                        Type = x.Type,
+                                                        MobileNumber = x.MobileNumber,
+                                                        Address = x.Address,
+                                                        Typedata = x.Type,
+                                                        City = x.City,
+                                                        Comments = x.Comments,
+                                                        Email = x.Email,
+                                                        OpeningBalance = x.OpeningBalance,
+                                                        Taxnumber = x.Taxnumber,
+                                                        Billnumber = x.Billnumber,
+                                                        Pagenumber = x.Pagenumber
+                                                    }).ToList();
                 DGV.DataSource = Serch;
             }
             else
@@ -375,7 +415,21 @@ namespace Easypos.Masters
                 var Data = this.GC.Getthirdpartydatalist();
                 var Serch = Data
                     .Where(x => x.MobileNumber != null && x.MobileNumber.Contains(textBox1.Text))
-                    .ToList();
+                                                    .Select(x => new {
+                                                        ID = x.ID,
+                                                        Name = x.Name,
+                                                        Type = x.Type,
+                                                        MobileNumber = x.MobileNumber,
+                                                        Address = x.Address,
+                                                        Typedata = x.Type,
+                                                        City = x.City,
+                                                        Comments = x.Comments,
+                                                        Email = x.Email,
+                                                        OpeningBalance = x.OpeningBalance,
+                                                        Taxnumber = x.Taxnumber,
+                                                        Billnumber = x.Billnumber,
+                                                        Pagenumber = x.Pagenumber
+                                                    }).ToList();
                 DGV.DataSource = Serch;
             }
             else

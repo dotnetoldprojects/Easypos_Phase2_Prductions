@@ -12,7 +12,7 @@ namespace GUIForms.helpers
     public class UBLClass
     {
         IUnitofwork _IUW;
-        public void SaveUBL(string QRCode, string Invoicehash, string Uuid,string Invoice,int Saleid,string Status, string path,int invid, string PIH)
+        public void SaveUBL(string QRCode, string Invoicehash, string Uuid,string Invoice,int? Saleid,string Status, string path,int invid, string PIH)
         {
             _IUW = new Unitofwork(new EasyposEntities());
             UBL ubl = new UBL

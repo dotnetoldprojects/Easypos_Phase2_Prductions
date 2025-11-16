@@ -32,6 +32,9 @@ namespace Easypos.Masters
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListThirdParty));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.Countrybox = new System.Windows.Forms.ComboBox();
             this.cbzatca = new System.Windows.Forms.CheckBox();
@@ -97,9 +100,6 @@ namespace Easypos.Masters
             this.Taxnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Billnumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pagenumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.comdata.SuspendLayout();
@@ -148,6 +148,29 @@ namespace Easypos.Masters
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.PowderBlue;
+            resources.ApplyResources(this.button2, "button2");
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
+            this.button2.Name = "button2";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
@@ -566,7 +589,7 @@ namespace Easypos.Masters
             // 
             // Typedata
             // 
-            this.Typedata.DataPropertyName = "Type";
+            this.Typedata.DataPropertyName = "Typedata";
             resources.ApplyResources(this.Typedata, "Typedata");
             this.Typedata.Name = "Typedata";
             this.Typedata.ReadOnly = true;
@@ -605,29 +628,6 @@ namespace Easypos.Masters
             resources.ApplyResources(this.Pagenumber, "Pagenumber");
             this.Pagenumber.Name = "Pagenumber";
             this.Pagenumber.ReadOnly = true;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.PowderBlue;
-            resources.ApplyResources(this.button2, "button2");
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Highlight;
-            this.button2.Name = "button2";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
             // 
             // frmListThirdParty
             // 
@@ -696,19 +696,6 @@ namespace Easypos.Masters
         internal System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button Btnsave;
         private System.Windows.Forms.DataGridView DGV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TPName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MobileNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn City;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Typedata;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OpeningBalance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Taxnumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Billnumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pagenumber;
         private System.Windows.Forms.GroupBox comdata;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txt_location;
@@ -728,5 +715,18 @@ namespace Easypos.Masters
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox1;
         internal System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TPName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MobileNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn City;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Typedata;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OpeningBalance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Taxnumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Billnumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pagenumber;
     }
 }

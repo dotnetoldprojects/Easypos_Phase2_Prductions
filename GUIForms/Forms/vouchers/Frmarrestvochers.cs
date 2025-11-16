@@ -423,9 +423,24 @@ namespace Easypos.Vouchers
         }
         private void Btnsave_Click(object sender, EventArgs e)
         {
+            var CN = Clients.SelectedValue?.ToString() ?? "0";
+            var IN = Invnum.SelectedValue?.ToString() ?? "0";
+            if (Vochertypes.SelectedIndex == 2)
+            {
+                if (IN == "0")
+                {
+                    MessageBox.Show("برجاء اختيار رقم الفاتورة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             if (Cmbpricetype.SelectedIndex == 0)
             {
                 MessageBox.Show("برجاء اختيار نوع الدفع", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if (CN == "0")
+            {
+                MessageBox.Show("برجاء اختيار العميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else

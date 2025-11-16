@@ -61,6 +61,10 @@ namespace Easypos.Tailoring
         public string TilGId { get; set; }
         public Guid TilHId { get; set; }
         public Guid TilDId { get; set; }
+
+        public string Neckdata { get; set; }
+        public string Handdata { get; set; }
+
         public Frmtailoring()
         {
             InitializeComponent();
@@ -265,9 +269,9 @@ namespace Easypos.Tailoring
                 }
                 _IUW.Complete();
                 MessageBox.Show("تم الحفظ بنجاح", "امر تفصيل");
-                Clearfildes();
-                dgw.Rows.Clear();
-                Btnsave.Text = "حفظ";
+                //Clearfildes();
+                //dgw.Rows.Clear();
+                //Btnsave.Text = "حفظ";
             }
         }
         void tailorheadersave()
@@ -317,7 +321,7 @@ namespace Easypos.Tailoring
             TN.Frenchflip = checkBox17.Checked;
             TN.txtnumber = textBox14.Text == "" ? 0 : int.Parse(textBox14.Text);
             TN.texta = textBox13.Text == "" ? 0 : decimal.Parse(textBox13.Text);
-            TN.textb = textBox12.Text == "" ? 0 : decimal.Parse(textBox12.Text);
+            //TN.textb = textBox12.Text == "" ? 0 : decimal.Parse(textBox12.Text);
             TN.txtnumberb = textBox11.Text == "" ? 0 : int.Parse(textBox11.Text);
             TN.textc = textBox10.Text == "" ? 0 : decimal.Parse(textBox10.Text);
             TN.textd = textBox9.Text == "" ? 0 : decimal.Parse(textBox9.Text);
@@ -875,7 +879,7 @@ namespace Easypos.Tailoring
                 TH = ConvertImageToByteArray(pictureBox8.Image);
                 ds.Hand.Rows.Add(TH);
             }
-
+            Handdata = $"{textBox19.Text} × {textBox20.Text}" == "" ? "×" : $"{textBox19.Text} × {textBox20.Text}";
 
             // الجبزور
             byte[] FJ = new byte[0];
@@ -951,41 +955,49 @@ namespace Easypos.Tailoring
             if (checkBox16.Checked)
             {
                 PN = ConvertImageToByteArray(pictureBox19.Image);
+                Neckdata = $"{textBox13.Text}" != "" ? $"{textBox13.Text}" : "×";
                 ds.Neck.Rows.Add(PN);
             }
             if (checkBox14.Checked)
             {
                 PHN = ConvertImageToByteArray(pictureBox23.Image);
+                Neckdata = $"{textBox13.Text}" != "" ? $"{textBox13.Text}" : "×";
                 ds.Neck.Rows.Add(PHN);
             }
             if (checkBox19.Checked)
             {
                 PFN = ConvertImageToByteArray(pictureBox20.Image);
+                Neckdata = $"{textBox9.Text} × {textBox10.Text}" != "" ? $"{textBox9.Text} × {textBox10.Text}" : "×";
                 ds.Neck.Rows.Add(PFN);
             }
             if (checkBox28.Checked)
             {
                 CN = ConvertImageToByteArray(pictureBox25.Image);
+                Neckdata = $"{textBox9.Text} × {textBox10.Text}" != "" ? $"{textBox9.Text} × {textBox10.Text}" : "×";
                 ds.Neck.Rows.Add(CN);
             }
             if (checkBox15.Checked)
             {
                 RT = ConvertImageToByteArray(pictureBox21.Image);
+                Neckdata = $"{textBox13.Text}" != "" ? $"{textBox13.Text}" : "×";
                 ds.Neck.Rows.Add(RT);
             }
             if (checkBox25.Checked)
             {
                 OF = ConvertImageToByteArray(pictureBox24.Image);
+                Neckdata = $"{textBox13.Text}" != "" ? $"{textBox13.Text}" : "×";
                 ds.Neck.Rows.Add(OF);
             }
             if (checkBox18.Checked)
             {
                 CF = ConvertImageToByteArray(pictureBox22.Image);
+                Neckdata = $"{textBox9.Text} × {textBox10.Text}" != "" ? $"{textBox9.Text} × {textBox10.Text}" : "×";
                 ds.Neck.Rows.Add(CF);
             }
             if (checkBox17.Checked)
             {
                 FFF = ConvertImageToByteArray(pictureBox26.Image);
+                Neckdata = $"{textBox9.Text} × {textBox10.Text}" != "" ? $"{textBox9.Text} × {textBox10.Text}" : "×";
                 ds.Neck.Rows.Add(FFF);
             }
 
@@ -1073,12 +1085,14 @@ namespace Easypos.Tailoring
             }
             else
             {
-                CRA.SetParameterValue("Zizag", "بدون سحاب");
+                CRA.SetParameterValue("Zizag", "×");
             }
             CRA.SetParameterValue("CompanyName", DC.Name);
             CRA.SetParameterValue("Taxnum", DC.Taxnumber);
             CRA.SetParameterValue("Proname", DC.CRN);
             CRA.SetParameterValue("English_Shop_name", DC.ENName);
+            CRA.SetParameterValue("Handdata", Handdata);
+            CRA.SetParameterValue("Neckdata", Neckdata);
             FCCR.CRV.ReportSource = CRA;
             FCCR.CRV.Refresh();
             FCCR.Show();
@@ -1190,6 +1204,12 @@ namespace Easypos.Tailoring
                 textBox32.Text = "0";
                 return;
             }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            Frmclient FC = new Frmclient();
+            FC.Show();
         }
     }
 }

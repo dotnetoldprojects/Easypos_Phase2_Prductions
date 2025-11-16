@@ -82,6 +82,8 @@ public partial class company
 
     public string Salestype { get; set; }
 
+    public Nullable<bool> ISUSETailor { get; set; }
+
 }
 
 }

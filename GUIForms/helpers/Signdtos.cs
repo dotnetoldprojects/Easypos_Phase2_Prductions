@@ -330,7 +330,7 @@ namespace GUI.Helpers
         public string QR { get; set; }
         public string Status { get; set; }
         public string flage { get; set; }
-        public int Saleid { get; set; }
+        public int? Saleid { get; set; }
         public int Ublid { get; set; }
         public int invno { get; set; }
 

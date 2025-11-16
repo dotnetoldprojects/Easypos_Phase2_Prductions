@@ -116,6 +116,7 @@ namespace Easypos.Masters
             DDM.SelectedIndex = 2;
             CSType.SelectedIndex = 1;
             comboBox1.Text = DC.Salestype;
+            checkBox1.Checked = DC.ISUSETailor ?? false;
         }
         private void picClose_Click(object sender, EventArgs e)
         {
@@ -151,9 +152,20 @@ namespace Easypos.Masters
                 Logo.Image = new Bitmap(openFileDialog1.FileName);
             }
         }
+        public void Showhidprinter()
+        {
+            if (PrintCheak.Checked)
+            {
+                Printgroup.Visible = true;
+            }
+            else
+            {
+                Printgroup.Visible = false;
+            }
+        }
         private void PrintCheak_CheckedChanged(object sender, EventArgs e)
         {
-            //Showhidprinter();
+            Showhidprinter();
         }
         private void Btncomsave_Click(object sender, EventArgs e)
         {
@@ -278,6 +290,7 @@ namespace Easypos.Masters
             }
             DC.Printername = CBPrinters.Text;
             DC.Salestype = comboBox1.Text;
+            DC.ISUSETailor = checkBox1.Checked;
             _IUW.companies.Update(DC);
             _IUW.Complete();
             MessageBox.Show("تم تعديل بيانات الشركه بنجاح برجاء فلق البرنامج وفتحه مره اخرى للعمل بشكل صحيح","تم");

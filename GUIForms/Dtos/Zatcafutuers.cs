@@ -95,7 +95,6 @@ namespace GUIForms.Dtos
 
             Signdtos Sdtos = new Signdtos
             {
-                Saleid = nextNumber,
                 invno = invid
             };
 
@@ -106,8 +105,10 @@ namespace GUIForms.Dtos
             {
                 Sdtos.Ublid = GUL.Id;
                 Sdtos.flage = "فاتورة مبيعات";
+                Sdtos.Saleid = null;
                 if (DC.Signtype == (int)Payenum)
                 {
+                    Sdtos.Saleid = nextNumber;
                     // ✅ فقط لو نوع التوقيع يستدعي الإرسال
                     await Sdtos.SendInvoiceAsync(GUL.Invoicehash, GUL.Uuid, GUL.Invoice, GUL.Path, GUL.QRCode, GUL.PIH);
                 }

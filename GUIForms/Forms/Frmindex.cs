@@ -67,6 +67,14 @@ namespace Easypos
             lbluser.Text = $"Login user : {username}";
             int XCI = (HP.Size.Width - lblCompanyInfo.Size.Width) / 2;
             lblCompanyInfo.Location = new Point(x, lblCompanyInfo.Location.Y);
+            if (DC.ISUSETailor == true)
+            {
+                Btntail.Visible = true;
+            }
+            else
+            {
+                Btntail.Visible = false;
+            }
         }
         private void Frmindex_Load(object sender, EventArgs e)
         {
