@@ -202,17 +202,24 @@ namespace Easypos.Payment
                             var Cash = Gp.Cash;
                             ZF.invid = Pos.Invid;
                             ZF.DC = DC;
-                            if (Cash > 0 && Bank == 0)
-                            {
-                                ZF.Payenum = Paymentenum.Cash;
-                            }
-                            if (Bank > 0 && Cash == 0)
+                            //if (Cash > 0 && Bank == 0)
+                            //{
+                            //    ZF.Payenum = Paymentenum.Cash;
+                            //}
+                            //if (Bank > 0 && Cash == 0)
+                            //{
+                            //    ZF.Payenum = Paymentenum.Bank;
+                            //}
+                            //if (Bank > 0 && Cash > 0)
+                            //{
+                            //    ZF.Payenum = Paymentenum.Mixed;
+                            //}
+                            if (Bank > 0)
                             {
                                 ZF.Payenum = Paymentenum.Bank;
-                            }
-                            if (Bank > 0 && Cash > 0)
+                            }else
                             {
-                                ZF.Payenum = Paymentenum.Mixed;
+                                ZF.Payenum = Paymentenum.Cash;
                             }
                             await ZF.Loading();
                             Cursor.Current = Cursors.Default;
