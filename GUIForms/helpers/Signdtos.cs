@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using GUIForms.helpers;
+using GUIForms.models;
 using java.security.cert;
 using javax.xml.validation;
 using Newtonsoft.Json;
@@ -10,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,7 @@ using Zatca.EInvoice.SDK.Contracts;
 
 namespace GUI.Helpers
 {
+
     //public class Signdtos
     //{
     //    private readonly EInvoiceValidator _validator;
@@ -322,6 +325,8 @@ namespace GUI.Helpers
 
     public class Signdtos
     {
+        public Paymentenum Payenum { get; set; }
+        public company DC { get; set; }
         private readonly EInvoiceValidator _validator;
         private readonly EInvoiceSigner _signer;
         private readonly RequestGenerator _requestGenerator;
@@ -626,6 +631,8 @@ namespace GUI.Helpers
             Console.WriteLine($"\n✅ تم حفظ الفاتورة المعدلة في: {path}");
             Console.WriteLine($"{'=' * 70}\n");
 
+            UC.DC = DC;
+            UC.Payenum = Payenum;
             // 6. حفظ في الداتابيز
             UC.SaveUBL(QR, IH, Uuid, Inv, Saleid, "لم تسجل", path, invno, correctPIH);
         }
@@ -665,21 +672,24 @@ namespace GUI.Helpers
 
             if (zatcaResponse.reportingStatus == "REPORTED")
             {
-                _IUW.UBLS.Update(new UBL
+                if (DC.Signtype == (int)Payenum)
                 {
-                    Id = Ublid,
-                    QRCode = qr,
-                    Invoicehash = invoiceHash,
-                    Uuid = uuid,
-                    Invoice = base64Invoice,
-                    Saleid = Saleid,
-                    Status = "سجلت",
-                    Path = path,
-                    invoicenumber = invno,
-                    PIH = correctPIH,
-                    Flage = flage,
-                });
-                _IUW.Complete();
+                    _IUW.UBLS.Update(new UBL
+                    {
+                        Id = Ublid,
+                        QRCode = qr,
+                        Invoicehash = invoiceHash,
+                        Uuid = uuid,
+                        Invoice = base64Invoice,
+                        Saleid = Saleid,
+                        Status = "سجلت",
+                        Path = path,
+                        invoicenumber = invno,
+                        PIH = correctPIH,
+                        Flage = flage,
+                    });
+                    _IUW.Complete();
+                }
             }
             else
             {

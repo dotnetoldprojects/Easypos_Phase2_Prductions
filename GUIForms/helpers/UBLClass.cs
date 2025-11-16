@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using GUIForms.Dtos;
+using GUIForms.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace GUIForms.helpers
     public class UBLClass
     {
         IUnitofwork _IUW;
+        public Paymentenum Payenum { get; set; }
+        public company DC { get; set; }
         public void SaveUBL(string QRCode, string Invoicehash, string Uuid,string Invoice,int? Saleid,string Status, string path,int invid, string PIH)
         {
             _IUW = new Unitofwork(new EasyposEntities());
@@ -28,8 +31,11 @@ namespace GUIForms.helpers
                 PIH = PIH,
                 Flage = "فاتورة مبيعات",
             };
-            _IUW.UBLS.Insert(ubl);
-            _IUW.Complete();
+            if (DC.Signtype == (int)Payenum)
+            {
+                _IUW.UBLS.Insert(ubl);
+                _IUW.Complete();
+            }
         }
     }
 }

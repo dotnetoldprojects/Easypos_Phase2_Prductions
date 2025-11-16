@@ -15,6 +15,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography;
 using System.Text;
@@ -230,11 +231,11 @@ namespace Easypos.Salesforms
                     {
                         MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسوده", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else if (Datareg == "سجلت")
-                    {
-                        MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                    //else if (Datareg == "سجلت")
+                    //{
+                    //    MessageBox.Show("لا يمكن تسجيل الفاتوره لانها مسجله مسبقا", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //    return;
+                    //}
                     else if (Datedata != MDate)
                     {
                         MessageBox.Show("لا يمكن تسجيل فاتوره بتاريخ مسبق", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -250,18 +251,42 @@ namespace Easypos.Salesforms
                             // Get the last invoice number
                             ZF.invid = int.Parse(Dataid);
                             ZF.DC = DC;
-                            await ZF.Loading();
-                            if (Filter)
+                            var Bank = decimal.Parse(DGV.CurrentRow.Cells[10].Value.ToString());
+                            var Cash = decimal.Parse(DGV.CurrentRow.Cells[11].Value.ToString());
+                            if (Cash > 0 && Bank == 0)
                             {
-                                GAS = new Getallsales();
-                                Res = GAS.GetSaleslist();
-                                Getsalesbyfilters();
-                                DataTotals();
+                                ZF.Payenum = Paymentenum.Cash;
+                            }
+                            if (Bank > 0 && Cash == 0)
+                            {
+                                ZF.Payenum = Paymentenum.Bank;
+                            }
+                            if (Bank > 0 && Cash > 0)
+                            {
+                                ZF.Payenum = Paymentenum.Mixed;
+                            }
+                            if (DC.Signtype == (int)ZF.Payenum)
+                            {
+                                await ZF.Loading();
+                                Loading();
                             }
                             else
                             {
-                                Loading();
+                                MessageBox.Show("نوع التوقيع في النظام لا يتوافق مع نوع الدفع في الفاتوره", "تسجيل فاتوره", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
                             }
+                            //await ZF.Loading();
+                            //if (Filter)
+                            //{
+                            //    GAS = new Getallsales();
+                            //    Res = GAS.GetSaleslist();
+                            //    Getsalesbyfilters();
+                            //    DataTotals();
+                            //}
+                            //else
+                            //{
+                            //    Loading();
+                            //}
                             Cursor.Current = Cursors.Default;
                         }
                         else

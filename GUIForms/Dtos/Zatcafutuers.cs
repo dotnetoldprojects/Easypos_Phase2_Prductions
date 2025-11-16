@@ -97,7 +97,8 @@ namespace GUIForms.Dtos
             {
                 invno = invid
             };
-
+            Sdtos.DC = DC;
+            Sdtos.Payenum = Payenum;
             await Sdtos.Sign(Doc, Zatcainv);
 
             var GUL = _IUW.UBLS.GetAll().FirstOrDefault(x => x.Saleid == Sdtos.Saleid);
